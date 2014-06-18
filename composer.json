@@ -19,6 +19,11 @@
 		"phpbb/phpbb": "3.1.*@dev"
 	},
 	"extra": {
-		"display-name": "phpBB 3.1 Post Love"
+		"display-name": "phpBB 3.1 Post Love",
+		"version-check": {
+			"host": "lab.anavaro.com",
+			"directory": "/phpbb-ext",
+			"filename": "postlove.json"
+		}
 	}
 }
