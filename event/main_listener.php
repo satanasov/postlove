@@ -118,6 +118,10 @@ class main_listener implements EventSubscriberInterface
 		}
 		$this->template->assign_var('IMGDIR', $this->image_dir);
 		$this->template->assign_var('IS_POSTROW', '1');
+		if ($this->user->data['is_bot'] && $this->user->data['user_id'])
+		{
+			$this->template->assign_var('DISABLE', '1');
+		}
 	}
 	
 }

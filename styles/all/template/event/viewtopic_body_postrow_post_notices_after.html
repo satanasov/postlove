@@ -1,3 +1,3 @@
 <div style="float: right;">
-	<span title="{postrow.POST_LIKERS}" style="font-size: 1.3em; vertical-align: top;" id="like_{postrow.POST_ID}">{postrow.POST_LIKERS_COUNT}</span><span style="font-size: 1.3em; vertical-align: top;">x </span><a href="./app.php/postlove/togle/{postrow.POST_ID}"  data-ajax="togle_love"><img src="{postrow.POST_LIKE_IMAGE}" width="16px" height="16px" id="likeimg_{postrow.POST_ID}"></a>
+	<span title="{postrow.POST_LIKERS}" style="font-size: 1.3em; vertical-align: top;" id="like_{postrow.POST_ID}">{postrow.POST_LIKERS_COUNT}</span><span style="font-size: 1.3em; vertical-align: top;">x </span><!-- IF DISABLE != 1 --><a href="./app.php/postlove/togle/{postrow.POST_ID}"  data-ajax="togle_love"><!-- ENDIF --><img src="{postrow.POST_LIKE_IMAGE}" width="16px" height="16px" id="likeimg_{postrow.POST_ID}"><!-- IF DISABLE != 1 --></a><!-- ENDIF -->
 </div>
