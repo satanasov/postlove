@@ -1,0 +1,24 @@
+{
+	"name": "anavaro/postlove",
+	"type": "phpbb-extension",
+	"description": "Adds ability to favourite/like/thank a post.",
+	"homepage": "https://github.com/lucifer4o/postlove",
+	"version": "1.0.0",
+	"time": "2014-06-18",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Stanislav Atanasov",
+			"email": "lucifer@anavaro.com",
+			"homepage": "http://anavaro.com",
+			"role": "Lead Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3",
+		"phpbb/phpbb": "3.1.*@dev"
+	},
+	"extra": {
+		"display-name": "phpBB 3.1 Post Love"
+	}
+}
