@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Zebra Enhance Extension
+* Post Love extension for the phpBB Forum Software package.
 * @copyright (c) 2014 Lucifer
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
@@ -10,8 +10,6 @@
 namespace anavaro\postlove\notification;
 
 /**
-* Board Rules notifications class
-* This class handles notifications for Board Rules
 *
 * @package notifications
 */
@@ -205,4 +203,3 @@ class postlove extends \phpbb\notification\type\base
 		return parent::create_insert_array($data, $pre_create_data);
 	}
 }
-
