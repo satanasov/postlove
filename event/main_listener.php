@@ -116,7 +116,7 @@ class main_listener implements EventSubscriberInterface
 			$post_row['POST_LIKE_CLASS'] = 'like';
 			$event['post_row'] = $post_row;
 		}
-		$this->template->assign_var('IMGDIR', $this->image_dir);
+		$this->template->assign_var('POSTLOVE_USE_CSS', $this->config['postlove_use_css']);
 		$this->template->assign_var('IS_POSTROW', '1');
 		if ($this->user->data['is_bot'] && $this->user->data['user_id'])
 		{
