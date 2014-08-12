@@ -103,8 +103,8 @@ class main_listener implements EventSubscriberInterface
 				$post_row['POST_LIKERS_COUNT'] = $post_likers_number;
 				
 				//now the image
-				$post_like_image = ($isliked ? $this->image_dir . '/heart.gif' : $this->image_dir . '/heart.png');
-				$post_row['POST_LIKE_IMAGE'] = $post_like_image;
+				$post_like_class = ($isliked ? 'liked' : 'like');
+				$post_row['POST_LIKE_CLASS'] = $post_like_class;
 				
 				$event['post_row'] = $post_row;
 			}
@@ -113,7 +113,7 @@ class main_listener implements EventSubscriberInterface
 		{
 			$post_row = $event['post_row'];
 			$post_row['POST_LIKERS_COUNT'] = '0';
-			$post_row['POST_LIKE_IMAGE'] = $this->image_dir . '/heart.png';
+			$post_row['POST_LIKE_CLASS'] = 'like';
 			$event['post_row'] = $post_row;
 		}
 		$this->template->assign_var('IMGDIR', $this->image_dir);
