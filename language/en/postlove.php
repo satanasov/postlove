@@ -22,4 +22,6 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKES'	=> 'User likes',
 	'POSTLOVE_USER_LIKED'	=> 'User is liked',
+	
+	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s liked your post "%2$s"',
 ));

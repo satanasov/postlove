@@ -42,6 +42,37 @@ services:
             - @template
             - @user
             - @controller.helper
+            - @anavaro.postlove.notifyhelper
             - %core.root_path%
             - %core.php_ext%
             - %core.table_prefix%
+    anavaro.postlove.notifyhelper:
+        class: anavaro\postlove\controller\notifyhelper
+        arguments:
+            - @config
+            - @dbal.conn
+            - @request
+            - @template
+            - @user
+            - @service_container
+            - %core.root_path%
+            - %core.php_ext%
+            - %core.table_prefix%
+    notification.type.postlove:
+        class: anavaro\postlove\notification\postlove
+        scope: prototype # scope MUST be prototype for this to work!
+        arguments:
+            - @user_loader
+            - @dbal.conn
+            - @cache.driver
+            - @user
+            - @auth
+            - @config
+            - @controller.helper
+            - %core.root_path%
+            - %core.php_ext%
+            - %tables.notification_types%
+            - %tables.notifications%
+            - %tables.user_notifications%
+        tags:
+            - { name: notification.type }
