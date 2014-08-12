@@ -37,6 +37,7 @@ branches:
   only:
     - master
     - develop
+    - 1.0.1
     - /^develop-.*$/
 
 install:
