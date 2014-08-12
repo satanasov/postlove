@@ -19,13 +19,13 @@
 	},
 	"extra": {
 		"display-name": "phpBB 3.1 Post Love",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.1.0-RC2,<3.2.*@dev"
+		},
 		"version-check": {
 			"host": "lab.anavaro.com",
 			"directory": "/phpbb-ext",
 			"filename": "postlove.json"
-		},
-		"soft-require": {
-			"phpbb/phpbb": "3.1.*@dev"
 		}
 	}
 }
