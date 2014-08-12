@@ -17,15 +17,14 @@ namespace anavaro\postlove\event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class acplistener implements EventSubscriberInterface
-{	
+{
 	static public function getSubscribedEvents()
-    {
+	{
 		return array(
 			'core.acp_board_config_edit_add'	=>	'add_options',
 		);
-    }
-	
-	
+	}
+
 	/**
 	* Constructor
 	* NOTE: The parameters of this method must match in order and type with
@@ -57,15 +56,14 @@ class acplistener implements EventSubscriberInterface
 		$this->php_ext = $php_ext;
 		$this->table_prefix = $table_prefix;
 	}
-	
+
 	public function add_options($event)
 	{
-		
 		if ($event['mode'] == 'features')
 		{
 			// Store display_vars event in a local variable
 			$display_vars = $event['display_vars'];
-			
+
 			$my_config_vars = array(
 				'legend10'	=> 'POSTLOVE_CONTROL',
 				'postlove_use_css'	=> array('lang' => 'POSTLOVE_USE_CSS', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),

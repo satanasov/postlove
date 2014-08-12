@@ -23,7 +23,7 @@ class release_1_0_0 extends \phpbb\db\migration\migration
 		);
 	}
 
-	//lets create the needed table	
+	//lets create the needed table
 	public function update_schema()
 	{
 		return array(
@@ -33,7 +33,7 @@ class release_1_0_0 extends \phpbb\db\migration\migration
 						'post_id'		=> array('UINT:8'),
 						'user_id'		=> array('UINT:8'),
 						'type'		=> array('VCHAR:16', 'post'),
-						'timestamp'		=> array('VCHAR:32', NULL)
+						'timestamp'		=> array('VCHAR:32', null)
 					),
 					'PRIMARY_KEY'    => 'post_id, user_id',
 				)

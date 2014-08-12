@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.org/lucifer4o/postlove.svg?branch=master)
+
 Post Love
 ==========
   
@@ -19,3 +21,4 @@ Post Love
    - cd $phpbb_root/ext/anavaro
    - git clone https://github.com/lucifer4o/postlove.git
    - Go to admin panel -> customize -> extensions -> install post love
+   

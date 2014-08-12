@@ -17,16 +17,15 @@ namespace anavaro\postlove\event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class main_listener implements EventSubscriberInterface
-{	
+{
 	static public function getSubscribedEvents()
-    {
+	{
 		return array(
 			'core.viewtopic_modify_post_row'	=>	'modify_post_row',
 			'core.user_setup'		=> 'load_language_on_setup',
 		);
-    }
-	
-	
+	}
+
 	/**
 	* Constructor
 	* NOTE: The parameters of this method must match in order and type with
@@ -58,7 +57,7 @@ class main_listener implements EventSubscriberInterface
 		$this->php_ext = $php_ext;
 		$this->table_prefix = $table_prefix;
 	}
-	
+
 	public function load_language_on_setup($event)
 	{
 		$this->user->add_lang_ext('anavaro/postlove', 'postlove');
@@ -79,7 +78,7 @@ class main_listener implements EventSubscriberInterface
 			'WHERE'	=> 'u.user_id = pl.user_id AND post_id = '.$event['row']['post_id'],
 			'ORDER_BY'	=> 'pl.timestamp ASC',
 		);
-		
+
 		$sql = $this->db->sql_build_query('SELECT', $sql_array);
 		$result = $this->db->sql_query($sql);
 
@@ -100,15 +99,15 @@ class main_listener implements EventSubscriberInterface
 				//let's take the list of peoples that liked this post
 				$post_likers = implode(', ', $likers);
 				$post_row['POST_LIKERS'] = $post_likers;
-				
+
 				//let's get the number
 				$post_likers_number = count($likers);
 				$post_row['POST_LIKERS_COUNT'] = $post_likers_number;
-				
+
 				//now the image
 				$post_like_class = ($isliked ? 'liked' : 'like');
 				$post_row['POST_LIKE_CLASS'] = $post_like_class;
-				
+
 				$event['post_row'] = $post_row;
 			}
 		}
@@ -127,7 +126,7 @@ class main_listener implements EventSubscriberInterface
 		{
 			$this->template->assign_var('DISABLE', '1');
 		}
-		
+
 		//so should we display more info?
 		//Test if we are shoung likes given!
 		if ($this->config['postlove_show_likes'])
@@ -159,5 +158,4 @@ class main_listener implements EventSubscriberInterface
 			$event['post_row'] = $post_row;
 		}
 	}
-	
 }

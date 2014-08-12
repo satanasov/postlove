@@ -43,8 +43,7 @@ class ajaxify
 		$this->php_ext = $php_ext;
 		$this->table_prefix = $table_prefix;
 	}
-	
-	
+
 	public function base ($action, $post)
 	{
 		switch ($action)
@@ -78,5 +77,5 @@ class ajaxify
 				}
 			break;
 		}
-	}	
+	}
 }

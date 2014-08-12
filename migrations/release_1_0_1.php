@@ -22,7 +22,7 @@ class release_1_0_1 extends \phpbb\db\migration\migration
 			'\anavaro\postlove\migrations\release_1_0_0',
 		);
 	}
-	
+
 	public function update_data()
 	{
 		return array(
@@ -31,5 +31,4 @@ class release_1_0_1 extends \phpbb\db\migration\migration
 			array('config.add', array('postlove_show_liked', '0')),
 		);
 	}
-
 }
