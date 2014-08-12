@@ -69,6 +69,8 @@ class acplistener implements EventSubscriberInterface
 			$my_config_vars = array(
 				'legend10'	=> 'POSTLOVE_CONTROL',
 				'postlove_use_css'	=> array('lang' => 'POSTLOVE_USE_CSS', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
+				'postlove_show_likes'	=> array('lang' => 'POSTLOVE_SHOW_LIKES', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
+				'postlove_show_liked'	=> array('lang' => 'POSTLOVE_SHOW_LIKED', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
 			);
 			// Insert my config vars after...
 			$insert_after = 'LOAD_CPF_VIEWTOPIC';
