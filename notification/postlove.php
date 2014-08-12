@@ -84,7 +84,7 @@ class postlove extends \phpbb\notification\type\base
 	{
 		return true;
 	}
-	
+
 	/**
 	* Get the id of the rule
 	*
@@ -94,7 +94,7 @@ class postlove extends \phpbb\notification\type\base
 	{
 		return $data['requester_id'];
 	}
-	
+
 	/**
 	* Get the id of the parent
 	*
@@ -132,7 +132,7 @@ class postlove extends \phpbb\notification\type\base
 	{
 		return array();
 	}
-	
+
 	/**
 	* Get the user's avatar
 	*/
@@ -142,7 +142,7 @@ class postlove extends \phpbb\notification\type\base
 		$this->user_loader->load_users($users);
 		return $this->user_loader->get_avatar($this->get_data('requester_id'));
 	}
-	
+
 	/**
 	* Get the HTML formatted title of this notification
 	*
@@ -155,7 +155,7 @@ class postlove extends \phpbb\notification\type\base
 		$username = $this->user_loader->get_username($this->get_data('requester_id'), 'no_profile');
 		return $this->user->lang('NOTIFICATION_POSTLOVE_ADD', $username, $this->get_data('post_subject'));
 	}
-	
+
 	/**
 	* Get the url to this item
 	*
@@ -165,7 +165,7 @@ class postlove extends \phpbb\notification\type\base
 	{
 		return append_sid($this->phpbb_root_path . 'viewtopic.' . $this->php_ext, "t=". $this->get_data('topic_id') . '#p' . $this->get_data('post_id'));
 	}
-	
+
 	/**
 	* Get email template
 	*
@@ -205,3 +205,4 @@ class postlove extends \phpbb\notification\type\base
 		return parent::create_insert_array($data, $pre_create_data);
 	}
 }
+

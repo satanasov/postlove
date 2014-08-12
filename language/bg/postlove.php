@@ -22,6 +22,6 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKES'	=> 'Потребителя е харесал',
 	'POSTLOVE_USER_LIKED'	=> 'Потребителя е харесан',
-	
+
 	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s хареса вашето мнение "%2$s"',
 ));
