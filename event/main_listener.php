@@ -22,6 +22,7 @@ class main_listener implements EventSubscriberInterface
     {
 		return array(
 			'core.viewtopic_modify_post_row'	=>	'modify_post_row',
+			'core.user_setup'		=> 'load_language_on_setup',
 		);
     }
 	
@@ -58,7 +59,10 @@ class main_listener implements EventSubscriberInterface
 		$this->table_prefix = $table_prefix;
 	}
 	
-	protected $image_dir = 'ext/anavaro/postlove/images';
+	public function load_language_on_setup($event)
+	{
+		$this->user->add_lang_ext('anavaro/postlove', 'postlove');
+	}
 
 	public function modify_post_row($event)
 	{
@@ -78,6 +82,7 @@ class main_listener implements EventSubscriberInterface
 		
 		$sql = $this->db->sql_build_query('SELECT', $sql_array);
 		$result = $this->db->sql_query($sql);
+
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$likers[$row['user_id']] = $row['username'];
@@ -86,14 +91,12 @@ class main_listener implements EventSubscriberInterface
 				$isliked = true;
 			}
 		}
+		$this->db->sql_freeresult($result);
 		if (!empty($likers))
 		{
-			global $user;
-
 			if ($event['row']['user_id'] != ANONYMOUS)
 			{
 				$post_row = $event['post_row'];
-				
 				//let's take the list of peoples that liked this post
 				$post_likers = implode(', ', $likers);
 				$post_row['POST_LIKERS'] = $post_likers;
@@ -117,10 +120,43 @@ class main_listener implements EventSubscriberInterface
 			$event['post_row'] = $post_row;
 		}
 		$this->template->assign_var('POSTLOVE_USE_CSS', $this->config['postlove_use_css']);
+		$this->template->assign_var('SHOW_USER_LIKES', $this->config['postlove_show_likes']);
+		$this->template->assign_var('SHOW_USER_LIKED', $this->config['postlove_show_liked']);
 		$this->template->assign_var('IS_POSTROW', '1');
 		if ($this->user->data['is_bot'] && $this->user->data['user_id'])
 		{
 			$this->template->assign_var('DISABLE', '1');
+		}
+		
+		//so should we display more info?
+		//Test if we are shoung likes given!
+		if ($this->config['postlove_show_likes'])
+		{
+			$sql = 'SELECT COUNT(post_id) as count FROM ' .$this->table_prefix . 'posts_likes WHERE user_id = ' . $event['row']['user_id'];
+			$result = $this->db->sql_query($sql);
+			$count = (int) $this->db->sql_fetchfield('count');
+			$this->db->sql_freeresult($result);
+			$post_row = $event['post_row'];
+			$post_row['USER_LIKES'] = $count;
+			$event['post_row'] = $post_row;
+		}
+		if ($this->config['postlove_show_likes'])
+		{
+			$sql_array = array(
+				'SELECT'	=> 'COUNT(pl.post_id) as count',
+				'FROM'	=> array(
+					$this->table_prefix . 'posts_likes'	=> 'pl',
+					POSTS_TABLE	=> 'p'
+				),
+				'WHERE'	=> 'pl.post_id = p.post_id AND p.poster_id = ' . $event['row']['user_id'],
+			);
+			$sql = $this->db->sql_build_query('SELECT', $sql_array);
+			$result = $this->db->sql_query($sql);
+			$count = (int) $this->db->sql_fetchfield('count');
+			$this->db->sql_freeresult($result);
+			$post_row = $event['post_row'];
+			$post_row['USER_LIKED'] = $count;
+			$event['post_row'] = $post_row;
 		}
 	}
 	

@@ -27,6 +27,8 @@ class release_1_0_1 extends \phpbb\db\migration\migration
 	{
 		return array(
 			array('config.add', array('postlove_use_css', '1')),
+			array('config.add', array('postlove_show_likes', '0')),
+			array('config.add', array('postlove_show_liked', '0')),
 		);
 	}
 
