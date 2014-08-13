@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Birthday Control test
+* Postlove Control test
 *
 * @copyright (c) 2014 Stanislav Atanasov
 * @license GNU General Public License, version 2 (GPL-2.0)
