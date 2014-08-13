@@ -30,8 +30,8 @@ class release_1_0_0 extends \phpbb\db\migration\migration
 			'add_tables'    => array(
 				$this->table_prefix . 'posts_likes'		=> array(
 					'COLUMNS'		=> array(
-						'post_id'		=> array('UINT:8'),
-						'user_id'		=> array('UINT:8'),
+						'post_id'		=> array('UINT:8', null),
+						'user_id'		=> array('UINT:8', null),
 						'type'		=> array('VCHAR:16', 'post'),
 						'timestamp'		=> array('VCHAR:32', null)
 					),
