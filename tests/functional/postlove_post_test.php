@@ -24,7 +24,14 @@ class postlove_post_test extends postlove_base
 		$post = $this->create_topic(2, 'Test Topic 1', 'This is a test topic posted by the testing framework.');
 		$crawler = self::request('GET', "viewtopic.php?t={$post['topic_id']}&sid={$this->sid}");
 		
-		//test if we have elements
-		$this->assertContains($crawler->filter('#like_' . $post['post_id']), $crawler->filter('#postlove'));
+		$post2 = $this->create_post(2, $post['topic_id'], 'Re: Test Topic 1', 'This is a test [b]post[/b] posted by the testing framework.');
+		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
+		
+		$this->assertGreaterThan(0, $post2['post_id']);
+		
+		$this->assertContains('This is a test topic posted by the testing framework.', $crawler->filter('html')->filter('#page-body')->text());
+		
+		
+		
 	}
 }
