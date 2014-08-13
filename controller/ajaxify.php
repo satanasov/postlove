@@ -94,7 +94,7 @@ class ajaxify
 							'togle_action' => 'remove',
 							'togle_post'	=> $post,
 						));
-					
+					}
 				}
 			break;
 		}
