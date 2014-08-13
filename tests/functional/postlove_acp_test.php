@@ -29,7 +29,7 @@ class postlove_acp_test extends postlove_base
 		$this->login();
 		$this->admin_login();
 
-		$this->add_lang_ext('anavaro/postlove', 'info_acp_birthdaycontrol');
+		$this->add_lang_ext('anavaro/postlove', 'info_acp_postlove');
 
 		$crawler = self::request('GET', 'adm/index.php?i=' . $mode . '&sid=' . $this->sid);
 		$this->assertContainsLang('POSTLOVE_USE_CSS', $crawler->text());
