@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @Post Love extension for the phpBB Forum Software package.
+* @package Zebra Enhance Extension
 * @copyright (c) 2014 Lucifer
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
