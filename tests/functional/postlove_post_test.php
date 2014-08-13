@@ -27,11 +27,14 @@ class postlove_post_test extends postlove_base
 		$post2 = $this->create_post(2, $post['topic_id'], 'Re: Test Topic 1', 'This is a test [b]post[/b] posted by the testing framework.');
 		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
 		
-		$this->assertGreaterThan(0, $post2['post_id']);
+		//Do we see the static?
+		$this->assertContains('0x', $crawler->filter('#p' . $post2['post_id'])->filter('#postlove')->text());		
 		
-		$this->assertContains('This is a test topic posted by the testing framework.', $crawler->filter('html')->filter('#page-body')->text());
+		//togle like
+		$crw1 = self::request('GET', 'app.php/postlove/togle/' . $post2['post_id'], array(), array(), array('CONTENT_TYPE'	=> 'application/json'));
 		
-		
-		
+		//reload page and test ...
+		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
+		$this->assertContains('1x', $crawler->filter('#p' . $post2['post_id'])->filter('#postlove')->text());
 	}
 }
