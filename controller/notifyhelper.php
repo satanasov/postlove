@@ -72,10 +72,10 @@ class notifyhelper
 			switch ($type)
 			{
 				case 'add':
-					$phpbb_notifications->add_notifications('postlove', $notification_data);
+					$phpbb_notifications->add_notifications('notification.type.postlove', $notification_data);
 				break;
 				case 'remove':
-					$phpbb_notifications->delete_notifications('postlove', $notification_data);
+					$phpbb_notifications->delete_notifications('notification.type.postlove', $notification_data);
 				break;
 			}
 		}
