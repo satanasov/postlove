@@ -51,7 +51,7 @@ class ajaxify
 		switch ($action)
 		{
 			case 'togle':
-				if ($this->user->data['user_id'] != 1) {
+				if ($this->user->data['user_id'] != ANONYMOUS) {
 					//get state for the like
 					$sql_array = array(
 						'SELECT'	=> 'pl.timestamp as timestamp, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject',
