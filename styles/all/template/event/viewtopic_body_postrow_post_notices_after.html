@@ -1,3 +1,5 @@
 <div style="float: right;" id="postlove">
-	<span title="{postrow.POST_LIKERS}" style="font-size: 1.3em; vertical-align: top;" id="like_{postrow.POST_ID}">{postrow.POST_LIKERS_COUNT}</span><span style="font-size: 1.3em; vertical-align: top;">x </span><!-- IF DISABLE != 1 --><a href="./app.php/postlove/togle/{postrow.POST_ID}"  data-ajax="togle_love"><!-- ENDIF --><span class="{postrow.POST_LIKE_CLASS}" id="likeimg_{postrow.POST_ID}"></span><!-- IF DISABLE != 1 --></a><!-- ENDIF -->
+	<!-- IF DISABLE != 1 --><a href="./app.php/postlove/togle/{postrow.POST_ID}" data-ajax="togle_love"><!-- ENDIF --><span class="{postrow.POST_LIKE_CLASS}" id="likeimg_{postrow.POST_ID}"></span><!-- IF DISABLE != 1 --></a><!-- ENDIF -->
+	<span title="{postrow.POST_LIKERS}" style="font-size: 1.3em; vertical-align: top;" id="like_{postrow.POST_ID}">{postrow.POST_LIKERS_COUNT}</span>
+	<span style="font-size: 1.3em; vertical-align: top;">x </span>
 </div>

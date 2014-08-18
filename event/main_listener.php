@@ -122,7 +122,7 @@ class main_listener implements EventSubscriberInterface
 		$this->template->assign_var('SHOW_USER_LIKES', $this->config['postlove_show_likes']);
 		$this->template->assign_var('SHOW_USER_LIKED', $this->config['postlove_show_liked']);
 		$this->template->assign_var('IS_POSTROW', '1');
-		if ($this->user->data['is_bot'] && $this->user->data['user_id'])
+		if ($this->user->data['is_bot'] && $this->user->data['user_id'] == ANONYMOUS)
 		{
 			$this->template->assign_var('DISABLE', '1');
 		}
