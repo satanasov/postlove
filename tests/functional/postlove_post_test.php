@@ -32,7 +32,6 @@ class postlove_post_test extends postlove_base
 		
 		//togle like
 		$crw1 = self::request('GET', 'app.php/postlove/togle/' . $post2['post_id'], array(), array(), array('CONTENT_TYPE'	=> 'application/json'));
-		$this->assertContains('togle_action', $crw1->text());
 		
 		//reload page and test ...
 		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");

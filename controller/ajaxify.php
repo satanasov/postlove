@@ -68,7 +68,7 @@ class ajaxify
 					if (!$row['timestamp'])
 					{
 						//so we don't have record for this user loving this post ... give some love!
-						$sql = 'INSERT INTO ' . $this->table_prefix . 'posts_likes SET post_id = ' . $post . ', user_id = ' . $this->user->data['user_id'] . ", type = 'post', timestamp = " . time();
+						$sql = 'INSERT INTO ' . $this->table_prefix . 'posts_likes (post_id, user_id, type, timestamp) VALUES (' . $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
 						$result = $this->db->sql_query($sql);
 						$this->db->sql_freeresult($result);
 						$sql = 'SELECT topic_id, poster_id, post_subject FROM ' . POSTS_TABLE . ' WHERE post_id = ' . $post;
