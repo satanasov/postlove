@@ -118,7 +118,7 @@ class main_listener implements EventSubscriberInterface
 			$post_row['POST_LIKE_CLASS'] = 'like';
 			$event['post_row'] = $post_row;
 		}
-		
+
 		$this->template->assign_var('POSTLOVE_USE_CSS', $this->config['postlove_use_css']);
 		$this->template->assign_var('SHOW_USER_LIKES', $this->config['postlove_show_likes']);
 		$this->template->assign_var('SHOW_USER_LIKED', $this->config['postlove_show_liked']);
