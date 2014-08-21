@@ -28,7 +28,7 @@ class postlove_post_test extends postlove_base
 		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
 		
 		//Do we see the static?
-		$this->assertContains('0 x', $crawler->filter('#p' . $post2['post_id'])->filter('#postlove')->text());		
+		$this->assertContains('0 x', $crawler->filter('#p' . $post2['post_id'])->filter('#postlove')->text());
 		
 		//togle like
 		$crw1 = self::request('GET', 'app.php/postlove/togle/' . $post2['post_id'], array(), array(), array('CONTENT_TYPE'	=> 'application/json'));
