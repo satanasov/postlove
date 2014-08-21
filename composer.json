@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Adds ability to favourite/like/thank a post.",
 	"homepage": "https://github.com/lucifer4o/postlove",
-	"version": "1.0.1.003",
+	"version": "1.0.1.101",
 	"time": "2014-06-18",
 	"license": "GPL-2.0",
 	"authors": [

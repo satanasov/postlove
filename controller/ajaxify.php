@@ -51,7 +51,12 @@ class ajaxify
 		switch ($action)
 		{
 			case 'togle':
-				if ($this->user->data['user_type'] != 1 || $this->user->data['user_type'] != 2) {
+				if ($this->user->data['user_type'] == 1 || $this->user->data['user_type'] == 2)
+				{
+					die();
+				}
+				else
+				{
 					//get state for the like
 					$sql_array = array(
 						'SELECT'	=> 'pl.timestamp as timestamp, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject',
