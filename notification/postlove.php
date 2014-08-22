@@ -60,7 +60,7 @@ class postlove extends \phpbb\notification\type\base
 	*/
 	public function get_type()
 	{
-		return 'postlove';
+		return 'notification.type.postlove';
 	}
 
 	/**
