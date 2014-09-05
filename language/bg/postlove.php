@@ -24,4 +24,5 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKED'	=> 'Потребителя е харесан',
 
 	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s хареса вашето мнение "%2$s"',
+	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Харесани постове',
 ));
