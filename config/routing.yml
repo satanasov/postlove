@@ -1,4 +1,4 @@
-eventmedals_control:
+postlove_control:
     path: /postlove/{action}/{post}
     defaults: { _controller: anavaro.postlove.ajaxify:base }
     requirements:
