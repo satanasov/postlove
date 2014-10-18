@@ -43,8 +43,6 @@ class postlove_post_test extends postlove_base
 	public function test_guest_see_loves()
 	{
 		$crawler = self::request('GET', "viewtopic.php?t=".$this->get_topic_id('Test Topic 1')."&sid={$this->sid}");
-		//$this->assertContains('1 x', $crawler->filter('#p' . $post2['post_id'])->filter('#postlove')->text());
-		$this->assertContains('aahahahahahahaha', $crawler->text());
-		
+		$this->assertContains('1 x', $crawler->filter('#p3')->filter('#postlove')->text());
 	}
 }
