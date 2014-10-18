@@ -15,7 +15,7 @@ namespace anavaro\postlove\tests\functional;
 */
 class postlove_post_test extends postlove_base
 {
-	$post2 = array();
+	protected $post2 = array();
 	public function test_post()
 	{
 		$this->login();
