@@ -15,7 +15,7 @@ namespace anavaro\postlove\tests\functional;
 */
 class postlove_post_test extends postlove_base
 {
-
+	$post2 = array();
 	public function test_post()
 	{
 		$this->login();
@@ -36,5 +36,15 @@ class postlove_post_test extends postlove_base
 		//reload page and test ...
 		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
 		$this->assertContains('1 x', $crawler->filter('#p' . $post2['post_id'])->filter('#postlove')->text());
+		
+		$this->logout();
+	}
+	
+	public function test_guest_see_loves()
+	{
+		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
+		//$this->assertContains('1 x', $crawler->filter('#p' . $post2['post_id'])->filter('#postlove')->text());
+		$this->assertContains('aahahahahahahaha', $crawler->text());
+		
 	}
 }
