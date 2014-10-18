@@ -107,7 +107,6 @@ class main_listener implements EventSubscriberInterface
 			$post_row['POST_LIKE_CLASS'] = $post_like_class;
 
 			$event['post_row'] = $post_row;
-		
 		}
 		else
 		{
