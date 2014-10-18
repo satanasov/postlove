@@ -71,4 +71,14 @@ class postlove_base extends \phpbb_functional_test_case
 
 		$this->purge_cache();
 	}
+	
+	public function get_topic_id($topic_title)
+	{
+		$sql = 'SELECT topic_id
+				FROM ' . TOPICS_TABLE . '
+				WHERE topic_title = \'' . $topic_title . '\'';
+		$result = $this->db->sql_query($sql);
+		$row = $this->db->sql_fetchrow($result);
+		return $row['topic_id'];
+	}
 }
