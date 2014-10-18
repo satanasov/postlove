@@ -93,23 +93,21 @@ class main_listener implements EventSubscriberInterface
 		$this->db->sql_freeresult($result);
 		if (!empty($likers))
 		{
-			if ($event['row']['user_id'] != ANONYMOUS)
-			{
-				$post_row = $event['post_row'];
-				//let's take the list of peoples that liked this post
-				$post_likers = implode(', ', $likers);
-				$post_row['POST_LIKERS'] = $post_likers;
+			$post_row = $event['post_row'];
+			//let's take the list of peoples that liked this post
+			$post_likers = implode(', ', $likers);
+			$post_row['POST_LIKERS'] = $post_likers;
 
-				//let's get the number
-				$post_likers_number = count($likers);
-				$post_row['POST_LIKERS_COUNT'] = $post_likers_number;
+			//let's get the number
+			$post_likers_number = count($likers);
+			$post_row['POST_LIKERS_COUNT'] = $post_likers_number;
 
-				//now the image
-				$post_like_class = ($isliked ? 'liked' : 'like');
-				$post_row['POST_LIKE_CLASS'] = $post_like_class;
+			//now the image
+			$post_like_class = ($isliked ? 'liked' : 'like');
+			$post_row['POST_LIKE_CLASS'] = $post_like_class;
 
-				$event['post_row'] = $post_row;
-			}
+			$event['post_row'] = $post_row;
+		
 		}
 		else
 		{
