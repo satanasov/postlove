@@ -161,7 +161,7 @@ class postlove extends \phpbb\notification\type\base
 	*/
 	public function get_url()
 	{
-		return append_sid($this->phpbb_root_path . 'viewtopic.' . $this->php_ext, "t=". $this->get_data('topic_id') . '#p' . $this->get_data('post_id'));
+		return append_sid($this->phpbb_root_path . 'viewtopic.' . $this->php_ext, "p=". $this->get_data('post_id') . '#p' . $this->get_data('post_id'));
 	}
 
 	/**
