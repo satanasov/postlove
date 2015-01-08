@@ -23,5 +23,5 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKES'	=> 'Al usuario le han gustado',
 	'POSTLOVE_USER_LIKED'	=> 'El usuario ha gustado',
 
-	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s le ha gustado su mensaje "%2$s"',
+	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s le ha <b>gustado</b> su mensaje "%2$s"',
 ));
