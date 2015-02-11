@@ -2,7 +2,7 @@
 
 /**
 *
-* newspage [Bulgarian]
+* newspage [English]
 *
 * @package language
 * @version $Id$
@@ -24,5 +24,5 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKED'	=> 'User is liked',
 
 	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s <b>liked</b> your post "%2$s"',
-	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Liked posts',
+	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Liked posts.',
 ));
