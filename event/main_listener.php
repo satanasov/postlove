@@ -137,7 +137,7 @@ class main_listener implements EventSubscriberInterface
 			$post_row['USER_LIKES'] = $count;
 			$event['post_row'] = $post_row;
 		}
-		if ($this->config['postlove_show_likes'])
+		if ($this->config['postlove_show_liked'])
 		{
 			$sql_array = array(
 				'SELECT'	=> 'COUNT(pl.post_id) as count',

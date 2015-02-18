@@ -32,6 +32,8 @@ Installation:
 Credits:
 
     @phpbb-es aka Raul [ThE KuKa]
+	@R3gi
+	@mhakfoort
     
 Submitting translations/functions
     
