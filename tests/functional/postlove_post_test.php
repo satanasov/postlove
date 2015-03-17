@@ -31,7 +31,7 @@ class postlove_post_test extends postlove_base
 		$this->assertContains('0 x', $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->text());
 		
 		//togle like
-		$url = $crawler->filter('div.postlove')->eq(0)->filter('a')->attr('href');
+		$url = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('a')->attr('href');
 		$crw1 = self::request('GET', substr($url, 1), array(), array(), array('CONTENT_TYPE'	=> 'application/json'));
 		
 		//reload page and test ...
