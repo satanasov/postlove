@@ -105,6 +105,7 @@ class main_listener implements EventSubscriberInterface
 			//now the image
 			$post_like_class = ($isliked ? 'liked' : 'like');
 			$post_row['POST_LIKE_CLASS'] = $post_like_class;
+			$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'togle', 'post' =>$event['row']['post_id']));
 
 			$event['post_row'] = $post_row;
 		}
@@ -113,6 +114,7 @@ class main_listener implements EventSubscriberInterface
 			$post_row = $event['post_row'];
 			$post_row['POST_LIKERS_COUNT'] = '0';
 			$post_row['POST_LIKE_CLASS'] = 'like';
+			$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'togle', 'post' =>$event['row']['post_id']));
 			$event['post_row'] = $post_row;
 		}
 
