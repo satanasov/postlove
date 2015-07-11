@@ -90,7 +90,7 @@ class postlove extends \phpbb\notification\type\base
 	*/
 	public static function get_item_id($data)
 	{
-		return $data['post_id'];
+		return $data['requester_id'];
 	}
 
 	/**
@@ -101,7 +101,7 @@ class postlove extends \phpbb\notification\type\base
 	public static function get_item_parent_id($data)
 	{
 		// No parent
-		return $data['requester_id'];
+		return $data['post_id'];
 	}
 
 	/**
