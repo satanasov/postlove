@@ -12,7 +12,7 @@ Features:
 
     Postview:
         - Show small heart under every post
-        - Togle like/love
+        - Toggle like/love
         - Show as tooltip who have loked the post
         - Show how many posts the user liked in mini profile
         - Show ho many of the user posts have been liked in mini profile

@@ -50,7 +50,7 @@ class ajaxify
 	{
 		switch ($action)
 		{
-			case 'togle':
+			case 'toggle':
 				if ($this->user->data['user_type'] == 1 || $this->user->data['user_type'] == 2)
 				{
 					die();
@@ -83,8 +83,8 @@ class ajaxify
 						$this->notifyhelper->notify('add', $row1['topic_id'], $post, $row1['post_subject'], $row1['poster_id'] , $this->user->data['user_id']);
 						$json_response = new \phpbb\json_response;
 						$json_response->send(array(
-							'togle_action'	=> 'add',
-							'togle_post'	=> $post,
+							'toggle_action'	=> 'add',
+							'toggle_post'	=> $post,
 						));
 					}
 					else
@@ -96,8 +96,8 @@ class ajaxify
 						$this->notifyhelper->notify('remove', $row['topic_id'], $post, $row['post_subject'], $row['poster'], $this->user->data['user_id']);
 						$json_response = new \phpbb\json_response;
 						$json_response->send(array(
-							'togle_action' => 'remove',
-							'togle_post'	=> $post,
+							'toggle_action' => 'remove',
+							'toggle_post'	=> $post,
 						));
 					}
 				}
