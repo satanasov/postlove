@@ -4,16 +4,16 @@
 
 "use strict";
 
-phpbb.addAjaxCallback('togle_love', function(data) {
-	if (data.togle_action == 'add')
+phpbb.addAjaxCallback('toggle_love', function(data) {
+	if (data.toggle_action == 'add')
 	{
-		$('#likeimg_' + data.togle_post).removeClass('like').addClass('liked');
-		$('#like_' + data.togle_post).text(parseInt($('#like_' + data.togle_post).text()) + 1);
+		$('#likeimg_' + data.toggle_post).removeClass('like').addClass('liked');
+		$('#like_' + data.toggle_post).text(parseInt($('#like_' + data.toggle_post).text()) + 1);
 	}
 	else
 	{
-		$('#likeimg_' + data.togle_post).removeClass('liked').addClass('like');
-		$('#like_' + data.togle_post).text(parseInt($('#like_' + data.togle_post).text()) - 1);
+		$('#likeimg_' + data.toggle_post).removeClass('liked').addClass('like');
+		$('#like_' + data.toggle_post).text(parseInt($('#like_' + data.toggle_post).text()) - 1);
 	}
 });
 
