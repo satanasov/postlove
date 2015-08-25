@@ -27,4 +27,19 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> 'Покажи в <code>viewtopic</code> общия брой на харесаните от този потребител постове.',
 	'POSTLOVE_SHOW_LIKED'	=> 'Покажи броя на харесаните постове на потребителя',
 	'POSTLOVE_SHOW_LIKED_EXPLAIN'	=> 'Покажи в <code>viewtopic</code> общия брой на харесаните постове на този потребител.',
+
+	//Version 1.1 langs
+	'ACP_POSTLOVE_GRP'	=> 'Post Love',
+	'ACP_POSTLOVE'	=> 'Post love',
+	'POSTLOVE_EXPLAIN'	=> 'От тук можете да контролирате различни настройки на харесването на постове',
+	'CONFIRM_MESSAGE'	=> 'Промените запазени!<br><br><a href="%1$s">Върни се обратно </а>',
+	'POSTLOVE_CURRENT_THEME'	=> 'Настояща тема',
+	'THEME_NAME'	=> 'Име на темата',
+	'THEME_AUTHOR'	=> 'Автор на темата',
+	'THEME_PREVIEW'	=> 'Преглед',
+	'POSTLOVE_CHOOSE_THEME' => 'Избор на тема',
+
+	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'Няма инсталирани допълнителни теми!<br>Моля добавете темите в папка <i> $phpbb_root_path/ext/anavaro/postlove/themes </i>',
+	'THEME_CHANGED'	=> 'Темата е сменена',
+	'POSTLOVE_NO_WRITE_ACTION'	=> 'Нямам права да пиша!<br>Моля разрешете писането в <i> $phpbb_root_path/ext/anavaro/postlove/styles </i>',
 ));
