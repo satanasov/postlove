@@ -18,6 +18,11 @@ class postlove_post_test extends postlove_base
 	protected $post2 = array();
 	public function test_post()
 	{
+		include('parser.php');
+		$parser = new CssParser();
+		$parser->load_file('../../styles/all/theme/default.css');
+		$parser->parse();
+		var_dump($parser->css);
 		$this->login();
 		
 		// Test creating topic and post to test
