@@ -11,9 +11,6 @@
 	width: 16px;
 	height: 12px;
 	margin-left: 1px;
-	background: url('./images/heart-red-12.png');
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
 }
 	
 .like {
@@ -25,8 +22,12 @@
 
 .like_info {
 	background: url('./images/heart-white-12.png');
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
 	margin-bottom: 5px;
 }
 .liked_info { 
 	background: url('./images/heart-red-12.png');
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
 }

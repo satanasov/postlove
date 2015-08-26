@@ -65,4 +65,31 @@ class postlove_post_test extends postlove_base
 		$this->assertContains('1 x', $crawler->filter('#p3')->filter('.postlove')->text());
 		
 	}
+	public function test_show_likes_given()
+	{
+		$this->login();
+		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
+		$this->assertEquals(0,  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.liked_info')->count());
+		$this->logout();
+		
+		$this->login();
+		$this->admin_login();
+
+		$this->add_lang_ext('anavaro/postlove', 'info_acp_postlove');
+
+		$crawler = self::request('GET', 'adm/index.php?i=-anavaro-postlove-acp-acp_postlove_module&mode=main&sid=' . $this->sid);
+		$form = $crawler->selectButton('submit')->form();
+		$form->setValues(array(
+			'poslove[postlove_show_liked]'	=> 1,
+		));
+		$crawler = self::submit($form);
+		$this->assertContainsLang('CONFIRM_MESSAGE', $crawler->text());
+		$this->logout();
+		$this->logout();
+
+		$this->login();
+		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
+		$this->assertContains('x 1',  $crawler->filter('.liked_info')->text());
+		$this->logout();
+	}
 }
