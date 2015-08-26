@@ -18,11 +18,6 @@ class postlove_post_test extends postlove_base
 	protected $post2 = array();
 	public function test_post()
 	{
-		include('parser.php');
-		$parser = new CssParser();
-		$parser->load_file('../../styles/all/theme/default.css');
-		$parser->parse();
-		var_dump($parser->css);
 		$this->login();
 		
 		// Test creating topic and post to test
@@ -41,8 +36,13 @@ class postlove_post_test extends postlove_base
 		
 		//reload page and test ...
 		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
-		$this->assertContains('1 x', $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('span')->attr('class'));
-		
+		include('CssParser.php');
+		$parser = new CssParser();
+		$parser->load_file('/home/travis/build/phpBB3/phpBB/ext/anavaro/postlove/styles/all/theme/default.css');
+		$parser->parse();
+		$class = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('span')->attr('class');
+		var_dump($parser->parsed['main']);
+		$this->assertContains($parser->parsed['main']['.' . $class]['background'], 'heart-white-16.png');
 		$this->logout();
 	}
 	
