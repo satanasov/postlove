@@ -29,7 +29,6 @@ class acp_postlove_module
 		$this->tpl_name = 'acp_postlove';
 		$this->page_title = 'ACP_POSTLOVE';
 
-		
 		if ($request->is_set_post('submit'))
 		{
 			$postlove = $request->variable('poslove', array('' => ''));
@@ -75,6 +74,8 @@ class acp_postlove_module
 			'POST_LIKED'	=> ($config['postlove_show_liked'] == 1 ? true : false),
 			'INSTALLED_THEME_NAME'	=> $theme_json['name'],
 			'INSTALLED_THEME_AUTHOR'	=> $theme_json['author'],
+			'INSTALLED_THEME_DESCRIPTION'	=> $theme_json['description'],
+			'INSTALLED_THEME_SUPPORTED_STYLES'	=> implode(',', $theme_json['support']),
 			'INSTALLED_THEME_PREVIEW'	=> $ext_path . 'themes/' . $config['postlove_installed_theme'] . '/' . $theme_json['preview'],
 		));
 
@@ -94,6 +95,7 @@ class acp_postlove_module
 						'THEME_NAME'	=> $theme_json['name'],
 						'THEME_AUTHOR'	=> $theme_json['author'],
 						'THEME_DESCRIPTION' => $theme_json['description'],
+						'THEME_SUPPORTED'	=> implode(',', $theme_json['support']),
 						'THEME_PREVIEW'	=> (isset($theme_json['preview']) ? '<img src="' . $ext_path . 'themes/' . $var . '/' . $theme_json['preview'] . '" style="max-width: 100%"/>' : false),
 					));
 				}
@@ -125,19 +127,24 @@ class acp_postlove_module
 	}
 
 	// Recurse copy
-	function recurse_copy($src,$dst) { 
-		$dir = opendir($src); 
-		@mkdir($dst); 
-		while(false !== ( $file = readdir($dir)) ) { 
-			if (( $file != '.' ) && ( $file != '..' )) { 
-				if ( is_dir($src . '/' . $file) ) { 
-					$this->recurse_copy($src . '/' . $file,$dst . '/' . $file); 
+	function recurse_copy($src, $dst)
+	{
+		$dir = opendir($src);
+		@mkdir($dst);
+		while(false !== ( $file = readdir($dir)))
+		{
+			if (( $file != '.' ) && ( $file != '..' ))
+			{
+				if ( is_dir($src . '/' . $file) )
+				{
+					$this->recurse_copy($src . '/' . $file,$dst . '/' . $file);
 				} 
-				else { 
-					copy($src . '/' . $file,$dst . '/' . $file); 
-				} 
-			} 
-		} 
-		closedir($dir); 
-	} 
+				else
+				{
+					copy($src . '/' . $file,$dst . '/' . $file);
+				}
+			}
+		}
+		closedir($dir);
+	}
 }

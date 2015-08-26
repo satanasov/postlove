@@ -27,4 +27,21 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> 'Afficher dans <code>viewtopic</code> le nombre de messages que l’utilisateur a aimé, sous forme de « J’aime ».',
 	'POSTLOVE_SHOW_LIKED'	=> 'Afficher le nombre de « J’aime » pour les messages de l’utilisateur',
 	'POSTLOVE_SHOW_LIKED_EXPLAIN'	=> 'Afficher dans <code>viewtopic</code> le nombre de messages de l’utilisateur aimés par les autres, sous forme de « J’aime ».',
+
+	//Version 1.1 langs
+	'ACP_POSTLOVE_GRP'	=> 'Post Love',
+	'ACP_POSTLOVE'	=> 'Post love',
+	'POSTLOVE_EXPLAIN'	=> 'From here you can change some Post Love settings',
+	'CONFIRM_MESSAGE'	=> 'Changes saved!<br><br><a href="%1$s">Back</а>',
+	'POSTLOVE_CURRENT_THEME'	=> 'Current theme',
+	'THEME_NAME'	=> 'Theme name',
+	'THEME_AUTHOR'	=> 'Theme author',
+	'THEME_DESCRIPTION'	=> 'Theme description',
+	'THEME_SUPPORT_STYLES'	=> 'Supported styles',
+	'THEME_PREVIEW'	=> 'Preview',
+	'POSTLOVE_CHOOSE_THEME' => 'Select theme',
+
+	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'There are no themes installed!<br>Please add them in <i>$phpbb_root_path/ext/anavaro/postlove/themes</i> folder',
+	'THEME_CHANGED'	=> 'Theme changed',
+	'POSTLOVE_NO_WRITE_ACTION'	=> 'No write acccess!<br>Please allow write access to<i> $phpbb_root_path/ext/anavaro/postlove/styles </i>folder',
 ));

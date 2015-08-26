@@ -2,8 +2,8 @@
 /**
 *
 * @package acp
-* @copyright (c) 2015 phpBB Group 
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License 
+* @copyright (c) 2015 phpBB Group
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
 

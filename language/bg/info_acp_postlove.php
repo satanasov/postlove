@@ -36,6 +36,8 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_CURRENT_THEME'	=> 'Настояща тема',
 	'THEME_NAME'	=> 'Име на темата',
 	'THEME_AUTHOR'	=> 'Автор на темата',
+	'THEME_DESCRIPTION'	=> 'Описание на темата',
+	'THEME_SUPPORT_STYLES'	=> 'Поддържани стилове',
 	'THEME_PREVIEW'	=> 'Преглед',
 	'POSTLOVE_CHOOSE_THEME' => 'Избор на тема',
 
