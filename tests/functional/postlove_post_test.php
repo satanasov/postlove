@@ -83,7 +83,7 @@ class postlove_post_test extends postlove_base
 			'poslove[postlove_show_liked]'	=> 1,
 		));
 		$crawler = self::submit($form);
-		$this->assertContainsLang('CONFIRM_MESSAGE', $crawler->text());
+		$this->assertContains('Changes saved!', $crawler->text());
 		$this->logout();
 		$this->logout();
 
