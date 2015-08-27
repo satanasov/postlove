@@ -70,6 +70,7 @@ class postlove_post_test extends postlove_base
 		$this->login();
 		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
 		$this->assertEquals(0,  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.liked_info')->count());
+		$this->assertEquals(0,  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.like_info')->count());
 		$this->logout();
 		
 		$this->login();
@@ -80,7 +81,8 @@ class postlove_post_test extends postlove_base
 		$crawler = self::request('GET', 'adm/index.php?i=-anavaro-postlove-acp-acp_postlove_module&mode=main&sid=' . $this->sid);
 		$form = $crawler->selectButton('submit')->form();
 		$form->setValues(array(
-			'poslove[postlove_show_liked]'	=> 1,
+			'poslove[postlove_show_likes]'	=> 1,
+			'poslove[postlove_show_liked]'	=> 0,
 		));
 		$crawler = self::submit($form);
 		$this->assertContains('Changes saved!', $crawler->text());
@@ -89,7 +91,52 @@ class postlove_post_test extends postlove_base
 
 		$this->login();
 		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
-		$this->assertContains('x 1',  $crawler->filter('.liked_info')->parents()->text());
+		$this->assertContains('x 1',  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.profile-custom-field')->filter('.liked_info')->parents()->text());
+		$this->assertEquals(0,  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.like_info')->count());
+		$this->logout();
+		
+		$this->login();
+		$this->admin_login();
+
+		$this->add_lang_ext('anavaro/postlove', 'info_acp_postlove');
+
+		$crawler = self::request('GET', 'adm/index.php?i=-anavaro-postlove-acp-acp_postlove_module&mode=main&sid=' . $this->sid);
+		$form = $crawler->selectButton('submit')->form();
+		$form->setValues(array(
+			'poslove[postlove_show_likes]'	=> 0,
+			'poslove[postlove_show_liked]'	=> 1,
+		));
+		$crawler = self::submit($form);
+		$this->assertContains('Changes saved!', $crawler->text());
+		$this->logout();
+		$this->logout();
+		
+		$this->login();
+		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
+		$this->assertContains('x 1',  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.profile-custom-field')->filter('.like_info')->parents()->text());
+		$this->assertEquals(0,  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.liked_info')->count());
+		$this->logout();
+		
+		$this->login();
+		$this->admin_login();
+
+		$this->add_lang_ext('anavaro/postlove', 'info_acp_postlove');
+
+		$crawler = self::request('GET', 'adm/index.php?i=-anavaro-postlove-acp-acp_postlove_module&mode=main&sid=' . $this->sid);
+		$form = $crawler->selectButton('submit')->form();
+		$form->setValues(array(
+			'poslove[postlove_show_likes]'	=> 1,
+			'poslove[postlove_show_liked]'	=> 1,
+		));
+		$crawler = self::submit($form);
+		$this->assertContains('Changes saved!', $crawler->text());
+		$this->logout();
+		$this->logout();
+		
+		$this->login();
+		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
+		$this->assertContains('x 1',  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.profile-custom-field')->filter('.like_info')->parents()->text());
+		$this->assertContains('x 1',  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.profile-custom-field')->filter('.liked_info')->parents()->text());
 		$this->logout();
 	}
 }
