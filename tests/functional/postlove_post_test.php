@@ -89,7 +89,7 @@ class postlove_post_test extends postlove_base
 
 		$this->login();
 		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
-		$this->assertContains('x 1',  $crawler->filter('.liked_info')->text());
+		$this->assertContains('x 1',  $crawler->filter('.liked_info')->parents()->text());
 		$this->logout();
 	}
 }
