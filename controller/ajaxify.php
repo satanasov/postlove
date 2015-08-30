@@ -70,6 +70,13 @@ class ajaxify
 					$result = $this->db->sql_query($sql);
 					$row = $this->db->sql_fetchrow($result);
 					$this->db->sql_freeresult($result);
+					if (!$row)
+					{
+						$json_response = new \phpbb\json_response;
+						$json_response->send(array(
+							'error'	=> 1
+						));
+					}
 					if (!$row['timestamp'])
 					{
 						//so we don't have record for this user loving this post ... give some love!
