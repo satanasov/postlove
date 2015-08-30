@@ -44,4 +44,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'There are no themes installed!<br>Please add them in <i>$phpbb_root_path/ext/anavaro/postlove/themes</i> folder',
 	'THEME_CHANGED'	=> 'Theme changed',
 	'POSTLOVE_NO_WRITE_ACTION'	=> 'No write acccess!<br>Please allow write access to<i> $phpbb_root_path/ext/anavaro/postlove/styles </i>folder',
+
+	'POSTLOVE_AUTHOR_LIKE'	=> 'Author can like posts',
+	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Can the author like his/her own posts or not',
 ));

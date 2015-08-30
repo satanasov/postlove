@@ -25,6 +25,15 @@
 					<label><input type="radio" id="postlove_show_liked" name="poslove[postlove_show_liked]" value="1"<!-- IF POST_LIKED --> checked<!-- ENDIF -->>{L_YES}</label><label><input type="radio" id="postlove_show_liked" name="poslove[postlove_show_liked]" value="0"<!-- IF !POST_LIKED --> checked<!-- ENDIF -->>{L_NO}</label>
 				</dd>
 			</dl>
+			<dl>
+				<dt>
+					<label>{L_POSTLOVE_AUTHOR_LIKE}</label><br />
+					<span>{L_POSTLOVE_AUTHOR_LIKE_EXPLAIN}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" id="postlove_author_like" name="poslove[postlove_author_like]" value="1"<!-- IF AUTHOR_LIKE --> checked<!-- ENDIF -->>{L_YES}</label><label><input type="radio" id="postlove_author_like" name="poslove[postlove_author_like]" value="0"<!-- IF !AUTHOR_LIKE --> checked<!-- ENDIF -->>{L_NO}</label>
+				</dd>
+			</dl>
 			</fieldset>
 			<p class="submit-buttons">
 			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;

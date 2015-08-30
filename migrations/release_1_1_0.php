@@ -27,6 +27,8 @@ class release_1_1_0 extends \phpbb\db\migration\migration
 	{
 		return array(
 			array('config.add', array('postlove_installed_theme', 'default')),
+			array('config.add', array('postlove_author_like', 1)),
+			array('config.remove', array('postlove_use_css')),
 			array('module.add', array(
 				'acp',
 				'ACP_CAT_DOT_MODS',

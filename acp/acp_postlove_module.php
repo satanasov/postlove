@@ -72,6 +72,7 @@ class acp_postlove_module
 		$template->assign_vars(array(
 			'POST_LIKES'	=> ($config['postlove_show_likes'] == 1 ? true : false),
 			'POST_LIKED'	=> ($config['postlove_show_liked'] == 1 ? true : false),
+			'AUTHOR_LIKE'	=> ($config['postlove_author_like'] == 1 ? true : false),
 			'INSTALLED_THEME_NAME'	=> $theme_json['name'],
 			'INSTALLED_THEME_AUTHOR'	=> $theme_json['author'],
 			'INSTALLED_THEME_DESCRIPTION'	=> $theme_json['description'],

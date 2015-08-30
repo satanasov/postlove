@@ -44,4 +44,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'Няма инсталирани допълнителни теми!<br>Моля добавете темите в папка <i> $phpbb_root_path/ext/anavaro/postlove/themes </i>',
 	'THEME_CHANGED'	=> 'Темата е сменена',
 	'POSTLOVE_NO_WRITE_ACTION'	=> 'Нямам права да пиша!<br>Моля разрешете писането в <i> $phpbb_root_path/ext/anavaro/postlove/styles </i>',
+
+	'POSTLOVE_AUTHOR_LIKE'	=> 'Автора може да харесва',
+	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Дали автора може да харесва собствените си постове или не',
 ));
