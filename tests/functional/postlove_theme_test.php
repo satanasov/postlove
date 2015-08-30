@@ -32,6 +32,9 @@ class postlove_theme_test extends postlove_base
 
 		// Select theme
 		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
-		$this->assertContains('zazaza' , $crawler->text());
+		$this->assertContains('Like/Unlike Post' , $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postbody')->filter('.post-buttons')->filter('.lbutton')->attr('title'));
+
+		$this->logout();
+		$this->logout();
 	}
 }
