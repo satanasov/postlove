@@ -23,6 +23,7 @@ class main_listener implements EventSubscriberInterface
 		return array(
 			'core.viewtopic_modify_post_row'	=>	'modify_post_row',
 			'core.user_setup'		=> 'load_language_on_setup',
+			'core.memberlist_view_profile'	       => 'user_profile_likes',
 		);
 	}
 
@@ -156,5 +157,10 @@ class main_listener implements EventSubscriberInterface
 			$post_row['USER_LIKED'] = $count;
 			$event['post_row'] = $post_row;
 		}
+	}
+
+	public function user_profile_likes($event)
+	{
+		$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])));
 	}
 }

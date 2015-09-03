@@ -30,6 +30,17 @@ services:
             - %core.root_path%
             - %core.php_ext%
             - %core.table_prefix%
+    anavaro.postlove.lovelist:
+        class: anavaro\postlove\controller\lovelist
+        arguments:
+            - @user
+            - @controller.helper
+            - @dbal.conn
+            - @auth
+            - @user_loader
+            - @template
+            - %core.table_prefix%
+            - %core.root_path%
     anavaro.postlove.notifyhelper:
         class: anavaro\postlove\controller\notifyhelper
         arguments:
