@@ -63,4 +63,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'Il n’y a aucun thème installé !<br>Merci d’en ajouter dans le répertoire : <i>$phpbb_root_path/ext/anavaro/postlove/themes</i>.',
 	'THEME_CHANGED'	=> 'Le thème a été modifié.',
 	'POSTLOVE_NO_WRITE_ACTION'	=> 'Les permissions en écriture ne sont pas correctes !<br>Merci d’attribuer des permissions en écriture sur le répertoire : <i>$phpbb_root_path/ext/anavaro/postlove/styles</i>, au moyen de la commande : CHMOD 777.',
+
+	'POSTLOVE_AUTHOR_LIKE'	=> 'L’auteur peut aimer ses messages',
+	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Permettre ou non à l’auteur d’aimer son/ses propre(s) message(s).',
 ));
