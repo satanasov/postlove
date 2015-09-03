@@ -30,6 +30,9 @@ class lovelist
 	/* @var \phpbb\template\template */
 	protected $template;
 
+	/* @var \phpbb\request\request */
+	protected $request;
+
 	/**
 	* Constructor
 	* NOTE: The parameters of this method must match in order and type with
@@ -38,7 +41,7 @@ class lovelist
 	* @param \phpbb\user		$user		User object
 	*/
 	public function __construct(\phpbb\user $user, \phpbb\controller\helper $helper, \phpbb\db\driver\driver_interface $db, \phpbb\auth\auth $auth, \phpbb\user_loader $user_loader,
-	\phpbb\template\template $template,
+	\phpbb\template\template $template,\phpbb\pagination $pagination, \phpbb\request\request $request,
 	$table_prefix, $root_path)
 	{
 		$this->user = $user;
@@ -47,6 +50,8 @@ class lovelist
 		$this->auth = $auth;
 		$this->user_loader = $user_loader;
 		$this->template = $template;
+		$this->pagination = $pagination;
+		$this->request = $request;
 		$this->table_prefix = $table_prefix;
 		$this->root_path = $root_path;
 	}
@@ -58,8 +63,17 @@ class lovelist
 	* @param int	$user_id	User ID
 	* @return Symfony\Component\HttpFoundation\Response A Symfony Response object
 	*/
-	public function base ($user_id)
+	public function base ($user_id, $page)
 	{
+		$short = $this->request->variable('short', '');
+		if ($short == 1)
+		{
+			$this->template->assign_vars(array(
+				'SHORT' => true,
+			));
+		}
+		$limit = 50;
+		$start = ($page - 1) * $limit;
 		// Add lang
 		$this->user->add_lang_ext('anavaro/postlove', array('postlove'));
 		// Let's get allowed forums
@@ -81,7 +95,7 @@ class lovelist
 		}
 
 		$sql_array = array(
-			'SELECT'	=> 'pl.timestamp as timestamp, pl.user_id as liker_id, p.post_id as post_id, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject, t.topic_title as topic_title',
+			'SELECT'	=> 'COUNT(*) as count',
 			'FROM'	=> array(
 				POSTS_TABLE	=> 'p',
 				TOPICS_TABLE	=> 't',
@@ -96,7 +110,13 @@ class lovelist
 			'ORDER_BY'	=> 'pl.timestamp DESC'
 		);
 		$sql = $this->db->sql_build_query('SELECT', $sql_array);
-		$result = $this->db->sql_query_limit($sql, 0, 100);
+		$result = $this->db->sql_query($sql);
+		$row = $this->db->sql_fetchrow($result);
+		$counter = $row['count'];
+		$this->db->sql_freeresult($result);
+		$sql_array['SELECT'] = 'pl.timestamp as timestamp, pl.user_id as liker_id, p.post_id as post_id, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject, t.topic_title as topic_title';
+		$sql = $this->db->sql_build_query('SELECT', $sql_array);
+		$result = $this->db->sql_query_limit($sql, $limit, $start);
 		$users = $output = $raw_output = array();
 		while ($row = $this->db->sql_fetchrow($result))
 		{
@@ -123,7 +143,16 @@ class lovelist
 			));
 		}
 
-		$page_title = 'test';
+		$this->pagination->generate_template_pagination(array(
+				'routes' => array(
+					'postlove_list',
+					'postlove_list_page',
+				),
+				'params' => array(
+					'user_id' => $user_id,
+				),
+			), 'pagination', 'page', $counter, $limit, $start);
+		$page_title = 'Post Love';
 		return $this->helper->render('postlove_base.html', $page_title);
 	}
 }

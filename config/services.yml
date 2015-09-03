@@ -39,6 +39,8 @@ services:
             - @auth
             - @user_loader
             - @template
+            - @pagination
+            - @request
             - %core.table_prefix%
             - %core.root_path%
     anavaro.postlove.notifyhelper:
