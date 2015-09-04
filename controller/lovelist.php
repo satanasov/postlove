@@ -74,12 +74,14 @@ class lovelist
 		}
 		$limit = 50;
 		$start = ($page - 1) * $limit;
+
 		// Add lang
 		$this->user->add_lang_ext('anavaro/postlove', array('postlove'));
 		// Let's get allowed forums
 		// Get the allowed forums
 		$forum_ary = array();
 		$forum_read_ary = $this->auth->acl_getf('f_read');
+
 		foreach ($forum_read_ary as $forum_id => $allowed)
 		{
 			if ($allowed['f_read'])
@@ -88,6 +90,7 @@ class lovelist
 			}
 		}
 		$forum_ids = array_unique($forum_ary);
+
 		// No forums with f_read
 		if (!sizeof($forum_ids))
 		{
@@ -114,44 +117,47 @@ class lovelist
 		$row = $this->db->sql_fetchrow($result);
 		$counter = $row['count'];
 		$this->db->sql_freeresult($result);
-		$sql_array['SELECT'] = 'pl.timestamp as timestamp, pl.user_id as liker_id, p.post_id as post_id, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject, t.topic_title as topic_title';
-		$sql = $this->db->sql_build_query('SELECT', $sql_array);
-		$result = $this->db->sql_query_limit($sql, $limit, $start);
-		$users = $output = $raw_output = array();
-		while ($row = $this->db->sql_fetchrow($result))
+		if ($counter > 0)
 		{
-			if ($row['liker_id'] != $user_id)
+			$sql_array['SELECT'] = 'pl.timestamp as timestamp, pl.user_id as liker_id, p.post_id as post_id, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject, t.topic_title as topic_title';
+			$sql = $this->db->sql_build_query('SELECT', $sql_array);
+			$result = $this->db->sql_query_limit($sql, $limit, $start);
+			$users = $output = $raw_output = array();
+			while ($row = $this->db->sql_fetchrow($result))
 			{
-				$users[] = $row['liker_id'];
+				if ($row['liker_id'] != $user_id)
+				{
+					$users[] = $row['liker_id'];
+				}
+				if ($row['poster'] != $user_id)
+				{
+					$users[] = $row['poster'];
+				}
+				$raw_output[] = $row;
 			}
-			if ($row['poster'] != $user_id)
+			$users[] = $user_id;
+			$users = array_unique($users);
+			$this->db->sql_freeresult($result);
+			$this->user_loader->load_users($users);
+			foreach ($raw_output as $row)
 			{
-				$users[] = $row['poster'];
+				$post_link = '<a href="' . $this->root_path .'../viewtopic.php?p=' . $row['post_id'] . '#'. $row['post_id'] .'" target="_blank" >' . $row['post_subject'] . '</a>';
+				$topic_link = '<a href="' . $this->root_path .'../viewtopic.php?t=' . $row['topic_id'] . '" target="_blank" class="topictitle">' . $row['topic_title'] . '</a>';
+				$this->template->assign_block_vars('lovelist', array(
+					'LINE' => $this->user->lang('LIKE_LINE', $this->user->format_date($row['timestamp']), $this->user_loader->get_username($row['liker_id'], 'full'), $this->user_loader->get_username($row['poster'], 'full'), $post_link, $topic_link),
+				));
 			}
-			$raw_output[] = $row;
-		}
-		$users[] = $user_id;
-		$users = array_unique($users);
-		$this->db->sql_freeresult($result);
-		$this->user_loader->load_users($users);
-		foreach ($raw_output as $row)
-		{
-			$post_link = '<a href="' . $this->root_path .'../viewtopic.php?p=' . $row['post_id'] . '#'. $row['post_id'] .'" target="_blank" >' . $row['post_subject'] . '</a>';
-			$topic_link = '<a href="' . $this->root_path .'../viewtopic.php?t=' . $row['topic_id'] . '" target="_blank" class="topictitle">' . $row['topic_title'] . '</a>';
-			$this->template->assign_block_vars('lovelist', array(
-				'LINE' => $this->user->lang('LIKE_LINE', $this->user->format_date($row['timestamp']), $this->user_loader->get_username($row['liker_id'], 'full'), $this->user_loader->get_username($row['poster'], 'full'), $post_link, $topic_link),
-			));
-		}
 
-		$this->pagination->generate_template_pagination(array(
-				'routes' => array(
-					'postlove_list',
-					'postlove_list_page',
-				),
-				'params' => array(
-					'user_id' => $user_id,
-				),
-			), 'pagination', 'page', $counter, $limit, $start);
+			$this->pagination->generate_template_pagination(array(
+					'routes' => array(
+						'postlove_list',
+						'postlove_list_page',
+					),
+					'params' => array(
+						'user_id' => $user_id,
+					),
+				), 'pagination', 'page', $counter, $limit, $start);
+		}
 		$page_title = 'Post Love';
 		return $this->helper->render('postlove_base.html', $page_title);
 	}
