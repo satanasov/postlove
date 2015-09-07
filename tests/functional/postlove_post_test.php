@@ -139,4 +139,14 @@ class postlove_post_test extends postlove_base
 		$this->assertContains('x 1',  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.profile-custom-field')->filter('.liked_info')->parents()->text());
 		$this->logout();
 	}
+
+	public function test_show_list()
+	{
+		$this->login();
+		$this->add_lang_ext('anavaro/postlove', 'postlove');
+	
+		$crawler = self::request('GET', "app.php/postlove/2?sid={$this->sid}");
+		//$this->assertContains('zzazaza', $crawler->text());
+		$this->assertEquals(1, $crawler->filter('.inner')->filter('.topiclist')->filter('ul')->filter('li')->count());
+	}
 }

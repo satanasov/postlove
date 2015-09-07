@@ -54,11 +54,18 @@ class controller_lovelist_test extends \phpbb_database_test_case
 	/**
 	* Create our controller
 	*/
-	protected function get_controller($user_id, $is_registered)
+	protected function get_controller($user_id, $is_registered, $expected, $perm_ary)
 	{
+		global $phpbb_dispatcher;
+
+		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
+		
 		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
 		$this->user->data['user_id'] = $user_id;
 		$this->user->data['is_registered'] = $is_registered;
+		$this->user->lang = array(
+			'LIKE_LINE'	=> '%1$s - %2$s <b>liked</b> %3$s\'s post "%4$s" in topic "%5$s"'
+		);
 
 		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
 			->disableOriginalConstructor()
@@ -70,25 +77,18 @@ class controller_lovelist_test extends \phpbb_database_test_case
 			});
 		$this->db = $this->new_dbal();
 
-		$perm_ary = array(
-			array('f_read', true, array(2 => true)),
-		);
-		$perm_ary1 = array(
-			1 => array(
-				'f_read'	=> true,
-			),
-		);
 		$this->auth = $this->getMock('\phpbb\auth\auth');
 		$this->auth->expects($this->any())
 			->method('acl_getf')
 			->with($this->stringContains('_'), $this->anything())
-			->will($this->returnValue($perm_ary1));
+			->will($this->returnValue($perm_ary));
 
-		$this->user_loader = new \phpbb\user_loader($this->db, __DIR__ . '/../../../../phpBB/', 'php', 'phpbb_users');
-
+		$this->user_loader = new \phpbb\user_loader($this->db, $phpbb_root_path, $phpEx, 'phpbb_users');
 		// Mock the template
 		$this->template = $this->getMockBuilder('\phpbb\template\template')
 			->getMock();
+		$this->template->expects($this->exactly($expected))
+			->method('assign_block_vars');
 		
 		$this->pagination = $this->getMockBuilder('\phpbb\pagination')->disableOriginalConstructor()
 			->getMock();
@@ -111,10 +111,72 @@ class controller_lovelist_test extends \phpbb_database_test_case
 		return $controller;
 	}
 
-	public function test_controller()
+	public function controller_data()
 	{
-		$controller = $this->get_controller(1, true);
-		$response = $controller->base(1, false);
+		return array(
+			'normal' => array(
+				1, // User Id
+				true, // Is user registered
+				1, // Request Id
+				6, // Expected
+				array(
+					1 => array(
+						'f_read'	=> true,
+					),
+					2 => array(
+						'f_read'	=> true,
+					),
+					3 => array(
+						'f_read'	=> true,
+					),
+				)
+			),
+			'test_forum' => array(
+				2, // User Id
+				true, // Is user registered
+				1, // Request Id
+				5, // Expected
+				array(
+					1 => array(
+						'f_read'	=> true,
+					),
+					2 => array(
+						'f_read'	=> true,
+					),
+					3 => array(
+						'f_read'	=> false,
+					),
+				)
+			),
+			'test2' => array(
+				1, // User Id
+				true, // Is user registered
+				3, // Requestor Id
+				1, // Expected
+				array(
+					1 => array(
+						'f_read'	=> true,
+					),
+					2 => array(
+						'f_read'	=> false,
+					),
+					3 => array(
+						'f_read'	=> false,
+					),
+				)
+			),
+		);
+	}
+
+	/**
+	 * Test the controller
+	 *
+	 * @dataProvider controller_data
+	 */
+	public function test_controller($user_id, $is_registered, $requester_id, $expected, $perm_ary)
+	{
+		$controller = $this->get_controller($user_id, $is_registered, $expected, $perm_ary);
+		$response = $controller->base($requester_id, false);
 		$this->assertInstanceOf('\Symfony\Component\HttpFoundation\Response', $response);
 		$this->assertEquals('200', $response->getStatusCode());
 	}

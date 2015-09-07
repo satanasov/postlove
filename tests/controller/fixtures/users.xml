@@ -3,82 +3,52 @@
 	<table name="phpbb_topics">
 		<column>topic_id</column>
 		<column>forum_id</column>
+		<column>topic_title</column>
 		<row>
 			<value>1</value>
 			<value>1</value>
+			<value>test 1</value>
 		</row>
 		<row>
 			<value>2</value>
-			<value>1</value>
-		</row>
-		<row>
-			<value>3</value>
-			<value>1</value>
-		</row>
-		<row>
-			<value>4</value>
 			<value>2</value>
+			<value>test 2</value>
 		</row>
 		<row>
-			<value>5</value>
-			<value>2</value>
-		</row>
-		<row>
-			<value>6</value>
-			<value>2</value>
-		</row>
-		<row>
-			<value>7</value>
 			<value>3</value>
-		</row>
-		<row>
-			<value>8</value>
 			<value>3</value>
-		</row>
-		<row>
-			<value>9</value>
-			<value>3</value>
+			<value>test 3</value>
 		</row>
 	</table>
 	<table name="phpbb_posts">
 		<column>post_id</column>
 		<column>topic_id</column>
 		<column>forum_id</column>
+		<column>poster_id</column>
+		<column>post_subject</column>
 		<column>post_text</column>
 		<row>
 			<value>1</value>
 			<value>1</value>
 			<value>1</value>
-			<value>Test post</value>
-		</row>
-		<row>
-			<value>2</value>
-			<value>2</value>
-			<value>2</value>
-			<value>Test post</value>
-		</row>
-		<row>
-			<value>3</value>
-			<value>3</value>
-			<value>3</value>
-			<value>Test post</value>
-		</row>
-		<row>
-			<value>4</value>
 			<value>1</value>
+			<value>Test post title</value>
+			<value>Test post</value>
+		</row>
+		<row>
+			<value>2</value>
+			<value>2</value>
+			<value>2</value>
 			<value>1</value>
+			<value>Test post title</value>
 			<value>Test post</value>
 		</row>
 		<row>
-			<value>5</value>
-			<value>2</value>
-			<value>2</value>
-			<value>Test post</value>
-		</row>
-		<row>
-			<value>6</value>
 			<value>3</value>
 			<value>3</value>
+			<value>3</value>
+			<value>1</value>
+			<value>Test post title</value>
 			<value>Test post</value>
 		</row>
 	</table>
@@ -89,6 +59,36 @@
 		<column>timestamp</column>
 		<row>
 			<value>1</value>
+			<value>1</value>
+			<value>post</value>
+			<value>123456</value>
+		</row>
+		<row>
+			<value>1</value>
+			<value>2</value>
+			<value>post</value>
+			<value>123456</value>
+		</row>
+		<row>
+			<value>1</value>
+			<value>3</value>
+			<value>post</value>
+			<value>123456</value>
+		</row>
+		<row>
+			<value>2</value>
+			<value>1</value>
+			<value>post</value>
+			<value>123456</value>
+		</row>
+		<row>
+			<value>2</value>
+			<value>2</value>
+			<value>post</value>
+			<value>123456</value>
+		</row>
+		<row>
+			<value>3</value>
 			<value>1</value>
 			<value>post</value>
 			<value>123456</value>
