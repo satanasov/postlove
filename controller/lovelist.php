@@ -26,7 +26,7 @@ class lovelist
 
 	/* @var \phpbb\user_loader */
 	protected $user_loader;
-	
+
 	/* @var \phpbb\template\template */
 	protected $template;
 
@@ -86,7 +86,7 @@ class lovelist
 		{
 			if ($allowed['f_read'])
 			{
-				$forum_ary[] = (int)$forum_id;
+				$forum_ary[] = (int) $forum_id;
 			}
 		}
 		$forum_ids = array_unique($forum_ary);
@@ -110,7 +110,8 @@ class lovelist
 				),
 			),
 			'WHERE'	=> 'p.topic_id = t.topic_id AND (p.poster_id = ' . $user_id . ' OR  pl.user_id = ' . $user_id . ') AND pl.user_id > 0 AND ' . $this->db->sql_in_set('p.forum_id', $forum_ids),
-			'ORDER_BY'	=> 'pl.timestamp DESC'
+			'ORDER_BY'	=> 'pl.timestamp DESC',
+			'GROUP_BY'	=> 'pl.timestamp, pl.user_id, p.post_id, t.topic_title'
 		);
 		$sql = $this->db->sql_build_query('SELECT', $sql_array);
 		$result = $this->db->sql_query($sql);
