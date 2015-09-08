@@ -17,32 +17,19 @@ class ajaxify
 	* NOTE: The parameters of this method must match in order and type with
 	* the dependencies defined in the services.yml file for this service.
 	*
-	* @param \phpbb\auth		$auth		Auth object
-	* @param \phpbb\cache\service	$cache		Cache object
 	* @param \phpbb\config	$config		Config object
 	* @param \phpbb\db\driver	$db		Database object
-	* @param \phpbb\request	$request	Request object
-	* @param \phpbb\template	$template	Template object
 	* @param \phpbb\user		$user		User object
-	* @param \phpbb\content_visibility		$content_visibility	Content visibility object
-	* @param \phpbb\controller\helper		$helper				Controller helper object
 	* @param anavaro\postlove\controller\notifyhelper	$notifyhelper	Notification helper.
-	* @param string			$root_path	phpBB root path
-	* @param string			$php_ext	phpEx
+	* @param string			$table_prefix	phpBB Table Prefix
 	*/
-	public function __construct(\phpbb\auth\auth $auth, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, \phpbb\controller\helper $helper, \anavaro\postlove\controller\notifyhelper $notifyhelper, $root_path, $php_ext, $table_prefix)
+	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\user $user, \anavaro\postlove\controller\notifyhelper $notifyhelper,
+	$table_prefix)
 	{
-		$this->auth = $auth;
-		$this->cache = $cache;
 		$this->config = $config;
 		$this->db = $db;
-		$this->request = $request;
-		$this->template = $template;
 		$this->user = $user;
-		$this->helper = $helper;
 		$this->notifyhelper = $notifyhelper;
-		$this->root_path = $root_path;
-		$this->php_ext = $php_ext;
 		$this->table_prefix = $table_prefix;
 	}
 
