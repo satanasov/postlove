@@ -19,6 +19,11 @@
 			<value>3</value>
 			<value>test 3</value>
 		</row>
+		<row>
+			<value>4</value>
+			<value>4</value>
+			<value>test 4</value>
+		</row>
 	</table>
 	<table name="phpbb_posts">
 		<column>post_id</column>
@@ -47,6 +52,14 @@
 			<value>3</value>
 			<value>3</value>
 			<value>3</value>
+			<value>1</value>
+			<value>Test post title</value>
+			<value>Test post</value>
+		</row>
+		<row>
+			<value>4</value>
+			<value>4</value>
+			<value>4</value>
 			<value>1</value>
 			<value>Test post title</value>
 			<value>Test post</value>

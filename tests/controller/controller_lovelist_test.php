@@ -42,8 +42,35 @@ class controller_lovelist_test extends \phpbb_database_test_case
 	*/
 	public function setUp()
 	{
+		global $phpbb_dispatcher;
+
 		parent::setUp();
 		$this->db = $this->new_dbal();
+
+		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
+		
+		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
+		
+		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
+			->disableOriginalConstructor()
+			->getMock();
+		$this->controller_helper->expects($this->any())
+			->method('render')
+			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200, $display_online_list = false) {
+				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
+			});
+			
+		$this->auth = $this->getMock('\phpbb\auth\auth');
+		
+		$this->user_loader = new \phpbb\user_loader($this->db, $phpbb_root_path, $phpEx, 'phpbb_users');
+		// Mock the template
+		$this->template = $this->getMockBuilder('\phpbb\template\template')
+			->getMock();
+			
+		$this->pagination = $this->getMockBuilder('\phpbb\pagination')->disableOriginalConstructor()
+			->getMock();
+
+		$this->request = $this->getMock('\phpbb\request\request');
 	}
 	public function test_install()
 	{
@@ -56,44 +83,16 @@ class controller_lovelist_test extends \phpbb_database_test_case
 	*/
 	protected function get_controller($user_id, $is_registered, $expected, $perm_ary)
 	{
-		global $phpbb_dispatcher;
-
-		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
-		
-		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
 		$this->user->data['user_id'] = $user_id;
 		$this->user->data['is_registered'] = $is_registered;
-		$this->user->lang = array(
-			'LIKE_LINE'	=> '%1$s - %2$s <b>liked</b> %3$s\'s post "%4$s" in topic "%5$s"'
-		);
 
-		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
-			->disableOriginalConstructor()
-			->getMock();
-		$this->controller_helper->expects($this->any())
-			->method('render')
-			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200, $display_online_list = false) {
-				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
-			});
-		$this->db = $this->new_dbal();
-
-		$this->auth = $this->getMock('\phpbb\auth\auth');
 		$this->auth->expects($this->any())
 			->method('acl_getf')
 			->with($this->stringContains('_'), $this->anything())
 			->will($this->returnValue($perm_ary));
 
-		$this->user_loader = new \phpbb\user_loader($this->db, $phpbb_root_path, $phpEx, 'phpbb_users');
-		// Mock the template
-		$this->template = $this->getMockBuilder('\phpbb\template\template')
-			->getMock();
 		$this->template->expects($this->exactly($expected))
 			->method('assign_block_vars');
-		
-		$this->pagination = $this->getMockBuilder('\phpbb\pagination')->disableOriginalConstructor()
-			->getMock();
-
-		$this->request = $this->getMock('\phpbb\request\request');
 		
 		$controller = new \anavaro\postlove\controller\lovelist(
 			$this->user,

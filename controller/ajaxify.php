@@ -40,7 +40,9 @@ class ajaxify
 			case 'toggle':
 				if ($this->user->data['user_type'] == 1 || $this->user->data['user_type'] == 2)
 				{
-					die();
+					return new \Symfony\Component\HttpFoundation\JsonResponse(array(
+						'error'	=> 1
+					));
 				}
 				else
 				{
@@ -64,8 +66,7 @@ class ajaxify
 					$this->db->sql_freeresult($result);
 					if (!$row || (!$this->config['postlove_author_like'] && $row['poster'] == $this->user->data['user_id']))
 					{
-						$json_response = new \phpbb\json_response;
-						$json_response->send(array(
+						return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 							'error'	=> 1
 						));
 					}
@@ -83,8 +84,7 @@ class ajaxify
 							$row1 = $this->db->sql_fetchrow($result);
 							$this->db->sql_freeresult($result);
 							$this->notifyhelper->notify('add', $row1['topic_id'], $post, $row1['post_subject'], $row1['poster_id'] , $this->user->data['user_id']);
-							$json_response = new \phpbb\json_response;
-							$json_response->send(array(
+							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action'	=> 'add',
 								'toggle_post'	=> $post,
 							));
@@ -96,8 +96,7 @@ class ajaxify
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
 							$this->notifyhelper->notify('remove', $row['topic_id'], $post, $row['post_subject'], $row['poster'], $this->user->data['user_id']);
-							$json_response = new \phpbb\json_response;
-							$json_response->send(array(
+							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action' => 'remove',
 								'toggle_post'	=> $post,
 							));
