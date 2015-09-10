@@ -107,6 +107,13 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 				4, // post ID
 				'{"error":1}'
 			),
+			'no_such_post'	=> array(
+				1, // Anonimous
+				0, // Active
+				true, // Allow author to like
+				5, // post ID
+				'{"error":1}'
+			),
 			'user_can_like'	=> array(
 				1, // Anonimous
 				0, // Active
