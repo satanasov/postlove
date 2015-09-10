@@ -23,6 +23,7 @@ class main_listener implements EventSubscriberInterface
 		return array(
 			'core.viewtopic_modify_post_row'	=>	'modify_post_row',
 			'core.user_setup'		=> 'load_language_on_setup',
+			'core.memberlist_view_profile'	       => 'user_profile_likes',
 		);
 	}
 
@@ -118,11 +119,10 @@ class main_listener implements EventSubscriberInterface
 			$event['post_row'] = $post_row;
 		}
 
-		$this->template->assign_var('POSTLOVE_USE_CSS', $this->config['postlove_use_css']);
 		$this->template->assign_var('SHOW_USER_LIKES', $this->config['postlove_show_likes']);
 		$this->template->assign_var('SHOW_USER_LIKED', $this->config['postlove_show_liked']);
 		$this->template->assign_var('IS_POSTROW', '1');
-		if ($this->user->data['user_type'] == 1 || $this->user->data['user_type'] == 2)
+		if ($this->user->data['user_type'] == 1 || $this->user->data['user_type'] == 2 || (!$this->config['postlove_author_like'] && $event['poster_id'] == $this->user->data['user_id']))
 		{
 			$this->template->assign_var('DISABLE', '1');
 		}
@@ -157,5 +157,10 @@ class main_listener implements EventSubscriberInterface
 			$post_row['USER_LIKED'] = $count;
 			$event['post_row'] = $post_row;
 		}
+	}
+
+	public function user_profile_likes($event)
+	{
+		$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])) . '?short=1');
 	}
 }

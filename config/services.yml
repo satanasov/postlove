@@ -15,37 +15,27 @@ services:
             - %core.table_prefix%
         tags:
             - { name: event.listener }
-    anavaro.postlove.acplistener:
-        class: anavaro\postlove\event\acplistener
-        arguments:
-            - @auth
-            - @cache
-            - @config
-            - @dbal.conn
-            - @request
-            - @template
-            - @user
-            - @controller.helper
-            - %core.root_path%
-            - %core.php_ext%
-            - %core.table_prefix%
-        tags:
-            - { name: event.listener }
     anavaro.postlove.ajaxify:
         class: anavaro\postlove\controller\ajaxify
         arguments:
-            - @auth
-            - @cache
             - @config
             - @dbal.conn
-            - @request
-            - @template
+            - @user
+            - @anavaro.postlove.notifyhelper
+            - %core.table_prefix%
+    anavaro.postlove.lovelist:
+        class: anavaro\postlove\controller\lovelist
+        arguments:
             - @user
             - @controller.helper
-            - @anavaro.postlove.notifyhelper
-            - %core.root_path%
-            - %core.php_ext%
+            - @dbal.conn
+            - @auth
+            - @user_loader
+            - @template
+            - @pagination
+            - @request
             - %core.table_prefix%
+            - %core.root_path%
     anavaro.postlove.notifyhelper:
         class: anavaro\postlove\controller\notifyhelper
         arguments:

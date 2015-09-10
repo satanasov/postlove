@@ -25,4 +25,9 @@ $lang = array_merge($lang, array(
 
 	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s <b>хареса</b> вашето мнение "%2$s"',
 	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Харесани постове',
+
+	// Ver 1.1
+	'LIKE_LINE'	=> '%1$s - %2$s <b>хареса</b> мнението на %3$s "%4$s" в тема "%5$s"',
+	'POSTLOVE_LIST'	=> 'Харесвания',
+	'POSTLOVE_LIST_VIEW'	=> 'Покажи списък с харесванията',
 ));

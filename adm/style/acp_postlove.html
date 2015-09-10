@@ -1,0 +1,137 @@
+<!-- INCLUDE overall_header.html -->
+
+	<a name="maincontent"></a>
+	<h1>{L_POSTLOVE_CONTROL}</h1>
+	<p>{L_POSTLOVE_EXPLAIN}</p>
+
+	<form id="acp_postlove" method="post" action="{U_ACTION}">
+		<fieldset>
+			<legend>{L_POSTLOVE_CONTROL}</legend>
+			<dl>
+				<dt>
+					<label>{L_POSTLOVE_SHOW_LIKES}</label><br />
+					<span>{L_POSTLOVE_SHOW_LIKES_EXPLAIN}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" id="postlove_show_likes" name="poslove[postlove_show_likes]" value="1"<!-- IF POST_LIKES --> checked<!-- ENDIF -->>{L_YES}</label><label><input type="radio" id="postlove_show_likes" name="poslove[postlove_show_likes]" value="0"<!-- IF !POST_LIKES --> checked<!-- ENDIF -->>{L_NO}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>{L_POSTLOVE_SHOW_LIKED}</label><br />
+					<span>{L_POSTLOVE_SHOW_LIKED_EXPLAIN}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" id="postlove_show_liked" name="poslove[postlove_show_liked]" value="1"<!-- IF POST_LIKED --> checked<!-- ENDIF -->>{L_YES}</label><label><input type="radio" id="postlove_show_liked" name="poslove[postlove_show_liked]" value="0"<!-- IF !POST_LIKED --> checked<!-- ENDIF -->>{L_NO}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>{L_POSTLOVE_AUTHOR_LIKE}</label><br />
+					<span>{L_POSTLOVE_AUTHOR_LIKE_EXPLAIN}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" id="postlove_author_like" name="poslove[postlove_author_like]" value="1"<!-- IF AUTHOR_LIKE --> checked<!-- ENDIF -->>{L_YES}</label><label><input type="radio" id="postlove_author_like" name="poslove[postlove_author_like]" value="0"<!-- IF !AUTHOR_LIKE --> checked<!-- ENDIF -->>{L_NO}</label>
+				</dd>
+			</dl>
+			</fieldset>
+			<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</form>
+	<fieldset>
+		<legend>{L_POSTLOVE_CURRENT_THEME}</legend>
+		<dl>
+			<dt>
+				<label>{L_THEME_NAME}</label>
+			</dt>
+			<dd>
+				<p>{INSTALLED_THEME_NAME}</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{L_THEME_AUTHOR}</label>
+			</dt>
+			<dd>
+				<p>{INSTALLED_THEME_AUTHOR}</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{L_THEME_DESCRIPTION}</label>
+			</dt>
+			<dd>
+				<p>{INSTALLED_THEME_DESCRIPTION}</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{L_THEME_SUPPORT_STYLES}</label>
+			</dt>
+			<dd>
+				<p>{INSTALLED_THEME_SUPPORTED_STYLES}</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{L_THEME_PREVIEW}</label>
+			</dt>
+			<dd>
+				<div>
+					<img src="{INSTALLED_THEME_PREVIEW}" style="max-width: 100%"/>
+				</div>
+			</dd>
+		</dl>
+	</fieldset>
+	<!-- IF WRITE_ERROR -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{L_POSTLOVE_NO_WRITE_ACTION}</p>
+	</div>
+	<!-- ELSE -->
+	<form id="acp_postlove_change_theme" method="post" action="{U_ACTION}">
+	<fieldset>
+		<legend>{L_POSTLOVE_CHOOSE_THEME}</legend>
+			<!-- IF .themeselector -->
+				<!-- BEGIN themeselector -->
+					<dl>
+						<dt></dt>
+						<dd><label><input type="radio" id="poslove_choose" name="poslove_choose" value="{themeselector.THEME_STRING}">{L_SELECT}</label></dt>
+					</dl>
+					<dl>
+						<dt><label>{L_THEME_NAME}</label></dt>
+						<dd>{themeselector.THEME_NAME}</dd>
+					</dl>
+					<dl>
+						<dt><label>{L_THEME_AUTHOR}</label></dt>
+						<dd>{themeselector.THEME_AUTHOR}</dd>
+					</dl>
+					<dl>
+						<dt><label>{L_THEME_DESCRIPTION}</label></dt>
+						<dd>{themeselector.THEME_DESCRIPTION}</dd>
+					</dl>
+					<dl>
+						<dt><label>{L_THEME_SUPPORT_STYLES}</label></dt>
+						<dd>{themeselector.THEME_SUPPORTED}</dd>
+					</dl>
+					<!-- IF themeselector.THEME_PREVIEW -->
+					<dl>
+						<dt><label>{L_THEME_PREVIEW}</label></dt>
+						<dd>{themeselector.THEME_PREVIEW}</dd>
+					</dl>
+					<hr>
+					<!-- ENDIF -->
+				<!-- END themeselector -->
+				<p class="submit-buttons">
+				<input class="button1" type="submit" id="apply" name="apply" value="{L_APPLY}" />
+			<!-- ELSE -->
+			<div class="errorbox">
+				<h3>{L_WARNING}</h3>
+				<p>{L_POSTLOVE_NO_THEMES_INSTALLED}</p>
+			</div>
+			<!-- ENDIF -->
+	</fieldset>
+	</form>
+	<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->
