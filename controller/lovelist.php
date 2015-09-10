@@ -115,8 +115,11 @@ class lovelist
 		);
 		$sql = $this->db->sql_build_query('SELECT', $sql_array);
 		$result = $this->db->sql_query($sql);
-		$row = $this->db->sql_fetchrow($result);
-		$counter = $row['count'];
+		$counter = 0;
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$counter = $counter + $row['count'];
+		}
 		$this->db->sql_freeresult($result);
 		if ($counter > 0)
 		{
