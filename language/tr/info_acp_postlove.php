@@ -37,7 +37,7 @@ $lang = array_merge($lang, array(
 	'THEME_PREVIEW'	=> 'Önizleme',
 	'POSTLOVE_CHOOSE_THEME' => 'Tema seç',
 	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'Yüklenmiş bir tema yok!<br>Lütfen <i>$phpbb_root_path/ext/anavaro/postlove/themes</i> klasörüne ekleyin',
-	'THEME_CHANGED'	=> 'Tema değiştirildi',
+	'THEME_CHANGED'	=> 'Tema değiştirildi!<br><br><a href="%1$s">Geri</а>',
 	'POSTLOVE_NO_WRITE_ACTION'	=> 'Yazma yetkisi yok!<br>Lütfen <i> $phpbb_root_path/ext/anavaro/postlove/styles </i>klasörüne yazma yetkisi verin',
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Kendi paylaşımlarını beğenme',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Yazar kendi paylaşımlarını beğenebilir mi',
