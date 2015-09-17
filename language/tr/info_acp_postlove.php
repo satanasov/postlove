@@ -20,7 +20,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_CONTROL'	=> 'Paylaşım beğen',
 	'POSTLOVE_USE_CSS'	=> 'Sağlanan CSSyi kullan',
 	'POSTLOVE_USE_CSS_EXPLAIN'	=> 'POST LOVE eklentisini daha kolay özelleştirebilmek için mevcut CSSyi yüklemesini durdurabilirsiniz. Eğer kendi görsellerinizi kullanmak istiyorsanız, lütfen <code>overall_header_head_append.html</code> a bakınız.',
-	'POSTLOVE_SHOW_LIKES'	=> 'Bu kullanıcının beğendiği mesaj saysını göster',
+	'POSTLOVE_SHOW_LIKES'	=> 'Kullanıcının beğendiği mesaj saysını göster',
 	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> '<code>viewtopic</code> içinde kullanıcının beğendiği mesaj sayısını göster.',
 	'POSTLOVE_SHOW_LIKED'	=> 'Kullanıcının beğenilen mesaj sayısını göster',
 	'POSTLOVE_SHOW_LIKED_EXPLAIN'	=> '<code>viewtopic</code> içinde kullanıcının beğenilen mesaj sayısını göster.',
@@ -39,6 +39,6 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'Yüklenmiş bir tema yok!<br>Lütfen <i>$phpbb_root_path/ext/anavaro/postlove/themes</i> klasörüne ekleyin',
 	'THEME_CHANGED'	=> 'Tema değiştirildi',
 	'POSTLOVE_NO_WRITE_ACTION'	=> 'Yazma yetkisi yok!<br>Lütfen <i> $phpbb_root_path/ext/anavaro/postlove/styles </i>klasörüne yazma yetkisi verin',
-	'POSTLOVE_AUTHOR_LIKE'	=> 'Yazar paylaşımları beğenebilir',
+	'POSTLOVE_AUTHOR_LIKE'	=> 'Kendi paylaşımlarını beğenme',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Yazar kendi paylaşımlarını beğenebilir mi',
 ));
