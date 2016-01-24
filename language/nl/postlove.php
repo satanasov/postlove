@@ -23,11 +23,11 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKES'	=> 'Gebruiker vind leuk',
 	'POSTLOVE_USER_LIKED'	=> 'Gebruiker leuk gevonden',
 
-	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s vind je post "%2$s" leuk!',
-	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Iemand vind een post van je leuk',
+	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s vindt je bericht "%2$s" leuk!',
+	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Iemand vindt een bericht van je leuk',
 
 	// Ver 1.1
-	'LIKE_LINE'	=> '%1$s - %2$s <b>liked</b> %3$s\'s post "%4$s" in topic "%5$s"',
-	'POSTLOVE_LIST'	=> 'Likes',
-	'POSTLOVE_LIST_VIEW'	=> 'Show list with all like actions',
+	'LIKE_LINE'	=> '%1$s - %2$s <b>vindt</b> %3$s\'s bericht "%4$s" leuk in onderwerp "%5$s"',
+	'POSTLOVE_LIST'	=> 'Vind ik leuk',
+	'POSTLOVE_LIST_VIEW'	=> 'Toon lijst met alle "vind ik leuks"',
 ));
