@@ -97,7 +97,7 @@ class main_listener implements EventSubscriberInterface
 			$post_row = $event['post_row'];
 			//let's take the list of peoples that liked this post
 			$post_likers = implode(', ', $likers);
-			$post_row['POST_LIKERS'] = $post_likers;
+			$post_row['POST_LIKERS'] = $this->user->lang['LIKED_BY'] . $post_likers;
 
 			//let's get the number
 			$post_likers_number = count($likers);
@@ -107,6 +107,7 @@ class main_listener implements EventSubscriberInterface
 			$post_like_class = ($isliked ? 'liked' : 'like');
 			$post_row['POST_LIKE_CLASS'] = $post_like_class;
 			$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
+			$post_row['ACTION_ON_CLICK'] = $isliked ? $this->user->lang['CLICK_TO_UNLIKE'] : $this->user->lang['CLICK_TO_LIKE'];
 
 			$event['post_row'] = $post_row;
 		}
@@ -116,6 +117,7 @@ class main_listener implements EventSubscriberInterface
 			$post_row['POST_LIKERS_COUNT'] = '0';
 			$post_row['POST_LIKE_CLASS'] = 'like';
 			$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
+			$post_row['ACTION_ON_CLICK'] = $this->user->lang['CLICK_TO_LIKE'];
 			$event['post_row'] = $post_row;
 		}
 
@@ -126,15 +128,18 @@ class main_listener implements EventSubscriberInterface
 		{
 			$post_row = $event['post_row'];
 			$post_row['DISABLE'] = 1;
+			$post_row['ACTION_ON_CLICK'] = $this->user->lang['CANT_LIKE_OWN_POST'];
 			$event['post_row'] = $post_row;
 		}
 		if ($this->user->data['user_type'] == 1 || $this->user->data['user_type'] == 2)
 		{
 			$this->template->assign_var('DISABLE', '1');
+			$post_row['ACTION_ON_CLICK'] = $this->user->lang['LOGIN_TO_LIKE_POST'];
+			$event['post_row'] = $post_row;
 		}
 
 		//so should we display more info?
-		//Test if we are shoung likes given!
+		//Test if we are showing likes given!
 		if ($this->config['postlove_show_likes'])
 		{
 			$sql = 'SELECT COUNT(post_id) as count FROM ' .$this->table_prefix . 'posts_likes WHERE user_id = ' . $event['row']['user_id'];

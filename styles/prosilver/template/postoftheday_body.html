@@ -1,0 +1,36 @@
+<div class="forabg" id="post_of_the_day">
+	<div class="inner">
+	<ul class="topiclist">
+		<li class="header">
+			<dl>
+                <dt>
+                <div class="list-inner">{L_POST_OF_THE_DAY}
+                </div>
+                </dt>
+			</dl>
+		</li>
+	</ul>
+	<ul class="topiclist topics">
+		<li class="row bg1">
+			<dl>
+                <span class="meta">
+                <dd>
+					<div class="list-inner">
+						<ul>
+							<!-- BEGIN post_of_the_day -->
+								<li>
+									{post_of_the_day.POST_LIKES_IN_PERIOD} <a href="{post_of_the_day.U_TOPIC}" class="topictitle subforum<!-- IF post_of_the_day.S_UNREAD --> unread<!-- ELSE --> read<!-- ENDIF -->">{post_of_the_day.TOPIC_TITLE}</a>
+                                    {post_of_the_day.USERNAME_FULL} &raquo; {post_of_the_day.POST_TIME} &raquo; 
+                                    {L_IN}&nbsp;<a href="{post_of_the_day.U_FORUM}">{post_of_the_day.FORUM_NAME}</a> &raquo; 
+									<!-- EVENT v12mike_post_of_the_day_topiclist_row_append -->
+								</li>
+							<!-- END post_of_the_day -->
+						</ul>
+					</div>
+				</dd>
+                </span>
+			</dl>
+		</li>
+	</ul>
+	</div>
+</div>

@@ -87,6 +87,7 @@ class ajaxify
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action'	=> 'add',
 								'toggle_post'	=> $post,
+								'toggle_title'	=> $this->user->lang['CLICK_TO_UNLIKE'],
 							));
 						}
 						else
@@ -99,6 +100,7 @@ class ajaxify
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action' => 'remove',
 								'toggle_post'	=> $post,
+								'toggle_title'	=> $this->user->lang['CLICK_TO_LIKE'],
 							));
 						}
 					}

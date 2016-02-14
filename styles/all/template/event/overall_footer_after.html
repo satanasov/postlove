@@ -7,12 +7,12 @@
 phpbb.addAjaxCallback('toggle_love', function(data) {
 	if (data.toggle_action == 'add')
 	{
-		$('#likeimg_' + data.toggle_post).removeClass('like').addClass('liked');
+		$('#likeimg_' + data.toggle_post).removeClass('like').addClass('liked').attr('title', data.toggle_title);
 		$('#like_' + data.toggle_post).text(parseInt($('#like_' + data.toggle_post).text()) + 1);
 	}
 	else
 	{
-		$('#likeimg_' + data.toggle_post).removeClass('liked').addClass('like');
+		$('#likeimg_' + data.toggle_post).removeClass('liked').addClass('like').attr('title', data.toggle_title);
 		$('#like_' + data.toggle_post).text(parseInt($('#like_' + data.toggle_post).text()) - 1);
 	}
 });
