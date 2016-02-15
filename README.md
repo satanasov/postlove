@@ -1,7 +1,7 @@
 ![Build Status](https://travis-ci.org/satanasov/postlove.svg?branch=master)
 
-Post Love
-==========
+Post Love v1.2.0
+================
 
 Description:
 
@@ -24,11 +24,15 @@ Features:
     Forumview:
         - Show summary of N most liked posts of day/week/month/year/ever (configurable)
 
+    Notifications:
+        - Notify author when a post has been liked
+
     ACP:
-        - Enable/disable main CSS (CSS classes can be redefined
+        - Enable/disable main CSS (CSS classes can be redefined)
         - Allow showing of liked posts count in mini profile (postview)
         - Allow showing of user's posts that have been liked count in mini profile (postview)
-        - Configure number of posts for each period to show on Indexview and Forumview
+        - Configure number of posts for each period to show (Indexview and Forumview)
+        - Configure caching time of summary queries (to improve efficiency)
 
 Installation:
 

@@ -36,7 +36,7 @@ class release_1_2_0 extends \phpbb\db\migration\migration
 			array('config.add', array('postlove_forum_most_liked_this_month', 0)),
 			array('config.add', array('postlove_forum_most_liked_this_year', 0)),
 			array('config.add', array('postlove_forum_most_liked_ever', 1)),
-			array('config.add', array('postlove_summary_query_cache_seconds', 60)),
+			array('config.add', array('postlove_summary_query_cache_seconds', 30)),
 		);
 	}
 
