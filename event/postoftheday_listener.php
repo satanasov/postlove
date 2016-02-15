@@ -100,26 +100,6 @@ class postoftheday_listener implements EventSubscriberInterface
 		$forum_ary = array();
 		$topic_list = array();
 		$topic_list = $event['topic_list'];
-
-		//find the forum id...  Unfortunately the event only gives us the topic ids, so we have to lookup.
-//		if (sizeof($topic_list))
-//		{
-//			// Generate topic forum list...
-//			$rowset = array();
-//			$rowset = $event['rowset'];
-//			$row = array();
-
-//			foreach ($topic_list as $topic_id)
-//			{
-//				$row = $rowset[$topic_id];
-//				if(!($row['topic_type'] == POST_ANNOUNCE || $row['topic_type'] == POST_GLOBAL))
-//				{
-//					$forum_ary[0] = $row['forum_id'] + 0;
-//					// only need one entry as we are only looking at one forum
-//					break;
-//				}
-//			}
-//		}
 		$forum_ary[0] = $event['forum_id'];
 
 		// build the template array of most liked posts
