@@ -68,7 +68,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		// first check that this user wants to see Post Like
 		$this->user->get_profile_fields($this->user->data['user_id']);
-		if (!($this->user->profile_fields['pf_postlove_hide']))
+		if (!(isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']))
 		{
 			//var_dump($event['row']['post_id']);
 			$image = $likes = '';
@@ -179,7 +179,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		// first check that this user wants to see Post Like
 		$this->user->get_profile_fields($this->user->data['user_id']);
-		if (!($this->user->profile_fields['pf_postlove_hide']))
+		if (!(isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']))
 		{
 			$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])) . '?short=1');
 		}

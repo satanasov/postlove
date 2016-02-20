@@ -65,7 +65,7 @@ class postoftheday_listener implements EventSubscriberInterface
 
 		// first check that this user wants to see Post Like
 		$this->user->get_profile_fields($this->user->data['user_id']);
-		if (!($this->user->profile_fields['pf_postlove_hide']))
+		if (!(isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']))
 		{
 			// get array of fora that this user may read
 			$forum_ary = array();
@@ -104,7 +104,7 @@ class postoftheday_listener implements EventSubscriberInterface
 	{ 
 		// first check that this user wants to see Post Like
 		$this->user->get_profile_fields($this->user->data['user_id']);
-		if (!($this->user->profile_fields['pf_postlove_hide']))
+		if (!(isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']))
 		{
 			$post_list = array();
 			$post_list[] = '0'; //SQL needs dummy array member
