@@ -8,6 +8,7 @@
 # For full copyright and license information, please see
 # the docs/CREDITS.txt file.
 #
+
 set -e
 set -x
 
