@@ -61,4 +61,5 @@ $lang = array_merge($lang, array(
         1   => 'Liked once in total',
         2   => 'Liked %d times in total',
     ),
+	'POSTLOVE_HIDE'                => 'Hide Like icons and summaries',
 ));
