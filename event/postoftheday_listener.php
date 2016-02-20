@@ -35,7 +35,7 @@ class postoftheday_listener implements EventSubscriberInterface
 	/** @var \phpbb\user */
 	protected $user;
 
-	public function __construct(\phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\cache\service $cache, \phpbb\content_visibility $content_visibility, \phpbb\db\driver\driver_interface $db, \phpbb\event\dispatcher_interface $dispatcher, \phpbb\template\template	$template,	\phpbb\user	$user,	$phpbb_root_path,		$php_ext)
+	public function __construct(\phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\cache\service $cache, \phpbb\content_visibility $content_visibility, \phpbb\db\driver\driver_interface $db, \phpbb\event\dispatcher_interface $dispatcher, \phpbb\template\template	$template,	\phpbb\user	$user,	$phpbb_root_path,		$php_ext, $table_prefix)
 	{
 		$this->auth = $auth;
 		$this->config = $config;
@@ -47,6 +47,7 @@ class postoftheday_listener implements EventSubscriberInterface
 		$this->user = $user;
 		$this->root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
+		$this->table_prefix = $table_prefix;
 	}
 
 	static public function getSubscribedEvents()
@@ -146,8 +147,8 @@ class postoftheday_listener implements EventSubscriberInterface
 			'.post_time, ' . TOPICS_TABLE .	'.topic_last_poster_name, ' . TOPICS_TABLE . '.topic_type, ' . FORUMS_TABLE	. '.forum_name, sum_likes
 			FROM (
 				SELECT post_id AS post, COUNT(*) AS sum_likes
-				FROM ' . $table_prefix . 'phpbb_posts_likes 
-				WHERE ' . $table_prefix . 'phpbb_posts_likes.timestamp > ' . $time_threshold . '
+				FROM ' . $this->table_prefix . 'posts_likes 
+				WHERE ' . $this->table_prefix . 'posts_likes.timestamp > ' . $time_threshold . '
 				AND post_id NOT IN (' . implode(",", $post_list) . ')
 				GROUP BY post_id 
 				ORDER BY sum_likes DESC
