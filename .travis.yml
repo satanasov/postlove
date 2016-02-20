@@ -37,6 +37,7 @@ env:
 branches:
   only:
     - master
+    - v1.2
     - develop
     - /^[0-9].*$/
 
