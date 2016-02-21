@@ -233,4 +233,3 @@ class postoftheday_listener implements EventSubscriberInterface
 		return $post_list;
 	}
 }
-
