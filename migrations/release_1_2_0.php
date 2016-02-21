@@ -58,7 +58,6 @@ class release_1_2_0 extends \phpbb\db\migration\migration
 		);
 	}
 
-
 	// create an index on post_like timestamp
 	public function update_schema()
 	{

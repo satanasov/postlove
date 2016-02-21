@@ -35,7 +35,7 @@ class postoftheday_listener implements EventSubscriberInterface
 	/** @var \phpbb\user */
 	protected $user;
 
-	public function __construct(\phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\cache\service $cache, \phpbb\content_visibility $content_visibility, \phpbb\db\driver\driver_interface $db, \phpbb\event\dispatcher_interface $dispatcher, \phpbb\template\template	$template,	\phpbb\user	$user,	$phpbb_root_path,		$php_ext, $table_prefix)
+	public function __construct(\phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\cache\service $cache, \phpbb\content_visibility $content_visibility, \phpbb\db\driver\driver_interface $db, \phpbb\event\dispatcher_interface $dispatcher, \phpbb\template\template	$template,	\phpbb\user	$user,	$phpbb_root_path,	$php_ext, $table_prefix)
 	{
 		$this->auth = $auth;
 		$this->config = $config;
@@ -58,7 +58,7 @@ class postoftheday_listener implements EventSubscriberInterface
 		);
 	}
 
-	public function  potd_index_page( $event)
+	public function  potd_index_page($event)
 	{
 		$post_list = array();
 		$post_list[] = '0'; //SQL needs dummy array member
@@ -100,8 +100,8 @@ class postoftheday_listener implements EventSubscriberInterface
 		}
 	}
 
-	public function  potd_forum_page( $event)
-	{ 
+	public function  potd_forum_page($event)
+	{
 		// first check that this user wants to see Post Like
 		$this->user->get_profile_fields($this->user->data['user_id']);
 		if (!(isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']))
@@ -158,7 +158,7 @@ class postoftheday_listener implements EventSubscriberInterface
 			LEFT JOIN ' . USERS_TABLE .   ' ON ' . POSTS_TABLE .  '.poster_id = ' . USERS_TABLE .  '.user_id
 			LEFT JOIN ' . FORUMS_TABLE .  ' ON ' . TOPICS_TABLE . '.forum_id = '  . FORUMS_TABLE . '.forum_id
 			WHERE  ' . $this->content_visibility->get_forums_visibility_sql('post', $forum_ary, POSTS_TABLE .'.') .
-			' AND topic_status <> ' . ITEM_MOVED . 
+			' AND topic_status <> ' . ITEM_MOVED .
 			' ORDER BY sum_likes DESC, post_time DESC';
 
 		// cache the query for a short time to reduce load on busy servers
@@ -208,8 +208,8 @@ class postoftheday_listener implements EventSubscriberInterface
 				'U_TOPIC'   		=> $view_post_url,
 				'U_FORUM'   		=> $forum_name_url,
 				'S_UNREAD'  		=> ($post_unread) ? true : false,
-				'USERNAME_FULL' 	=> ($is_guest || !$this->auth->acl_get('u_viewprofile')) ? 
-											$this->user->lang['POST_BY_AUTHOR'] . ' ' . get_username_string('no_profile', $row['user_id'], $row['username'], $row['user_colour'], $row['topic_last_poster_name']) : 
+				'USERNAME_FULL' 	=> ($is_guest || !$this->auth->acl_get('u_viewprofile')) ?
+											$this->user->lang['POST_BY_AUTHOR'] . ' ' . get_username_string('no_profile', $row['user_id'], $row['username'], $row['user_colour'], $row['topic_last_poster_name']) :
 											$this->user->lang['POST_BY_AUTHOR'] . ' ' . get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
 				'POST_TIME' 		=> $this->user->format_date($row['post_time']),
 				'TOPIC_TITLE'   	=> $topic_title,
