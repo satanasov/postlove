@@ -24,6 +24,7 @@ class main_listener implements EventSubscriberInterface
 			'core.viewtopic_modify_post_row'	=>	'modify_post_row',
 			'core.user_setup'		=> 'load_language_on_setup',
 			'core.memberlist_view_profile'	       => 'user_profile_likes',
+			'core.delete_posts_after'			=> 'clean_posts_after',
 		);
 	}
 
@@ -168,5 +169,11 @@ class main_listener implements EventSubscriberInterface
 	public function user_profile_likes($event)
 	{
 		$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])) . '?short=1');
+	}
+
+	public function clean_posts_after($event)
+	{
+		$sql = 'DELETE FROM ' . $this->table_prefix . 'posts_likes WHERE ' . $this->db->sql_in_set('post_id', $event['post_ids']);
+		$this->db->sql_query($sql);
 	}
 }
