@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* newspage [Czech]
+* Post Love [Czech]
 *
 * @package language
 * @version $Id$
@@ -44,4 +44,8 @@ $lang = array_merge($lang, array(
 
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Autor může označovat své vlastní příspěvky',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Je-li povoleno, autor může označit své vlastní příspěvky tlačítkem Líbí se',
+
+	'POSTLOVE_CLEAN_LOVES'	=> 'Clean post loves',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'If you have installed Post Love before automatic post and user love cleaning - please press Clean to clean the unneeded Post Loves',
+	'CLEN'	=> 'Clean',
 ));

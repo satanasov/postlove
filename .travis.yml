@@ -33,6 +33,7 @@ env:
     - IMAGE_ICC="1"        # Should we run icc profile sniffer on your images?
     - EPV="1"              # Should we run EPV (Extension Pre Validator) on your code?
     - PHPBB_BRANCH="3.1.x"
+    - COVERAGE="1"
 
 branches:
   only:
@@ -49,6 +50,7 @@ install:
 
 before_script:
   - travis/setup-database.sh $DB $TRAVIS_PHP_VERSION
+  - mkdir phpBB/ext/$EXTNAME/logs
 
 script:
   - sh -c "if [ '$SNIFF' != '0' ]; then travis/ext-sniff.sh $DB $TRAVIS_PHP_VERSION $EXTNAME; fi"

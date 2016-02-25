@@ -3,15 +3,11 @@ services:
         class: anavaro\postlove\event\main_listener
         arguments:
             - @auth
-            - @cache
             - @config
             - @dbal.conn
-            - @request
             - @template
             - @user
             - @controller.helper
-            - %core.root_path%
-            - %core.php_ext%
             - %core.table_prefix%
         tags:
             - { name: event.listener }

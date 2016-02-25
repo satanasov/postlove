@@ -2,7 +2,7 @@
 
 /**
 *
-* newspage [Bulgarian]
+* Post Love [Bulgarian]
 *
 * @package language
 * @version $Id$
@@ -47,4 +47,8 @@ $lang = array_merge($lang, array(
 
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Автора може да харесва',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Дали автора може да харесва собствените си постове или не',
+
+	'POSTLOVE_CLEAN_LOVES'	=> 'Почисти излишните харесвания',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'Ако случайно сте използвали Post Love преди да сложат почистването след триене на постове и потребители - натиснете Изчисти, за да почистите излишните записи в базата',
+	'CLEN'	=> 'Почисти',
 ));

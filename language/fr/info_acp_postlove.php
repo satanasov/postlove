@@ -66,4 +66,8 @@ $lang = array_merge($lang, array(
 
 	'POSTLOVE_AUTHOR_LIKE'	=> 'L’auteur peut aimer ses messages',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Permettre ou non à l’auteur d’aimer son/ses propre(s) message(s).',
+
+	'POSTLOVE_CLEAN_LOVES'	=> 'Clean post loves',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'If you have installed Post Love before automatic post and user love cleaning - please press Clean to clean the unneeded Post Loves',
+	'CLEN'	=> 'Clean',
 ));

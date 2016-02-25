@@ -25,8 +25,7 @@ class main_listener implements EventSubscriberInterface
 			'core.user_setup'		=> 'load_language_on_setup',
 			'core.memberlist_view_profile'	       => 'user_profile_likes',
 			'core.delete_posts_after'			=> 'clean_posts_after',
-			//'core.delete_user_after'			=> 'clean_users_after',
-			'core.delete_user_before'			=> 'clean_users_after',
+			'core.delete_user_after'			=> 'clean_users_after',
 		);
 	}
 
@@ -47,18 +46,16 @@ class main_listener implements EventSubscriberInterface
 	* @param string			$root_path	phpBB root path
 	* @param string			$php_ext	phpEx
 	*/
-	public function __construct(\phpbb\auth\auth $auth, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, \phpbb\controller\helper $helper, $root_path, $php_ext, $table_prefix)
+	public function __construct(\phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\template\template $template, \phpbb\user $user,
+	\phpbb\controller\helper $helper,
+	$table_prefix)
 	{
 		$this->auth = $auth;
-		$this->cache = $cache;
 		$this->config = $config;
 		$this->db = $db;
-		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
 		$this->helper = $helper;
-		$this->root_path = $root_path;
-		$this->php_ext = $php_ext;
 		$this->table_prefix = $table_prefix;
 	}
 
@@ -79,7 +76,7 @@ class main_listener implements EventSubscriberInterface
 				USERS_TABLE	=> 'u',
 				$this->table_prefix . 'posts_likes'	=> 'pl'
 			),
-			'WHERE'	=> 'u.user_id = pl.user_id AND post_id = '.$event['row']['post_id'],
+			'WHERE'	=> 'u.user_id = pl.user_id AND post_id = ' . $event['row']['post_id'],
 			'ORDER_BY'	=> 'pl.timestamp ASC',
 		);
 
@@ -184,7 +181,7 @@ class main_listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Delete post loves on post perm delete
+	* Delete post loves on users perm delete
 	* No need to fill up the database, right?
 	*/
 	public function clean_users_after($event)

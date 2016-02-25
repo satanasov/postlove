@@ -2,7 +2,7 @@
 
 /**
 *
-* newspage [English]
+* Post Love [English]
 *
 * @package language
 * @version $Id$
@@ -47,4 +47,8 @@ $lang = array_merge($lang, array(
 
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Author can like posts',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Can the author like his/her own posts or not',
+
+	'POSTLOVE_CLEAN_LOVES'	=> 'Clean post loves',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'If you have installed Post Love before automatic post and user love cleaning - please press Clean to clean the unneeded Post Loves',
+	'CLEN'	=> 'Clean',
 ));

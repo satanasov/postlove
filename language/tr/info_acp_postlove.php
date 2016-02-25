@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* newspage [Turkish]
+* Post Love [Turkish]
 *
 * @package language
 * @version $Id$
@@ -41,4 +41,8 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_NO_WRITE_ACTION'	=> 'Yazma yetkisi yok!<br>Lütfen <i> $phpbb_root_path/ext/anavaro/postlove/styles </i>klasörüne yazma yetkisi verin',
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Kendi paylaşımlarını beğenme',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Yazar kendi paylaşımlarını beğenebilir mi',
+
+	'POSTLOVE_CLEAN_LOVES'	=> 'Clean post loves',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'If you have installed Post Love before automatic post and user love cleaning - please press Clean to clean the unneeded Post Loves',
+	'CLEN'	=> 'Clean',
 ));
