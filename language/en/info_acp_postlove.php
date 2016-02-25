@@ -47,4 +47,20 @@ $lang = array_merge($lang, array(
 
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Author can like posts',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Can the author like his/her own posts or not',
+
+	//Version 1.2 langs
+	'POSTLOVE_INDEX_HOWMANY_MOST_LIKED_DAY'     => 'How many liked-today posts to show',
+	'POSTLOVE_INDEX_HOWMANY_MOST_LIKED_WEEK'	=> 'How many this week posts to show',
+	'POSTLOVE_INDEX_HOWMANY_MOST_LIKED_MONTH'	=> 'How many this month posts to show',
+	'POSTLOVE_INDEX_HOWMANY_MOST_LIKED_YEAR'    => 'How many this year posts to show',
+	'POSTLOVE_INDEX_HOWMANY_MOST_LIKED_EVER'	=> 'How many ever posts to show',
+	'POSTLOVE_FORUM_HOWMANY_MOST_LIKED_DAY'     => 'How many liked-today posts to show',
+	'POSTLOVE_FORUM_HOWMANY_MOST_LIKED_WEEK'	=> 'How many this week posts to show',
+	'POSTLOVE_FORUM_HOWMANY_MOST_LIKED_MONTH'	=> 'How many this month posts to show',
+	'POSTLOVE_FORUM_HOWMANY_MOST_LIKED_YEAR'	=> 'How many this year posts to show',
+	'POSTLOVE_FORUM_HOWMANY_MOST_LIKED_EVER'	=> 'How many ever posts to show',
+	'POSTLOVE_INDEX_HOWMANY_MOST_LIKED_EXPLAIN'	=> 'How many would you like to display on the index page?',
+	'POSTLOVE_FORUM_HOWMANY_MOST_LIKED_EXPLAIN'	=> 'How many would you like to display on the forum page?',
+	'POSTLOVE_QUERY_CACHE_SECONDS_EXPLAIN'		=> 'A larger value will reduce server load but results will lag real-time',
+	'POSTLOVE_QUERY_CACHE_SECONDS'         		=> 'How long to cache summary queries (seconds)',
 ));

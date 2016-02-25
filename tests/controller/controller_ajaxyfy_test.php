@@ -119,21 +119,21 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 				0, // Active
 				true, // Allow author to like
 				4, // post ID
-				'{"toggle_action":"add","toggle_post":4}'
+				'{"toggle_action":"add","toggle_post":4,"toggle_title":null}'
 			),
 			'like'	=> array(
 				2, // Anonimous
 				0, // Active
 				true, // Allow author to like
 				3, // post ID
-				'{"toggle_action":"add","toggle_post":3}'
+				'{"toggle_action":"add","toggle_post":3,"toggle_title":null}'
 			),
 			'unlike'	=> array(
 				2, // Anonimous
 				0, // Active
 				true, // Allow author to like
 				1, // post ID
-				'{"toggle_action":"remove","toggle_post":1}'
+				'{"toggle_action":"remove","toggle_post":1,"toggle_title":null}'
 			),
 		);
 	}

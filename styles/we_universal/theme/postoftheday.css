@@ -1,0 +1,58 @@
+.potd-new-posts {
+	text-align: left;
+	font-style: bold;
+	font-size: 1.2em;
+}
+
+dd.potd-active-header {
+	width: 185px;
+	text-align:left;
+}
+
+.rtl dd.potd-active-header {
+	text-align:right;
+}
+
+#post_of_the_day ul {
+	list-style-type: none;
+}
+
+#post_of_the_day li {
+	padding: 2px 0;
+}
+
+#post_of_the_day li:first-child {
+	padding-top: 0;
+}
+
+#post_of_the_day li:last-child {
+	padding-bottom: 0;
+}
+
+#post_of_the_day .meta {
+	display: block;
+	padding-left: 8px;
+}
+
+#post_of_the_day .meta span {
+	font-size: .9em;
+}
+
+.rtl #post_of_the_day {
+	text-align: right;
+}
+
+.rtl #post_of_the_day .meta {
+	padding-left: 0;
+	padding-right: 8px;
+}
+
+#post_of_the_day ul.topiclist li.row a.subforum {
+	white-space: normal;
+}
+
+
+#post_of_the_day ul.topiclist.topics li.row dt {
+    text-align: inherit !important;
+    width: inherit !important;
+}

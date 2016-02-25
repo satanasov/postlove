@@ -34,8 +34,52 @@
 					<label><input type="radio" id="postlove_author_like" name="poslove[postlove_author_like]" value="1"<!-- IF AUTHOR_LIKE --> checked<!-- ENDIF -->>{L_YES}</label><label><input type="radio" id="postlove_author_like" name="poslove[postlove_author_like]" value="0"<!-- IF !AUTHOR_LIKE --> checked<!-- ENDIF -->>{L_NO}</label>
 				</dd>
 			</dl>
-			</fieldset>
-			<p class="submit-buttons">
+		    <dl>
+			    <dt><label id="postlove_index_most_liked_today">{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_DAY}</label><br />{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_index_most_liked_today]" id="postlove_index_most_liked_today" size="4" value="{INDEX_HOWMANY_TODAY}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_index_most_liked_this_week">{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_WEEK}</label><br />{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_index_most_liked_this_week]" id="postlove_index_most_liked_this_week" size="4" value="{INDEX_HOWMANY_THIS_WEEK}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_index_most_liked_this_month">{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_MONTH}</label><br />{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_index_most_liked_this_month]" id="postlove_index_most_liked_this_month" size="4" value="{INDEX_HOWMANY_THIS_MONTH}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_index_most_liked_this_year">{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_YEAR}</label><br />{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_index_most_liked_this_year]" id="postlove_index_most_liked_this_year" size="4" value="{INDEX_HOWMANY_THIS_YEAR}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_index_most_liked_ever">{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_EVER}</label><br />{L_POSTLOVE_INDEX_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_index_most_liked_ever]" id="postlove_index_most_liked_ever" size="4" value="{INDEX_HOWMANY_EVER}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_forum_most_liked_this_week">{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_DAY}</label><br />{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_forum_most_liked_today]" id="postlove_index_most_liked_today" size="4" value="{FORUM_HOWMANY_TODAY}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_forum_most_liked_this_week">{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_WEEK}</label><br />{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_forum_most_liked_this_week]" id="postlove_forum_most_liked_this_week" size="4" value="{FORUM_HOWMANY_THIS_WEEK}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_forum_most_liked_this_month">{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_MONTH}</label><br />{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_forum_most_liked_this_month]" id="postlove_forum_most_liked_this_month" size="4" value="{FORUM_HOWMANY_THIS_MONTH}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_forum_most_liked_this_year">{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_YEAR}</label><br />{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_forum_most_liked_this_year]" id="postlove_forum_most_liked_this_year" size="4" value="{FORUM_HOWMANY_THIS_YEAR}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_forum_most_liked_ever">{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_EVER}</label><br />{L_POSTLOVE_FORUM_HOWMANY_MOST_LIKED_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_forum_most_liked_ever]" id="postlove_forum_most_liked_ever" size="4" value="{FORUM_HOWMANY_EVER}" /></dd>
+		    </dl>
+		    <dl>
+			    <dt><label id="postlove_summary_query_cache_seconds">{L_POSTLOVE_QUERY_CACHE_SECONDS}</label><br />{L_POSTLOVE_QUERY_CACHE_SECONDS_EXPLAIN}</dt>
+			    <dd><input type="text" name="poslove[postlove_summary_query_cache_seconds]" id="postlove_summary_query_cache_seconds" size="4" value="{QUERY_CACHE_SECONDS}" /></dd>
+		    </dl>
+        </fieldset>
+	    <p class="submit-buttons">
 			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
 			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
 	</form>
