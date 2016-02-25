@@ -25,6 +25,8 @@ class main_listener implements EventSubscriberInterface
 			'core.user_setup'		=> 'load_language_on_setup',
 			'core.memberlist_view_profile'	       => 'user_profile_likes',
 			'core.delete_posts_after'			=> 'clean_posts_after',
+			//'core.delete_user_after'			=> 'clean_users_after',
+			'core.delete_user_before'			=> 'clean_users_after',
 		);
 	}
 
@@ -171,9 +173,23 @@ class main_listener implements EventSubscriberInterface
 		$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])) . '?short=1');
 	}
 
+	/**
+	* Delete post loves on post perm delete
+	* No need to fill up the database, right?
+	*/
 	public function clean_posts_after($event)
 	{
 		$sql = 'DELETE FROM ' . $this->table_prefix . 'posts_likes WHERE ' . $this->db->sql_in_set('post_id', $event['post_ids']);
+		$this->db->sql_query($sql);
+	}
+
+	/**
+	* Delete post loves on post perm delete
+	* No need to fill up the database, right?
+	*/
+	public function clean_users_after($event)
+	{
+		$sql = 'DELETE FROM ' . $this->table_prefix . 'posts_likes WHERE ' . $this->db->sql_in_set('user_id', $event['user_ids']);
 		$this->db->sql_query($sql);
 	}
 }
