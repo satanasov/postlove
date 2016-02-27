@@ -163,7 +163,9 @@ class postoftheday_listener implements EventSubscriberInterface
 
 		// cache the query for a short time to reduce load on busy servers
 		// the same query is run for all users with the same set of forum permissions
-		$result = $this->db->sql_query_limit($sql, $howmany, 0, $this->config['postlove_summary_query_cache_seconds']);
+		$result = $this->db->sql_query_limit($sql, $howmany, 0, 0);
+	// caching disabled for now, as it is fragmenting the cache, the query needs to be restructured to prevent this
+	//	$result = $this->db->sql_query_limit($sql, $howmany, 0, $this->config['postlove_summary_query_cache_seconds']);
 
 		$forums = $ga_topic_ids = $topic_ids = array();
 		while ($row = $this->db->sql_fetchrow($result))
