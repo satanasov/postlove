@@ -9,7 +9,8 @@
          stopOnFailure="false"
          syntaxCheck="true"
          strict="true"
-         verbose="true">
+         verbose="true"
+         bootstrap="../tests/bootstrap.php">
 	<testsuites>
 		<testsuite name="phpBB Test Suite">
 			<directory suffix="_test.php">../tests</directory>
@@ -40,6 +41,7 @@
 				<directory suffix=".php">../travis</directory>
 				<directory suffix=".php">../tests</directory>
 				<directory suffix=".php">../adm</directory>
+				<directory suffix=".php">../vendor</directory>
 			</exclude>
 		</whitelist>
 	</filter>
