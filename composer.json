@@ -18,7 +18,8 @@
 		"php": ">=5.3"
 	},
 	"require-dev": {
-		"phpbb/epv": "dev-master"
+		"phpbb/epv": "dev-master",
+		"satooshi/php-coveralls": "~1.0"
 	},
 	"extra": {
 		"display-name": "phpBB 3.1 Post Love",
