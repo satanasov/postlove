@@ -60,4 +60,4 @@ script:
 
 after_script:
   - ls -la phpBB/ext/$EXTNAME/build/logs/
-  - sh -c "if [ '$COVERAGE' != '0' ] && [ '$TRAVIS_PHP_VERSION' = '5.6' ] && [ '$DB' = 'mysqli' ]; then php phpBB/ext/$EXTNAME/vendor/bin/coveralls -x phpBB/ext/$EXTNAME/build/logs/clover.xml -r phpBB/ext/$EXTNAME/; fi"
+  - sh -c "if [ '$COVERAGE' != '0' ] && [ '$TRAVIS_PHP_VERSION' = '5.6' ] && [ '$DB' = 'mysqli' ]; then php phpBB/ext/$EXTNAME/vendor/bin/coveralls -x build/logs/clover.xml -r phpBB/ext/$EXTNAME/; fi"
