@@ -2,4 +2,4 @@
 
 # for php-coveralls
 #coverage_clover: build/logs/clover.xml
-#json_path: build/logs/coveralls-upload.json
+json_path: build/logs/coveralls-upload.json
