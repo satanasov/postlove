@@ -43,6 +43,7 @@
 				<directory suffix=".php">../adm</directory>
 				<directory suffix=".php">../vendor</directory>
 				<directory suffix=".php">../language</directory>
+				<file>../acp/acp_postlove_info.php</file>
 			</exclude>
 		</whitelist>
 	</filter>
