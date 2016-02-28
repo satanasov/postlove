@@ -44,9 +44,6 @@
 			</exclude>
 		</whitelist>
 	</filter>
-	<logging>
-		<log type="coverage-clover" target="../build/logs/clover.xml"/>
-	</logging>
 	<php>
 		<server name="PHPBB_TEST_DBMS" value="phpbb\db\driver\mysqli" />
 		<server name="PHPBB_TEST_DBHOST" value="0.0.0.0" />
