@@ -42,6 +42,7 @@
 				<directory suffix=".php">../tests</directory>
 				<directory suffix=".php">../adm</directory>
 				<directory suffix=".php">../vendor</directory>
+				<directory suffix=".php">../language</directory>
 			</exclude>
 		</whitelist>
 	</filter>
