@@ -1,42 +1,3 @@
-.like, .liked { 
-	float: right;
-	width: 16px;
-	height: 16px;
-	margin-left: 1px;
-	margin-bottom: 5px;
-	background-size: 16px 16px;
-}
-.like_count {
-	vertical-align: top;
-}
-.like_info, .liked_info { 
-	float: left;
-	width: 16px;
-	height: 12px;
-	margin-left: 1px;
-}
-	
-.like {
-	background: url('./images/heart-red-16.png');
-}
-.liked {
-	background: url('./images/heart-white-16.png');
-}
-
-.like_info {
-	background: url('./images/heart-white-12.png');
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
-	margin-bottom: 5px;
-	margin-top: 4px;
-}
-.liked_info { 
-	background: url('./images/heart-red-12.png');
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
-	margin-top: 4px;
-}
-
 /* MODALS */
 .modal {
   display: none;
@@ -57,10 +18,10 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 .modal .inner {
-	width: 100%;
-	height: 80%;
-	overflow: scroll;
-	overflow-x: hidden;
+  width: 100%;
+  height: 80%;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 .modal a.close-modal {
   position: absolute;
@@ -92,18 +53,18 @@
 }
 
 ul.topiclist > li.row {
-	list-style-type: none;
-	margin-bottom: 0px;
-	font-size: 0.9em;
+  list-style-type: none;
+  margin-bottom: 0px;
+  font-size: 0.9em;
 }
 
 ul.topiclist > li.bg1 {
-	background-color: #f8f8f8;
+  background-color: #f8f8f8;
 }
 ul.topiclist > li.bg2 {
-	background-color: #e7e7e7;
+  background-color: #e7e7e7;
 }
 
 .love_page {
-	float: right;
+  float: right;
 }
