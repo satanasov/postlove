@@ -1,3 +1,5 @@
+parameters:
+    tables.anavaro.postlove: %core.table_prefix%posts_likes
 services:
     anavaro.postlove.listener:
         class: anavaro\postlove\event\main_listener
@@ -8,7 +10,7 @@ services:
             - @template
             - @user
             - @controller.helper
-            - %core.table_prefix%
+            - %tables.anavaro.postlove%
         tags:
             - { name: event.listener }
     anavaro.postlove.ajaxify:
@@ -18,7 +20,7 @@ services:
             - @dbal.conn
             - @user
             - @anavaro.postlove.notifyhelper
-            - %core.table_prefix%
+            - %tables.anavaro.postlove%
     anavaro.postlove.lovelist:
         class: anavaro\postlove\controller\lovelist
         arguments:
@@ -30,7 +32,7 @@ services:
             - @template
             - @pagination
             - @request
-            - %core.table_prefix%
+            - %tables.anavaro.postlove%
             - %core.root_path%
     anavaro.postlove.notifyhelper:
         class: anavaro\postlove\controller\notifyhelper
@@ -43,7 +45,7 @@ services:
             - @service_container
             - %core.root_path%
             - %core.php_ext%
-            - %core.table_prefix%
+            - %tables.anavaro.postlove%
     notification.type.postlove:
         class: anavaro\postlove\notification\postlove
         scope: prototype # scope MUST be prototype for this to work!

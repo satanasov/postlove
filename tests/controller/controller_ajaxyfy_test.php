@@ -19,7 +19,7 @@ require_once dirname(__FILE__) . '/../../../../../includes/functions_content.php
 
 class controller_ajaxify_test extends \phpbb_database_test_case
 {
-	
+
 	/**
 	* Define the extensions to be tested
 	*
@@ -29,9 +29,9 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 	{
 		return array('anavaro/postlove');
 	}
-	
+
 	protected $db;
-	
+
 	/**
 	* Get data set fixtures
 	*/
@@ -39,7 +39,7 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 	{
 		return $this->createXMLDataSet(dirname(__FILE__) . '/fixtures/users.xml');
 	}
-	
+
 	/**
 	* Setup test environment
 	*/
@@ -48,12 +48,14 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 		parent::setUp();
 		// Setup DB
 		$this->db = $this->new_dbal();
-		
+
 		//Setup Config
 		$this->config = new \phpbb\config\config(array());
 
 		// Setup User
-		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
+		$this->user = $this->getMock('\phpbb\user', array(), array(
+			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
+			'\phpbb\datetime'));
 
 		// Setup notifyhelper (I should drop that in future versions)
 		$this->notifyhelper = $this->getMockBuilder('\anavaro\postlove\controller\notifyhelper')->disableOriginalConstructor()
@@ -68,13 +70,13 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 		$this->user->data['user_id'] = $user_id;
 		$this->user->data['user_type'] = $is_registered;
 		$this->config['postlove_author_like'] = $postlove_author_like;
-		
+
 		return new \anavaro\postlove\controller\ajaxify(
 			$this->config,
 			$this->db,
 			$this->user,
 			$this->notifyhelper,
-			'phpbb_'
+			'phpbb_posts_likes'
 		);
 	}
 
@@ -137,7 +139,7 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 			),
 		);
 	}
-	
+
 	/**
 	 * Test the controller
 	 *

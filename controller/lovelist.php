@@ -42,7 +42,7 @@ class lovelist
 	*/
 	public function __construct(\phpbb\user $user, \phpbb\controller\helper $helper, \phpbb\db\driver\driver_interface $db, \phpbb\auth\auth $auth, \phpbb\user_loader $user_loader,
 	\phpbb\template\template $template,\phpbb\pagination $pagination, \phpbb\request\request $request,
-	$table_prefix, $root_path)
+	$likes_table, $root_path)
 	{
 		$this->user = $user;
 		$this->helper = $helper;
@@ -52,7 +52,7 @@ class lovelist
 		$this->template = $template;
 		$this->pagination = $pagination;
 		$this->request = $request;
-		$this->table_prefix = $table_prefix;
+		$this->likes_table = $likes_table;
 		$this->root_path = $root_path;
 	}
 
@@ -105,7 +105,7 @@ class lovelist
 			),
 			'LEFT_JOIN'	=> array(
 				array(
-					'FROM'	=> array($this->table_prefix . 'posts_likes'	=> 'pl'),
+					'FROM'	=> array($this->likes_table	=> 'pl'),
 					'ON'	=> 'pl.post_id = p.post_id'
 				),
 			),
