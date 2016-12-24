@@ -106,5 +106,7 @@ class ajaxify
 				}
 			break;
 		}
+		// We should never get this ... but hey - the code smells without it.
+		return 0;
 	}
 }

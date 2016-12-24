@@ -53,6 +53,11 @@ class controller_lovelist_test extends \phpbb_database_test_case
 			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
 			'\phpbb\datetime'
 		));
+		$this->language = $this->getMockBuilder('\phpbb\language\language')
+			->disableOriginalConstructor()
+			->getMock();
+		$this->language->method('lang')
+			->will($this->returnArgument(0));
 
 		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
 			->disableOriginalConstructor()
@@ -99,6 +104,7 @@ class controller_lovelist_test extends \phpbb_database_test_case
 
 		$controller = new \anavaro\postlove\controller\lovelist(
 			$this->user,
+			$this->language,
 			$this->controller_helper,
 			$this->db,
 			$this->auth,

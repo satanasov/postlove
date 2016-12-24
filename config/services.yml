@@ -25,6 +25,7 @@ services:
         class: anavaro\postlove\controller\lovelist
         arguments:
             - @user
+            - @language
             - @controller.helper
             - @dbal.conn
             - @auth
@@ -54,6 +55,7 @@ services:
             - @dbal.conn
             - @cache.driver
             - @user
+            - @language
             - @auth
             - @config
             - @controller.helper

@@ -35,12 +35,13 @@ class postlove extends \phpbb\notification\type\base
 	* @param string $user_notifications_table
 	* @return \phpbb\notification\type\base
 	*/
-	public function __construct(\phpbb\user_loader $user_loader, \phpbb\db\driver\driver_interface $db, \phpbb\cache\driver\driver_interface $cache, $user, \phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\controller\helper $helper, $phpbb_root_path, $php_ext, $notification_types_table, $notifications_table, $user_notifications_table)
+	public function __construct(\phpbb\user_loader $user_loader, \phpbb\db\driver\driver_interface $db, \phpbb\cache\driver\driver_interface $cache, $user,\phpbb\language\language $language, \phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\controller\helper $helper, $phpbb_root_path, $php_ext, $notification_types_table, $notifications_table, $user_notifications_table)
 	{
 		$this->user_loader = $user_loader;
 		$this->db = $db;
 		$this->cache = $cache;
 		$this->user = $user;
+		$this->lang = $language;
 		$this->auth = $auth;
 		$this->config = $config;
 		$this->helper = $helper;
@@ -151,7 +152,7 @@ class postlove extends \phpbb\notification\type\base
 		$users = array($this->get_data('requester_id'));
 		$this->user_loader->load_users($users);
 		$username = $this->user_loader->get_username($this->get_data('requester_id'), 'no_profile');
-		return $this->user->lang('NOTIFICATION_POSTLOVE_ADD', $username, $this->get_data('post_subject'));
+		return $this->lang->lang('NOTIFICATION_POSTLOVE_ADD', $username, $this->get_data('post_subject'));
 	}
 
 	/**
