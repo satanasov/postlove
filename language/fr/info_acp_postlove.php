@@ -67,7 +67,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_AUTHOR_LIKE'	=> 'L’auteur peut aimer ses messages',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Permettre ou non à l’auteur d’aimer son/ses propre(s) message(s).',
 
-	'POSTLOVE_CLEAN_LOVES'	=> 'Clean post loves',
-	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'If you have installed Post Love before automatic post and user love cleaning - please press Clean to clean the unneeded Post Loves',
-	'CLEN'	=> 'Clean',
+	'POSTLOVE_CLEAN_LOVES'	=> 'Nettoyer les « J’aime » des messages',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'Permet de nettoyer les « J’aime » inutiles des messages. Cette action est utile si l’extension « Post Love » a été installée avant le nettoyage automatique des messages et des « j’aime » d’utilisateurs.',
+	'CLEN'	=> 'Nettoyer',
 ));
