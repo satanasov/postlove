@@ -21,8 +21,10 @@ class acp_postlove_module
 {
 	function main($id, $mode)
 	{
-		global $db, $config, $template, $request, $user, $cache, $table_prefix, $phpbb_root_path;
+		global $db, $config, $template, $request, $table_prefix, $phpbb_root_path;
+		global $language, $phpbb_container;
 
+		$language = $phpbb_container->get('language');
 		//Define extension path (we will need it)
 		$ext_path =  $phpbb_root_path . 'ext/anavaro/postlove/';
 
@@ -36,7 +38,7 @@ class acp_postlove_module
 			{
 				$config->set($id, $var);
 			}
-			trigger_error($user->lang('CONFIRM_MESSAGE', $this->u_action));
+			trigger_error($language->lang('CONFIRM_MESSAGE', $this->u_action));
 		}
 		if ($request->variable('clean', false))
 		{
@@ -98,7 +100,7 @@ class acp_postlove_module
 			}
 			else
 			{
-				confirm_box(false, $user->lang['CONFIRM_OPERATION'], build_hidden_fields(array('clean' => true)));
+				confirm_box(false, $language->lang('CONFIRM_OPERATION'), build_hidden_fields(array('clean' => true)));
 			}
 		}
 
