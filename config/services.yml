@@ -46,7 +46,7 @@ services:
             - %core.table_prefix%
     notification.type.postlove:
         class: anavaro\postlove\notification\postlove
-        scope: prototype # scope MUST be prototype for this to work!
+        shared : false # shared MUST be false for this to work!
         arguments:
             - @user_loader
             - @dbal.conn
