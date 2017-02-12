@@ -1,10 +1,33 @@
-.like, .liked { 
+.postlove{
 	float: right;
-	width: 16px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+.postlove_likers{
+	float: left;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.likebyu, .uliked{
+	font-size: 1.1em;
+	float: right;
 	height: 16px;
-	margin-left: 1px;
+	width: auto;
+	margin-left: 5px;
 	margin-bottom: 5px;
 	background-size: 16px 16px;
+}
+.liked, .like{
+	float: right;
+	height: 16px;
+	width: 16px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	background-size: 16px 16px;
+}
+.likedbyu, .ulike{
+	display: none
 }
 .like_info, .liked_info { 
 	float: left;
@@ -12,7 +35,10 @@
 	height: 12px;
 	margin-left: 1px;
 }
-	
+.likers_display {
+	font-size: 1em;
+	vertical-align: top;
+}
 .like {
 	background: url('./images/heart-red-16.png');
 }
