@@ -1,4 +1,30 @@
-<div style="float: right; margin-top: 5px; margin-bottom: 5px;" class="postlove">
-	<!-- IF DISABLE != 1 --><!-- IF !postrow.DISABLE --><a href="{postrow.POST_LIKE_URL}" data-ajax="toggle_love"><!-- ENDIF --><!-- ENDIF --><span class="{postrow.POST_LIKE_CLASS}" id="likeimg_{postrow.POST_ID}"></span><!-- IF !postrow.DISABLE --><!-- IF DISABLE != 1 --></a><!-- ENDIF --><!-- ENDIF -->
-	<span title="{postrow.POST_LIKERS}" style="font-size: 1.3em; vertical-align: top;" id="like_{postrow.POST_ID}">{postrow.POST_LIKERS_COUNT}</span> x 
+<div class="postlove">
+	<!-- IF DISABLE != 1 --><!-- IF !postrow.DISABLE --><a href="{postrow.POST_LIKE_URL}" data-ajax="toggle_love" ><!-- ENDIF --><!-- ENDIF --><span class="{postrow.POST_LIKE_CLASS}" id="likeimg_{postrow.POST_ID}"></span>
+    <span class="{postrow.POST_LIKE_CLASS}byu" title="LIKE" id="likethis_{postrow.POST_ID}"> Like this!</span>
+    <span class="u{postrow.POST_LIKE_CLASS}" title="UNLIKE" id="likedthis_{postrow.POST_ID}"> Liked</span>
+    <!-- IF !postrow.DISABLE --><!-- IF DISABLE != 1 --></a><!-- ENDIF --><!-- ENDIF -->
+</div>
+<div class="postlove_likers">
+	<span class="likers_display" title="{postrow.POST_LIKERS_COUNT}" id="like_{postrow.POST_ID}"></span>
+	<script>
+		{
+			var x = document.getElementById("like_{postrow.POST_ID}").title; //call the count this way and the script gets a number rather than an object
+			var output;
+			var likers = "{postrow.POST_LIKERS}"; //string of likers names 
+			likers = likers.split(','); // and now it's an array
+			if (x == 0) {
+				output = ''; //no love no text
+			} else if (x == 1) {
+			    output = likers + " likes this";
+			} else if  (x > 5) { //lots of love!  split the array after 5 likers
+				var trunc = (x - 5);
+				var others = likers.splice(5, trunc);
+				//set the output to show the shortened array and text to mouseover with the remaining likers
+				output = likers + ' and <span style="color:blue" title="' + others + '"><ins>' + trunc + ' others like this!</ins></span>';
+			} else {
+				output = x + ' users like this: ' + likers;
+			}
+		document.getElementById("like_{postrow.POST_ID}").innerHTML = output;	
+		}	
+	</script>
 </div>
