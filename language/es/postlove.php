@@ -23,7 +23,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKES'	=> 'Al usuario le han gustado',
 	'POSTLOVE_USER_LIKED'	=> 'El usuario ha gustado',
 
-	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s le ha <b>gustado</b> su mensaje:',
+	'NOTIFICATION_POSTLOVE_ADD'	=> '%s le ha <b>gustado</b> su mensaje:',
 
 	// Ver 1.1
 	'LIKE_LINE'	=> '%1$s - %2$s <b>liked</b> %3$s\'s post "%4$s" in topic "%5$s"',
