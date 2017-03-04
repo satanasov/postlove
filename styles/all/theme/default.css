@@ -17,7 +17,7 @@
 	position:relative;
 }
 .liked:before, .liked_info:before {
-	content: "\f164";
+	content: "\f004";
     	font-family: FontAwesome;
     	left:0px;
     	position:absolute;
@@ -28,7 +28,7 @@
 	margin-bottom: 5px;
 }
 .like:before, .like_info:before { 
-	content: "\f087";
+	content: "\f08a";
     	font-family: FontAwesome;
     	left:0px;
     	position:absolute;
