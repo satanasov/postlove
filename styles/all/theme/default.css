@@ -61,15 +61,21 @@
 	overflow-x: hidden;
 }
 .modal a.close-modal {
-  position: absolute;
-  top: -12.5px;
-  right: -12.5px;
-  display: block;
-  width: 30px;
-  height: 30px;
-  text-indent: -9999px;
-  z-index: 999;
-  background: url(./images/close.png) no-repeat 0 0;
+  	position: absolute;
+ 	top: -12.5px;
+ 	right: -12.5px;
+  	display: block;
+  	width: 30px;
+  	height: 30px;
+  	z-index: 999;
+}
+.modal .close-modal:before {
+	content: "\f05c";
+	color: white;
+    	font-family: FontAwesome;
+	font-size: 20px;
+    	position:absolute;
+    	top:0;
 }
 
 .modal-spinner {
