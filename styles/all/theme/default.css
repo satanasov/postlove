@@ -1,9 +1,8 @@
 .like, .liked { 
 	float: right;
 	width: 16px;
-	height: 16px;
+	height: 12px;
 	margin-left: 1px;
-	margin-bottom: 5px;
 	background-size: 16px 16px;
 	position:relative;
 }
@@ -19,9 +18,8 @@
 .liked:before, .liked_info:before {
 	content: "\f004";
     	font-family: FontAwesome;
-    	left:0px;
+	font-size: 12px;
     	position:absolute;
-    	top:0;
 }
 
 .like_info {
@@ -30,9 +28,8 @@
 .like:before, .like_info:before { 
 	content: "\f08a";
     	font-family: FontAwesome;
-    	left:0px;
+	font-size: 12px;
     	position:absolute;
-    	top:0;
 }
 
 /* MODALS */
