@@ -7,9 +7,7 @@
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
-
 namespace anavaro\postlove\tests\functional;
-
 /**
 * @group functional
 */
@@ -34,8 +32,7 @@ class postlove_post_test extends postlove_base
 		
 		//Do we see the static?
 		$class = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('span')->attr('class');
-
-		$this->assertContains('heart-red-16.png', $parser->parsed['main']['.' . $class]['background']);
+		$this->assertContains('f08a', $parser->parsed['main']['.' . $class]['content']);
 		$this->assertContains('0 x', $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->text());
 		
 		//toggle like
@@ -45,8 +42,7 @@ class postlove_post_test extends postlove_base
 		//reload page and test ...
 		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
 		$class = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('span')->attr('class');
-
-		$this->assertContains('heart-white-16.png', $parser->parsed['main']['.' . $class]['background']);
+		$this->assertContains('f004', $parser->parsed['main']['.' . $class]['content']);
 		$this->assertContains('1 x', $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->text());
 		$this->logout();
 	}
@@ -75,9 +71,7 @@ class postlove_post_test extends postlove_base
 		
 		$this->login();
 		$this->admin_login();
-
 		$this->add_lang_ext('anavaro/postlove', 'info_acp_postlove');
-
 		$crawler = self::request('GET', 'adm/index.php?i=-anavaro-postlove-acp-acp_postlove_module&mode=main&sid=' . $this->sid);
 		$form = $crawler->selectButton('submit')->form();
 		$form->setValues(array(
@@ -88,7 +82,6 @@ class postlove_post_test extends postlove_base
 		$this->assertContains('Changes saved!', $crawler->text());
 		$this->logout();
 		$this->logout();
-
 		$this->login();
 		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
 		$this->assertContains('x 1',  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.profile-custom-field')->filter('.liked_info')->parents()->text());
@@ -97,9 +90,7 @@ class postlove_post_test extends postlove_base
 		
 		$this->login();
 		$this->admin_login();
-
 		$this->add_lang_ext('anavaro/postlove', 'info_acp_postlove');
-
 		$crawler = self::request('GET', 'adm/index.php?i=-anavaro-postlove-acp-acp_postlove_module&mode=main&sid=' . $this->sid);
 		$form = $crawler->selectButton('submit')->form();
 		$form->setValues(array(
@@ -119,9 +110,7 @@ class postlove_post_test extends postlove_base
 		
 		$this->login();
 		$this->admin_login();
-
 		$this->add_lang_ext('anavaro/postlove', 'info_acp_postlove');
-
 		$crawler = self::request('GET', 'adm/index.php?i=-anavaro-postlove-acp-acp_postlove_module&mode=main&sid=' . $this->sid);
 		$form = $crawler->selectButton('submit')->form();
 		$form->setValues(array(
@@ -139,7 +128,6 @@ class postlove_post_test extends postlove_base
 		$this->assertContains('x 1',  $crawler->filter('.post')->eq(0)->filter('.inner')->filter('.postprofile')->filter('.profile-custom-field')->filter('.liked_info')->parents()->text());
 		$this->logout();
 	}
-
 	public function test_show_list()
 	{
 		$this->login();
