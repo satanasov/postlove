@@ -5,31 +5,34 @@
 	margin-left: 1px;
 	margin-bottom: 5px;
 	background-size: 16px 16px;
+	position:relative;
 }
 .like_info, .liked_info { 
 	float: left;
 	width: 16px;
 	height: 12px;
 	margin-left: 1px;
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
+	position:relative;
 }
-	
-.like {
-	background: url('./images/heart-red-16.png');
-}
-.liked {
-	background: url('./images/heart-white-16.png');
+.liked:before, .liked_info:before {
+	content: "\f004";
+    	font-family: FontAwesome;
+    	left:0px;
+    	position:absolute;
+    	top:0;
 }
 
 .like_info {
-	background: url('./images/heart-white-12.png');
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
 	margin-bottom: 5px;
 }
-.liked_info { 
-	background: url('./images/heart-red-12.png');
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
+.like:before, .like_info:before { 
+	content: "\f08a";
+    	font-family: FontAwesome;
+    	left:0px;
+    	position:absolute;
+    	top:0;
 }
 
 /* MODALS */
@@ -58,15 +61,21 @@
 	overflow-x: hidden;
 }
 .modal a.close-modal {
-  position: absolute;
-  top: -12.5px;
-  right: -12.5px;
-  display: block;
-  width: 30px;
-  height: 30px;
-  text-indent: -9999px;
-  z-index: 999;
-  background: url(./images/close.png) no-repeat 0 0;
+  	position: absolute;
+ 	top: -12.5px;
+ 	right: -12.5px;
+  	display: block;
+  	width: 30px;
+  	height: 30px;
+  	z-index: 999;
+}
+.modal .close-modal:before {
+	content: "\f05c";
+	color: white;
+    	font-family: FontAwesome;
+	font-size: 20px;
+    	position:absolute;
+    	top:0;
 }
 
 .modal-spinner {
