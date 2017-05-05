@@ -28,6 +28,7 @@ services:
             - @user
             - %core.root_path%
             - %core.php_ext%
+            - %core.table_prefix%
         tags:
             - { name: event.listener }
     anavaro.postlove.ajaxify:

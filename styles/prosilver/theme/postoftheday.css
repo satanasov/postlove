@@ -54,6 +54,10 @@ dd.potd-active-header {
 @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
 	#post_of_the_day ul.topiclist li.row a.subforum {
 		white-space: pre;
-		overflow: hidden;
+	}
+}
+@media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+	#post_of_the_day.forabg div.inner ul.topiclist.topics li.row.bg1 dl span.meta dd {
+		display: block !important;
 	}
 }

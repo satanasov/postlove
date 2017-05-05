@@ -35,6 +35,8 @@ class ajaxify
 
 	public function base ($action, $post)
 	{
+		global $cache;
+
 		switch ($action)
 		{
 			case 'toggle':
@@ -79,6 +81,7 @@ class ajaxify
 							$sql = 'INSERT INTO ' . $this->table_prefix . 'posts_likes (post_id, user_id, type, timestamp) VALUES (' . $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
+							$cache->destroy('sql', $this->table_prefix . 'posts_likes');
 							$sql = 'SELECT topic_id, poster_id, post_subject FROM ' . POSTS_TABLE . ' WHERE post_id = ' . $post;
 							$result = $this->db->sql_query($sql);
 							$row1 = $this->db->sql_fetchrow($result);
@@ -96,6 +99,7 @@ class ajaxify
 							$sql = 'DELETE FROM ' . $this->table_prefix . 'posts_likes WHERE post_id = ' . $post . ' AND user_id = ' . $this->user->data['user_id'];
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
+							$cache->destroy('sql', $this->table_prefix . 'posts_likes');
 							$this->notifyhelper->notify('remove', $row['topic_id'], $post, $row['post_subject'], $row['poster'], $this->user->data['user_id']);
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action' => 'remove',
