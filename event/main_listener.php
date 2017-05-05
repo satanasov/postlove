@@ -68,7 +68,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		// first check that this user wants to see Post Like
 		$this->user->get_profile_fields($this->user->data['user_id']);
-		if (!($this->user->profile_fields['pf_postlove_hide']))
+		if (!(isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']))
 		{
 			//var_dump($event['row']['post_id']);
 			$image = $likes = '';
@@ -147,7 +147,7 @@ class main_listener implements EventSubscriberInterface
 			if ($this->config['postlove_show_likes'])
 			{
 				$sql = 'SELECT COUNT(post_id) as count FROM ' .$this->table_prefix . 'posts_likes WHERE user_id = ' . $event['row']['user_id'];
-				$result = $this->db->sql_query($sql, $this->config['postlove_summary_query_cache_seconds']);
+				$result = $this->db->sql_query($sql);
 				$count = (int) $this->db->sql_fetchfield('count');
 				$this->db->sql_freeresult($result);
 				$post_row = $event['post_row'];
@@ -165,7 +165,7 @@ class main_listener implements EventSubscriberInterface
 					'WHERE'	=> 'pl.post_id = p.post_id AND p.poster_id = ' . $event['row']['user_id'],
 				);
 				$sql = $this->db->sql_build_query('SELECT', $sql_array);
-				$result = $this->db->sql_query($sql, $this->config['postlove_summary_query_cache_seconds']);
+				$result = $this->db->sql_query($sql);
 				$count = (int) $this->db->sql_fetchfield('count');
 				$this->db->sql_freeresult($result);
 				$post_row = $event['post_row'];
@@ -179,7 +179,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		// first check that this user wants to see Post Like
 		$this->user->get_profile_fields($this->user->data['user_id']);
-		if (!($this->user->profile_fields['pf_postlove_hide']))
+		if (!(isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']))
 		{
 			$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])) . '?short=1');
 		}

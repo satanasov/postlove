@@ -91,21 +91,15 @@ class postoftheday_listener implements EventSubscriberInterface
 				// no need to look any further
 				return;
 			}
-			$recent = 0;
-			// if the user only wants to see recent likes
-			if (isset($this->user->profile_fields['pf_postlove_recent']) && $this->user->profile_fields['pf_postlove_recent'])
-			{
-				$recent = $this->user->data['session_last_visit'];
-			}
 
 			// build the template array of most liked posts
 			$seconds = time();
 			$rounded_seconds = floor($seconds / SECONDS_PER_DAY) * SECONDS_PER_DAY;
-			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_ever'], 		max($recent, 	2), 										'LIKES_EVER', 		$post_list);
-			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_this_year'], 	max($recent, 	$rounded_seconds - SECONDS_PER_DAY * 366), 	'LIKES_THIS_YEAR', 	$post_list);
-			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_this_month'], 	max($recent, 	$rounded_seconds - SECONDS_PER_DAY * 31), 	'LIKES_THIS_MONTH', $post_list);
-			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_this_week'], 	max($recent, 	$rounded_seconds - SECONDS_PER_DAY * 7), 	'LIKES_THIS_WEEK', 	$post_list);
-			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_today'], 		max($recent, 	$rounded_seconds - SECONDS_PER_DAY), 		'LIKES_TODAY', 		$post_list);
+			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_ever'], 		2, 											'LIKES_EVER', 		$post_list);
+			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_this_year'], 	$rounded_seconds - SECONDS_PER_DAY * 366, 	'LIKES_THIS_YEAR', 	$post_list);
+			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_this_month'], 	$rounded_seconds - SECONDS_PER_DAY * 31, 	'LIKES_THIS_MONTH', $post_list);
+			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_this_week'], 	$rounded_seconds - SECONDS_PER_DAY * 7, 	'LIKES_THIS_WEEK', 	$post_list);
+			$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_index_most_liked_today'], 		$rounded_seconds - SECONDS_PER_DAY, 		'LIKES_TODAY', 		$post_list);
 
 			$this->template->assign_vars(array(
 				'S_POSTOFTHEDAY'	=>  count($post_list) - 1,
@@ -131,7 +125,6 @@ class postoftheday_listener implements EventSubscriberInterface
 			$topic_list = array();
 			$topic_list = $event['topic_list'];
 			$forum_ary[0] = $event['forum_id'];
-			
 
 			// build the template array of most liked posts
 			$seconds = time();
