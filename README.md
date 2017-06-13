@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/satanasov/postlove.svg?branch=master)](https://travis-ci.org/satanasov/postlove) [![Coverage Status](https://coveralls.io/repos/github/satanasov/postlove/badge.svg?branch=master)](https://coveralls.io/github/satanasov/postlove?branch=master)
+[![Build Status](https://travis-ci.org/satanasov/postlove.svg?branch=1.2.x)](https://travis-ci.org/satanasov/postlove) [![Coverage Status](https://coveralls.io/repos/github/satanasov/postlove/badge.svg?branch=1.2.x)](https://coveralls.io/github/satanasov/postlove?branch=1.2.x)
 
-Post Love
+Post Love for phpBB 3.2
 ==========
 
 Description:

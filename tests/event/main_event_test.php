@@ -17,7 +17,7 @@ namespace anavaro\postlove\tests\event;
 class main_event extends \phpbb_database_test_case
 {
 	protected $listener;
-	
+
 	/**
 	* Define the extensions to be tested
 	*
@@ -27,9 +27,9 @@ class main_event extends \phpbb_database_test_case
 	{
 		return array('anavaro/postlove');
 	}
-	
+
 	protected $db;
-	
+
 	/**
 	* Get data set fixtures
 	*/
@@ -37,7 +37,7 @@ class main_event extends \phpbb_database_test_case
 	{
 		return $this->createXMLDataSet(dirname(__FILE__) . '/fixtures/users.xml');
 	}
-	
+
 	/**
 	* Setup test environment
 	*/
@@ -46,10 +46,10 @@ class main_event extends \phpbb_database_test_case
 		parent::setUp();
 		// Setup Auth
 		$this->auth = $this->getMock('\phpbb\auth\auth');
-		
+
 		//Setup Config
 		$this->config = new \phpbb\config\config(array());
-		
+
 		// Setup DB
 		$this->db = $this->new_dbal();
 
@@ -58,7 +58,10 @@ class main_event extends \phpbb_database_test_case
 			->getMock();
 
 		// Setup User
-		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
+		$this->user = $this->getMock('\phpbb\user', array(), array(
+			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
+			'\phpbb\datetime',
+			));
 
 		// Setup Controller
 		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
@@ -78,7 +81,7 @@ class main_event extends \phpbb_database_test_case
 			$this->template,
 			$this->user,
 			$this->controller_helper,
-			'phpbb_'
+			'phpbb_posts_likes'
 		);
 	}
 

@@ -41,13 +41,6 @@ class notifyhelper
 		$this->php_ext = $php_ext;
 	}
 
-	public function test($i)
-	{
-		echo '</pre>';
-		print_r($i);
-		echo '</pre>';
-	}
-
 	/**
 	* Main notification function
 	* @param type			Type of notification (add/confirm)

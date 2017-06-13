@@ -15,6 +15,18 @@ namespace anavaro\postlove\notification;
 */
 class postlove extends \phpbb\notification\type\base
 {
+	/** @var \phpbb\user_loader */
+	protected $user_loader;
+	/* @var \phpbb\db\driver\driver_interface */
+	protected $db;
+	/* @var \phpbb\user */
+	protected $users;
+	/** @var \phpbb\language\language */
+	protected $language;
+	/* @var \phpbb\auth\auth */
+	protected $auth;
+	/** @var \phpbb\config\config */
+	protected $config;
 	/** @var \phpbb\controller\helper */
 	protected $helper;
 
@@ -35,12 +47,13 @@ class postlove extends \phpbb\notification\type\base
 	* @param string $user_notifications_table
 	* @return \phpbb\notification\type\base
 	*/
-	public function __construct(\phpbb\user_loader $user_loader, \phpbb\db\driver\driver_interface $db, \phpbb\cache\driver\driver_interface $cache, $user, \phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\controller\helper $helper, $phpbb_root_path, $php_ext, $notification_types_table, $notifications_table, $user_notifications_table)
+	public function __construct(\phpbb\user_loader $user_loader, \phpbb\db\driver\driver_interface $db, \phpbb\cache\driver\driver_interface $cache, $user,\phpbb\language\language $language, \phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\controller\helper $helper, $phpbb_root_path, $php_ext, $notification_types_table, $notifications_table, $user_notifications_table)
 	{
 		$this->user_loader = $user_loader;
 		$this->db = $db;
 		$this->cache = $cache;
 		$this->user = $user;
+		$this->language = $language;
 		$this->auth = $auth;
 		$this->config = $config;
 		$this->helper = $helper;
@@ -84,43 +97,43 @@ class postlove extends \phpbb\notification\type\base
 	}
 
 	/**
-	* Get the id of the rule
+	* Get the id of the liker
 	*
-	* @param array $data The data for the updated rules
+	* @param array $data The data for the like
 	*/
 	public static function get_item_id($data)
 	{
-		return $data['requester_id'];
+		return (int) $data['requester_id'];
 	}
 
 	/**
 	* Get the id of the parent
 	*
-	* @param array $data The data for the updated rules
+	* @param array $data The data for the like
 	*/
 	public static function get_item_parent_id($data)
 	{
-		// No parent
-		return $data['post_id'];
+		return (int) $data['post_id'];
 	}
 
 	/**
-	* Find the users who will receive notifications
+	* Find the users who will receive notifications 
 	*
-	* @param array $data The data for the updated rules
+	* @param array $data The data for the like
 	*
 	* @return array
 	*/
 	public function find_users_for_notification($data, $options = array())
 	{
 
+		$options = array_merge(array(
+			'ignore_users'			=> array(),
+		), $options);
 		$users = array();
-		$users[$data['user_id']] = array('');
-
-		$this->user_loader->load_users(array_keys($users));
-		return $this->check_user_notification_options(array_keys($users), $options);
+		$users[$data['user_id']] = $this->notification_manager->get_default_methods();
+		
+		return $users;
 	}
-
 	/**
 	* Users needed to query before this notification can be displayed
 	*
@@ -138,7 +151,7 @@ class postlove extends \phpbb\notification\type\base
 	{
 		$users = array($this->get_data('requester_id'));
 		$this->user_loader->load_users($users);
-		return $this->user_loader->get_avatar($this->get_data('requester_id'));
+		return $this->user_loader->get_avatar($this->get_data('requester_id'), false, true);
 	}
 
 	/**
@@ -151,7 +164,16 @@ class postlove extends \phpbb\notification\type\base
 		$users = array($this->get_data('requester_id'));
 		$this->user_loader->load_users($users);
 		$username = $this->user_loader->get_username($this->get_data('requester_id'), 'no_profile');
-		return $this->user->lang('NOTIFICATION_POSTLOVE_ADD', $username, $this->get_data('post_subject'));
+		return $this->language->lang('NOTIFICATION_POSTLOVE_ADD', $username);
+	}
+	/**
+	* Get the HTML formatted reference of the notification 
+	*
+	* @return string
+	*/
+	public function get_reference()
+	{
+		return censor_text($this->get_data('post_subject'));
 	}
 
 	/**
@@ -200,6 +222,6 @@ class postlove extends \phpbb\notification\type\base
 		$this->set_data('topic_id', $data['topic_id']);
 		$this->set_data('post_subject', $data['post_subject']);
 
-		return parent::create_insert_array($data, $pre_create_data);
+		parent::create_insert_array($data, $pre_create_data);
 	}
 }

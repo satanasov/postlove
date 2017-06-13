@@ -19,7 +19,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKES'	=> 'Uživateli se líbí',
 	'POSTLOVE_USER_LIKED'	=> 'Uživatel se líbí',
-	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s <b>se líbí</b> váš příspěvek „%2$s“',
+	'NOTIFICATION_POSTLOVE_ADD'	=> '%s <b>se líbí</b> váš příspěvek:',
 	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Oblíbené příspěvky',
 
 	// Ver 1.1
