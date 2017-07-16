@@ -120,7 +120,7 @@ class lovelist
 					'ON'	=> 'pl.post_id = p.post_id'
 				),
 			),
-			'WHERE'	=> 'p.topic_id = t.topic_id AND (p.poster_id = ' . $user_id . ' OR  pl.user_id = ' . $user_id . ') AND pl.user_id > 0 AND ' . $this->db->sql_in_set('p.forum_id', $forum_ids),
+			'WHERE'	=> 'p.topic_id = t.topic_id AND (p.poster_id = ' . (int) $user_id . ' OR  pl.user_id = ' . (int) $user_id . ') AND pl.user_id > 0 AND ' . $this->db->sql_in_set('p.forum_id', $forum_ids),
 			'ORDER_BY'	=> 'pl.timestamp DESC',
 			'GROUP_BY'	=> 'pl.timestamp, pl.user_id, p.post_id, t.topic_title'
 		);
@@ -150,7 +150,7 @@ class lovelist
 				}
 				$raw_output[] = $row;
 			}
-			$users[] = $user_id;
+			$users[] = (int) $user_id;
 			$users = array_unique($users);
 			$this->db->sql_freeresult($result);
 			$this->user_loader->load_users($users);

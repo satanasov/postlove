@@ -59,7 +59,7 @@ class ajaxify
 								'ON'	=> 'pl.post_id = p.post_id AND pl.user_id = ' . $this->user->data['user_id']
 							),
 						),
-						'WHERE'	=> 'p.post_id = ' . $post
+						'WHERE'	=> 'p.post_id = ' . (int) $post
 					);
 					$sql = $this->db->sql_build_query('SELECT', $sql_array);
 					$result = $this->db->sql_query($sql);
@@ -77,14 +77,14 @@ class ajaxify
 						if (!$row['timestamp'])
 						{
 							//so we don't have record for this user loving this post ... give some love!
-							$sql = 'INSERT INTO ' . $this->likes_table . ' (post_id, user_id, type, timestamp) VALUES (' . $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
+							$sql = 'INSERT INTO ' . $this->likes_table . ' (post_id, user_id, type, timestamp) VALUES (' . (int) $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
-							$sql = 'SELECT topic_id, poster_id, post_subject FROM ' . POSTS_TABLE . ' WHERE post_id = ' . $post;
+							$sql = 'SELECT topic_id, poster_id, post_subject FROM ' . POSTS_TABLE . ' WHERE post_id = ' . (int) $post;
 							$result = $this->db->sql_query($sql);
 							$row1 = $this->db->sql_fetchrow($result);
 							$this->db->sql_freeresult($result);
-							$this->notifyhelper->notify('add', $row1['topic_id'], $post, $row1['post_subject'], $row1['poster_id'] , $this->user->data['user_id']);
+							$this->notifyhelper->notify('add', $row1['topic_id'], (int) $post, $row1['post_subject'], $row1['poster_id'] , $this->user->data['user_id']);
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action'	=> 'add',
 								'toggle_post'	=> $post,
@@ -93,10 +93,10 @@ class ajaxify
 						else
 						{
 							//so we have a record ... and the user don't love it anymore!
-							$sql = 'DELETE FROM ' . $this->likes_table . ' WHERE post_id = ' . $post . ' AND user_id = ' . $this->user->data['user_id'];
+							$sql = 'DELETE FROM ' . $this->likes_table . ' WHERE post_id = ' . (int) $post . ' AND user_id = ' . $this->user->data['user_id'];
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
-							$this->notifyhelper->notify('remove', $row['topic_id'], $post, $row['post_subject'], $row['poster'], $this->user->data['user_id']);
+							$this->notifyhelper->notify('remove', $row['topic_id'], (int) $post, $row['post_subject'], $row['poster'], $this->user->data['user_id']);
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action' => 'remove',
 								'toggle_post'	=> $post,

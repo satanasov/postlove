@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Adds ability to favourite/like/thank a post.",
 	"homepage": "http://lab.anavaro.com/forum/viewforum.php?f=5",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"time": "2016-12-24",
 	"license": "GPL-2.0",
 	"authors": [
@@ -28,7 +28,7 @@
 		},
 		"version-check": {
 			"host": "lab.anavaro.com",
-			"directory": "/phpbb-ext",
+			"directory": "/phpbb-ext/3.2.x",
 			"filename": "postlove.json"
 		}
 	}
