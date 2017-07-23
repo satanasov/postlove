@@ -48,7 +48,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Auteur kan bericht leuk vinden:',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Kan de auteur zijn/haar eigen berichten leuk vinden (of niet).',
 
-	'POSTLOVE_CLEAN_LOVES'	=> 'Clean post loves',
-	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'If you have installed Post Love before automatic post and user love cleaning - please press Clean to clean the unneeded Post Loves',
-	'CLEN'	=> 'Clean',
+	'POSTLOVE_CLEAN_LOVES'	=> 'Opruimen post loves',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'Als je een oude versie van Post Love gebruikt hebt waar automatisch opschonen nog niet beschikbaar was, druk dan op \'Opruimen\' om de database op te schonen.',
+	'CLEAN'	=> 'Opruimen',
 ));
