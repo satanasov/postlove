@@ -34,17 +34,28 @@ class lovelist
 	protected $request;
 
 	/**
-	* Constructor
-	* NOTE: The parameters of this method must match in order and type with
-	* the dependencies defined in the services.yml file for this service.
-	*
-	* @param \phpbb\user		$user		User object
-	*/
-	public function __construct(\phpbb\user $user, \phpbb\controller\helper $helper, \phpbb\db\driver\driver_interface $db, \phpbb\auth\auth $auth, \phpbb\user_loader $user_loader,
+	 * Constructor
+	 * NOTE: The parameters of this method must match in order and type with
+	 * the dependencies defined in the services.yml file for this service.
+	 *
+	 * @param \phpbb\user $user User object
+	 * @param \phpbb\language\language $language
+	 * @param \phpbb\controller\helper $helper
+	 * @param \phpbb\db\driver\driver_interface $db
+	 * @param \phpbb\auth\auth $auth
+	 * @param \phpbb\user_loader $user_loader
+	 * @param \phpbb\template\template $template
+	 * @param \phpbb\pagination $pagination
+	 * @param \phpbb\request\request $request
+	 * @param $likes_table
+	 * @param $root_path
+	 */
+	public function __construct(\phpbb\user $user, \phpbb\language\language $language, \phpbb\controller\helper $helper, \phpbb\db\driver\driver_interface $db, \phpbb\auth\auth $auth, \phpbb\user_loader $user_loader,
 	\phpbb\template\template $template,\phpbb\pagination $pagination, \phpbb\request\request $request,
-	$table_prefix, $root_path)
+	$likes_table, $root_path)
 	{
 		$this->user = $user;
+		$this->lang = $language;
 		$this->helper = $helper;
 		$this->db = $db;
 		$this->auth = $auth;
@@ -52,7 +63,7 @@ class lovelist
 		$this->template = $template;
 		$this->pagination = $pagination;
 		$this->request = $request;
-		$this->table_prefix = $table_prefix;
+		$this->likes_table = $likes_table;
 		$this->root_path = $root_path;
 	}
 
@@ -61,7 +72,7 @@ class lovelist
 	*	Route: postlove/{user_id}
 	*
 	* @param int	$user_id	User ID
-	* @return Symfony\Component\HttpFoundation\Response A Symfony Response object
+	* @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
 	*/
 	public function base ($user_id, $page)
 	{
@@ -76,7 +87,7 @@ class lovelist
 		$start = ($page - 1) * $limit;
 
 		// Add lang
-		$this->user->add_lang_ext('anavaro/postlove', array('postlove'));
+		$this->lang->add_lang(array('postlove'), 'anavaro/postlove');
 		// Let's get allowed forums
 		// Get the allowed forums
 		$forum_ary = array();
@@ -94,7 +105,7 @@ class lovelist
 		// No forums with f_read
 		if (!sizeof($forum_ids))
 		{
-			return;
+			return -1;
 		}
 
 		$sql_array = array(
@@ -105,11 +116,11 @@ class lovelist
 			),
 			'LEFT_JOIN'	=> array(
 				array(
-					'FROM'	=> array($this->table_prefix . 'posts_likes'	=> 'pl'),
+					'FROM'	=> array($this->likes_table	=> 'pl'),
 					'ON'	=> 'pl.post_id = p.post_id'
 				),
 			),
-			'WHERE'	=> 'p.topic_id = t.topic_id AND (p.poster_id = ' . $user_id . ' OR  pl.user_id = ' . $user_id . ') AND pl.user_id > 0 AND ' . $this->db->sql_in_set('p.forum_id', $forum_ids),
+			'WHERE'	=> 'p.topic_id = t.topic_id AND (p.poster_id = ' . (int) $user_id . ' OR  pl.user_id = ' . (int) $user_id . ') AND pl.user_id > 0 AND ' . $this->db->sql_in_set('p.forum_id', $forum_ids),
 			'ORDER_BY'	=> 'pl.timestamp DESC',
 			'GROUP_BY'	=> 'pl.timestamp, pl.user_id, p.post_id, t.topic_title'
 		);
@@ -139,7 +150,7 @@ class lovelist
 				}
 				$raw_output[] = $row;
 			}
-			$users[] = $user_id;
+			$users[] = (int) $user_id;
 			$users = array_unique($users);
 			$this->db->sql_freeresult($result);
 			$this->user_loader->load_users($users);
@@ -148,7 +159,7 @@ class lovelist
 				$post_link = '<a href="' . $this->root_path .($short == 1 ? '' : ($page > 1 ? '../../../' : '../')) .'viewtopic.php?p=' . $row['post_id'] . '#'. $row['post_id'] .'" target="_blank" >' . $row['post_subject'] . '</a>';
 				$topic_link = '<a href="' . $this->root_path .($short == 1 ? '' : ($page > 1 ? '../../../' : '../')) .'viewtopic.php?t=' . $row['topic_id'] . '" target="_blank" class="topictitle">' . $row['topic_title'] . '</a>';
 				$this->template->assign_block_vars('lovelist', array(
-					'LINE' => $this->user->lang('LIKE_LINE', $this->user->format_date($row['timestamp']), $this->user_loader->get_username($row['liker_id'], 'full'), $this->user_loader->get_username($row['poster'], 'full'), $post_link, $topic_link),
+					'LINE' => $this->lang->lang('LIKE_LINE', $this->user->format_date($row['timestamp']), $this->user_loader->get_username($row['liker_id'], 'full'), $this->user_loader->get_username($row['poster'], 'full'), $post_link, $topic_link),
 				));
 			}
 

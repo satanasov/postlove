@@ -13,24 +13,25 @@ namespace anavaro\postlove\controller;
 class ajaxify
 {
 	/**
-	* Constructor
-	* NOTE: The parameters of this method must match in order and type with
-	* the dependencies defined in the services.yml file for this service.
-	*
-	* @param \phpbb\config	$config		Config object
-	* @param \phpbb\db\driver	$db		Database object
-	* @param \phpbb\user		$user		User object
-	* @param anavaro\postlove\controller\notifyhelper	$notifyhelper	Notification helper.
-	* @param string			$table_prefix	phpBB Table Prefix
-	*/
+	 * Constructor
+	 * NOTE: The parameters of this method must match in order and type with
+	 * the dependencies defined in the services.yml file for this service.
+	 *
+	 * @param \phpbb\config|\phpbb\config\config $config Config object
+	 * @param \phpbb\db\driver|\phpbb\db\driver\driver_interface $db Database object
+	 * @param \phpbb\user $user User object
+	 * @param \anavaro\postlove\controller\notifyhelper $notifyhelper Notification helper.
+	 * @param $likes_table
+	 * @internal param string $table_prefix phpBB Table Prefix
+	 */
 	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\user $user, \anavaro\postlove\controller\notifyhelper $notifyhelper,
-	$table_prefix)
+								$likes_table)
 	{
 		$this->config = $config;
 		$this->db = $db;
 		$this->user = $user;
 		$this->notifyhelper = $notifyhelper;
-		$this->table_prefix = $table_prefix;
+		$this->likes_table = $likes_table;
 	}
 
 	public function base ($action, $post)
@@ -54,11 +55,11 @@ class ajaxify
 						),
 						'LEFT_JOIN'	=> array(
 							array(
-								'FROM'	=> array($this->table_prefix . 'posts_likes'	=> 'pl'),
+								'FROM'	=> array($this->likes_table	=> 'pl'),
 								'ON'	=> 'pl.post_id = p.post_id AND pl.user_id = ' . $this->user->data['user_id']
 							),
 						),
-						'WHERE'	=> 'p.post_id = ' . $post
+						'WHERE'	=> 'p.post_id = ' . (int) $post
 					);
 					$sql = $this->db->sql_build_query('SELECT', $sql_array);
 					$result = $this->db->sql_query($sql);
@@ -76,14 +77,14 @@ class ajaxify
 						if (!$row['timestamp'])
 						{
 							//so we don't have record for this user loving this post ... give some love!
-							$sql = 'INSERT INTO ' . $this->table_prefix . 'posts_likes (post_id, user_id, type, timestamp) VALUES (' . $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
+							$sql = 'INSERT INTO ' . $this->likes_table . ' (post_id, user_id, type, timestamp) VALUES (' . (int) $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
-							$sql = 'SELECT topic_id, poster_id, post_subject FROM ' . POSTS_TABLE . ' WHERE post_id = ' . $post;
+							$sql = 'SELECT topic_id, poster_id, post_subject FROM ' . POSTS_TABLE . ' WHERE post_id = ' . (int) $post;
 							$result = $this->db->sql_query($sql);
 							$row1 = $this->db->sql_fetchrow($result);
 							$this->db->sql_freeresult($result);
-							$this->notifyhelper->notify('add', $row1['topic_id'], $post, $row1['post_subject'], $row1['poster_id'] , $this->user->data['user_id']);
+							$this->notifyhelper->notify('add', $row1['topic_id'], (int) $post, $row1['post_subject'], $row1['poster_id'] , $this->user->data['user_id']);
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action'	=> 'add',
 								'toggle_post'	=> $post,
@@ -92,10 +93,10 @@ class ajaxify
 						else
 						{
 							//so we have a record ... and the user don't love it anymore!
-							$sql = 'DELETE FROM ' . $this->table_prefix . 'posts_likes WHERE post_id = ' . $post . ' AND user_id = ' . $this->user->data['user_id'];
+							$sql = 'DELETE FROM ' . $this->likes_table . ' WHERE post_id = ' . (int) $post . ' AND user_id = ' . $this->user->data['user_id'];
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
-							$this->notifyhelper->notify('remove', $row['topic_id'], $post, $row['post_subject'], $row['poster'], $this->user->data['user_id']);
+							$this->notifyhelper->notify('remove', $row['topic_id'], (int) $post, $row['post_subject'], $row['poster'], $this->user->data['user_id']);
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action' => 'remove',
 								'toggle_post'	=> $post,
@@ -105,5 +106,7 @@ class ajaxify
 				}
 			break;
 		}
+		// We should never get this ... but hey - the code smells without it.
+		return 0;
 	}
 }

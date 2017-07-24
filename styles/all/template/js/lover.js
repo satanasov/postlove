@@ -3,7 +3,7 @@
 "use strict";
 
 phpbb.addAjaxCallback('toggle_love', function(data) {
-	if (data.toggle_action == 'add')
+	if (data.toggle_action === 'add')
 	{
 		$('#likeimg_' + data.toggle_post).removeClass('like').addClass('liked');
 		$('#like_' + data.toggle_post).text(parseInt($('#like_' + data.toggle_post).text()) + 1);

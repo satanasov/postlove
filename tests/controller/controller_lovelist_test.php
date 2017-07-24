@@ -28,7 +28,7 @@ class controller_lovelist_test extends \phpbb_database_test_case
 	{
 		return array('anavaro/postlove');
 	}
-	
+
 	protected $db;
 	/**
 	* Get data set fixtures
@@ -48,9 +48,17 @@ class controller_lovelist_test extends \phpbb_database_test_case
 		$this->db = $this->new_dbal();
 
 		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
-		
-		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
-		
+
+		$this->user = $this->getMock('\phpbb\user', array(), array(
+			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
+			'\phpbb\datetime'
+		));
+		$this->language = $this->getMockBuilder('\phpbb\language\language')
+			->disableOriginalConstructor()
+			->getMock();
+		$this->language->method('lang')
+			->will($this->returnArgument(0));
+
 		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
 			->disableOriginalConstructor()
 			->getMock();
@@ -59,14 +67,14 @@ class controller_lovelist_test extends \phpbb_database_test_case
 			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200, $display_online_list = false) {
 				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
 			});
-			
+
 		$this->auth = $this->getMock('\phpbb\auth\auth');
-		
+
 		$this->user_loader = new \phpbb\user_loader($this->db, $phpbb_root_path, $phpEx, 'phpbb_users');
 		// Mock the template
 		$this->template = $this->getMockBuilder('\phpbb\template\template')
 			->getMock();
-			
+
 		$this->pagination = $this->getMockBuilder('\phpbb\pagination')->disableOriginalConstructor()
 			->getMock();
 
@@ -74,7 +82,7 @@ class controller_lovelist_test extends \phpbb_database_test_case
 	}
 	public function test_install()
 	{
-		$db_tools = new \phpbb\db\tools($this->db);
+		$db_tools = new \phpbb\db\tools\tools($this->db);
 		$this->assertTrue($db_tools->sql_table_exists('phpbb_posts_likes'));
 	}
 
@@ -93,9 +101,10 @@ class controller_lovelist_test extends \phpbb_database_test_case
 
 		$this->template->expects($this->exactly($expected))
 			->method('assign_block_vars');
-		
+
 		$controller = new \anavaro\postlove\controller\lovelist(
 			$this->user,
+			$this->language,
 			$this->controller_helper,
 			$this->db,
 			$this->auth,
@@ -103,10 +112,10 @@ class controller_lovelist_test extends \phpbb_database_test_case
 			$this->template,
 			$this->pagination,
 			$this->request,
-			'phpbb_',
+			'phpbb_posts_likes',
 			'./'
 		);
-		
+
 		return $controller;
 	}
 

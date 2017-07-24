@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKES'	=> 'Nombre de « J’aime » partagés',
 	'POSTLOVE_USER_LIKED'	=> 'Nombre de « J’aime » reçus',
 
-	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s <b>aime</b> votre message « %2$s »',
+	'NOTIFICATION_POSTLOVE_ADD'	=> '%s <b>aime</b> votre message:',
 	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Un utilisateur aime un de vos messages.',
 
 	// Ver 1.1
