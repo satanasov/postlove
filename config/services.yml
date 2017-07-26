@@ -49,20 +49,10 @@ services:
             - %tables.anavaro.postlove%
     notification.type.postlove:
         class: anavaro\postlove\notification\postlove
-        shared : false # shared MUST be false for this to work!
-        arguments:
-            - @user_loader
-            - @dbal.conn
-            - @cache.driver
-            - @user
-            - @language
-            - @auth
-            - @config
-            - @controller.helper
-            - %core.root_path%
-            - %core.php_ext%
-            - %tables.notification_types%
-            - %tables.notifications%
-            - %tables.user_notifications%
+        shared: false
+        parent: notification.type.base
+        calls:
+            - [set_user_loader, ['@user_loader']]
+            - [set_config, ['@config']]
         tags:
             - { name: notification.type }
