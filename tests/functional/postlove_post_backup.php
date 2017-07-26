@@ -13,7 +13,7 @@ namespace anavaro\postlove\tests\functional;
 /**
 * @group functional
 */
-class postlove_post_test extends postlove_base
+class postlove_post_backup extends postlove_base
 {
 	protected $post2 = array();
 	public function test_post()
