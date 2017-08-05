@@ -95,10 +95,12 @@ class postlove extends \phpbb\notification\type\base
 		$options = array_merge(array(
 			'ignore_users'			=> array(),
 		), $options);
+		$users = array(
+			$data['user_id']	=> 0,
+		);
+		$this->user_loader->load_users(array_keys($users));
 
-		$this->user_loader->load_users(array_keys($data['user_id']));
-
-		return $this->check_user_notification_options(array_keys($data['user_id']), $options);
+		return $this->check_user_notification_options(array_keys($users), $options);
 	}
 
 	/**

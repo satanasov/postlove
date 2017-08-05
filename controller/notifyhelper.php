@@ -68,7 +68,8 @@ class notifyhelper
 					$phpbb_notifications->add_notifications('notification.type.postlove', $notification_data);
 				break;
 				case 'remove':
-					$phpbb_notifications->delete_notifications('notification.type.postlove', $notification_data);
+					$notifications = $phpbb_notifications->get_item_type_class('notification.type.postlove');
+					$phpbb_notifications->delete_notifications('notification.type.postlove', $notifications->get_item_id($notification_data));
 				break;
 			}
 		}
