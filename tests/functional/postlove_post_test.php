@@ -18,11 +18,6 @@ class postlove_post_test extends postlove_base
 	protected $post2 = array();
 	public function test_post()
 	{
-		include('CssParser.php');
-		$parser = new CssParser();
-		$parser->load_file('/home/travis/build/phpBB3/phpBB/ext/anavaro/postlove/styles/all/theme/default.css');
-		$parser->parse();
-
 		$this->login();
 
 		// Test creating topic and post to test
@@ -34,9 +29,6 @@ class postlove_post_test extends postlove_base
 
 		//Do we see the static?
 		$class = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('span')->attr('class');
-
-		$this->assertContains('heart-red-16.png', $parser->parsed['main']['.' . $class]['background']);
-		$this->assertContains('0 x', $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->text());
 
 		//toggle like
 		$url = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('a')->attr('href');
