@@ -14,22 +14,61 @@
 }
 	
 .like {
-	background: url('./images/heart-red-16.png');
+	position:relative;
+}
+.like:hover:before{
+	color: #ff726c;
+}
+.like:before{
+	font-family: FontAwesome;
+	top:0;
+	left:-5px;
+	padding-right:10px;
+	font-size: 1.35em;
+	content: "\f004";
+	color: #ff0000;
 }
 .liked {
-	background: url('./images/heart-white-16.png');
+	position:relative;
+}
+.liked:hover:before{
+	color: #ff726c;
+}
+.liked:before{
+	font-family: FontAwesome;
+	top:0;
+	left:-5px;
+	padding-right:10px;
+	font-size: 1.35em;
+	content: "\f08a";
+	color: #ff0000;
+	font-weight: bold;
 }
 
 .like_info {
-	background: url('./images/heart-white-12.png');
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
-	margin-bottom: 5px;
+	position:relative;
 }
-.liked_info { 
-	background: url('./images/heart-red-12.png');
-	background-size: 12px 12px;
-	background-repeat: no-repeat;
+.like_info:before {
+	font-family: FontAwesome;
+	top:0;
+	left:-5px;
+	padding-right:10px;
+	font-size: 1.35em;
+	content: "\f004";
+	color: #ff0000;
+}
+.liked_info {
+	position:relative;
+}
+.liked_info:before {
+	font-family: FontAwesome;
+	top:0;
+	left:-5px;
+	padding-right:10px;
+	font-size: 1.35em;
+	content: "\f08a";
+	color: #ff0000;
+	font-weight: bold;
 }
 
 /* MODALS */
