@@ -167,7 +167,7 @@ class main_listener implements EventSubscriberInterface
 
 	public function user_profile_likes($event)
 	{
-		$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])) . '?short=1');
+		$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])));
 	}
 
 	/**

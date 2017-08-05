@@ -76,8 +76,9 @@ class lovelist
 	*/
 	public function base ($user_id, $page)
 	{
-		$short = $this->request->variable('short', '');
-		if ($short == 1)
+		//$short = $this->request->variable('short', '');
+		$short = $this->request->is_ajax();
+		if ($short)
 		{
 			$this->template->assign_vars(array(
 				'SHORT' => true,
