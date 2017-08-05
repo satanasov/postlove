@@ -92,7 +92,6 @@ class postlove extends \phpbb\notification\type\base
 	*/
 	public function find_users_for_notification($data, $options = array())
 	{
-
 		$options = array_merge(array(
 			'ignore_users'			=> array(),
 		), $options);
@@ -183,6 +182,7 @@ class postlove extends \phpbb\notification\type\base
 	public function create_insert_array($data, $pre_create_data = array())
 	{
 		$this->set_data('requester_id', $data['requester_id']);
+		$this->set_data('user_id', $data['user_id']);
 		$this->set_data('post_id', $data['post_id']);
 		$this->set_data('topic_id', $data['topic_id']);
 		$this->set_data('post_subject', $data['post_subject']);
