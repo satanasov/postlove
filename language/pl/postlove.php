@@ -20,11 +20,11 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'POSTLOVE_USER_LIKES'	=> 'Użytkownik polubił',
-	'POSTLOVE_USER_LIKED'	=> 'Polubiono użytkownika',
+	'POSTLOVE_USER_LIKES'	=> 'Posty, które użytkownik polubił',
+	'POSTLOVE_USER_LIKED'	=> 'Posty użytkownika, które polubiono',
 
 	'NOTIFICATION_POSTLOVE_ADD'	=> '%s <b>polubił(a)</b> Twój post:',
-	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Polubiono posty.',
+	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Polubiono post',
 
 	// Ver 1.1
 	'LIKE_LINE'	=> '%1$s - %2$s <b>polubił(a)</b> post użytkownika %3$s: "%4$s" w temacie "%5$s"',
