@@ -126,11 +126,11 @@ class postlove extends \phpbb\notification\type\base
 	 * Get the HTML formatted reference of the notification
 	 *
 	 * @return string
-
+	 */
 	public function get_reference()
 	{
 		return censor_text($this->get_data('post_subject'));
-	}*/
+	}
 
 	/**
 	 * Get email template
