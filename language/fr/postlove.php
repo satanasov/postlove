@@ -39,14 +39,14 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'POSTLOVE_USER_LIKES'	=> 'Nombre de « J’aime » partagés',
-	'POSTLOVE_USER_LIKED'	=> 'Nombre de « J’aime » reçus',
+	'POSTLOVE_USER_LIKES'	=> 'Nombre de « J’aime » partagés',
+	'POSTLOVE_USER_LIKED'	=> 'Nombre de « J’aime » reçus',
 
-	'NOTIFICATION_POSTLOVE_ADD'	=> '%s <b>aime</b> votre message:',
+	'NOTIFICATION_POSTLOVE_ADD'	=> '%s <b>aime</b> votre message :',
 	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Un utilisateur aime un de vos messages.',
 
 	// Ver 1.1
 	'LIKE_LINE'	=> '%1$s - %2$s <b>a aimé</b> le message « %4$s » de %3$s dans le sujet « %5$s »',
-	'POSTLOVE_LIST'	=> 'Liste de « J’aime »',
-	'POSTLOVE_LIST_VIEW'	=> 'Permet d’afficher une liste de tous les « J’aime » partagés et reçus.',
+	'POSTLOVE_LIST'	=> 'Liste de « J’aime »',
+	'POSTLOVE_LIST_VIEW'	=> 'Permet d’afficher une liste de tous les « J’aime » partagés et reçus.',
 ));
