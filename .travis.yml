@@ -1,3 +1,6 @@
+dist: precise
+sudo: required
+
 language: php
 
 matrix:
@@ -14,11 +17,13 @@ matrix:
       env: DB=sqlite3
     - php: 5.5
       env: DB=mysqli
+    - php: 5.5
+      env: DB=none;NOTESTS=1
     - php: 5.6
       env: DB=mysqli
     - php: 7
       env: DB=mysqli
-    - php: hhvm
+    - php: 7.1
       env: DB=mysqli
   allow_failures:
     - php: hhvm
@@ -29,7 +34,7 @@ env:
     - EXTNAME="anavaro/postlove"  # CHANGE name of the extension HERE
     - SNIFF="1"            # Should we run code sniffer on your code?
     - IMAGE_ICC="1"        # Should we run icc profile sniffer on your images?
-    - EPV="0"              # Should we run EPV (Extension Pre Validator) on your code?
+    - EPV="1"              # Should we run EPV (Extension Pre Validator) on your code?
     - PHPBB_BRANCH="3.2.x"
     - COVERAGE="1"
 
@@ -45,7 +50,7 @@ install:
   - cd ../../phpBB3
   - travis/prepare-extension.sh $EXTNAME $PHPBB_BRANCH
   - travis/setup-phpbb.sh $DB $TRAVIS_PHP_VERSION
-  - sh -c "if [ '$EPV' != '0' -a '$TRAVIS_PHP_VERSION' = '5.5' -a '$DB' = 'mysqli' ]; then cd phpBB; composer require phpbb/epv:dev-master --dev --no-interaction; cd ../; fi"
+  - ../satanasov/postlove/travis/prepare-epv.sh $EPV $NOTESTS
 
 before_script:
   - travis/setup-database.sh $DB $TRAVIS_PHP_VERSION
@@ -56,8 +61,8 @@ script:
   - sh -c "if [ '$IMAGE_ICC' != '0' ]; then travis/check-image-icc-profiles.sh $DB $TRAVIS_PHP_VERSION; fi"
   - mkdir phpBB/ext/$EXTNAME/build
   - mkdir phpBB/ext/$EXTNAME/build/logs
-  - phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis-static.xml --bootstrap ./tests/bootstrap.php --coverage-clover phpBB/ext/$EXTNAME/build/logs/clover.xml
-  - sh -c "if [ '$EPV' != '0' -a '$TRAVIS_PHP_VERSION' = '5.5' -a '$DB' = 'mysqli' ]; then phpBB/vendor/bin/EPV.php run --dir='phpBB/ext/$EXTNAME/'; fi"
+  - sh -c "if [ '$DB' != 'none' ]; then phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php --coverage-clover phpBB/ext/$EXTNAME/build/logs/clover.xml; fi"
+  - sh -c "if [ '$EPV' != '0' -a '$NOTESTS' = '1' ]; then phpBB/vendor/bin/EPV.php run --dir='phpBB/ext/$EXTNAME/'; fi"
 
 after_script:
   - ls -la phpBB/ext/$EXTNAME/build/logs/
