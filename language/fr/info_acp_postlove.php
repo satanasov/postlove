@@ -39,13 +39,13 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'POSTLOVE_CONTROL'	=> '« J’aime » un message',
+	'POSTLOVE_CONTROL'	=> '« J’aime » un message',
 	'POSTLOVE_USE_CSS'	=> 'Utiliser la feuille de style CSS fournie',
 	'POSTLOVE_USE_CSS_EXPLAIN'	=> 'Permet de personnaliser aisément l’extension « Post Love » pour remplacer la feuille de style CSS par défaut. Pour utiliser ses propres images, se référer au fichier : <code>overall_header_head_append.html</code>.',
-	'POSTLOVE_SHOW_LIKES'	=> 'Afficher le nombre de « J’aime » exprimés par l’utilisateur',
-	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> 'Permet d’afficher le nombre de messages aimés par l’utilisateur sur les pages des sujets, <code>viewtopic</code>, au moyen du terme : « J’aime ».',
-	'POSTLOVE_SHOW_LIKED'	=> 'Afficher le nombre de « J’aime » reçus par les utilisateurs',
-	'POSTLOVE_SHOW_LIKED_EXPLAIN'	=> 'Permet d’afficher le nombre de messages aimés des autres utilisateurs sur les pages des sujets, <code>viewtopic</code>, au moyen du terme « J’aime ».',
+	'POSTLOVE_SHOW_LIKES'	=> 'Afficher le nombre de « J’aime » exprimés par l’utilisateur',
+	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> 'Permet d’afficher le nombre de messages aimés par l’utilisateur sur les pages des sujets, <code>viewtopic</code>, au moyen du terme : « J’aime ».',
+	'POSTLOVE_SHOW_LIKED'	=> 'Afficher le nombre de « J’aime » reçus par les utilisateurs',
+	'POSTLOVE_SHOW_LIKED_EXPLAIN'	=> 'Permet d’afficher le nombre de messages aimés des autres utilisateurs sur les pages des sujets, <code>viewtopic</code>, au moyen du terme « J’aime ».',
 
 	//Version 1.1 langs
 	'ACP_POSTLOVE_GRP'	=> 'Aimer un message',
@@ -67,7 +67,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_AUTHOR_LIKE'	=> 'L’auteur peut aimer ses messages',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Permettre ou non à l’auteur d’aimer son/ses propre(s) message(s).',
 
-	'POSTLOVE_CLEAN_LOVES'	=> 'Nettoyer les « J’aime » des messages',
-	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'Permet de nettoyer les « J’aime » inutiles des messages. Cette action est utile si l’extension « Post Love » a été installée avant le nettoyage automatique des messages et des « j’aime » d’utilisateurs.',
+	'POSTLOVE_CLEAN_LOVES'	=> 'Nettoyer les « J’aime » des messages',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'Permet de nettoyer les « J’aime » inutiles des messages. Cette action est utile si l’extension « Post Love » a été installée avant le nettoyage automatique des messages et des « j’aime » d’utilisateurs.',
 	'CLEN'	=> 'Nettoyer',
 ));
