@@ -66,108 +66,127 @@ class main_listener implements EventSubscriberInterface
 
 	public function modify_post_row($event)
 	{
-		//var_dump($event['row']['post_id']);
-		$image = $likes = '';
-		$isliked = false;
-		$likers = array();
-		$sql_array = array(
-			'SELECT'	=>	'pl.user_id as user_id, u.username as username',
-			'FROM'	=> array(
-				USERS_TABLE	=> 'u',
-				$this->loves_table	=> 'pl'
-			),
-			'WHERE'	=> 'u.user_id = pl.user_id AND post_id = ' . $event['row']['post_id'],
-			'ORDER_BY'	=> 'pl.timestamp ASC',
-		);
-
-		$sql = $this->db->sql_build_query('SELECT', $sql_array);
-		$result = $this->db->sql_query($sql);
-
-		while ($row = $this->db->sql_fetchrow($result))
+		// first check that this user wants to see Post Like
+		$this->user->get_profile_fields($this->user->data['user_id']);
+		if (!(isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']))
 		{
-			$likers[$row['user_id']] = $row['username'];
-			if ($row['user_id'] == $this->user->data['user_id'])
-			{
-				$isliked = true;
-			}
-		}
-		$this->db->sql_freeresult($result);
-		if (!empty($likers))
-		{
-			$post_row = $event['post_row'];
-			//let's take the list of peoples that liked this post
-			$post_likers = implode(', ', $likers);
-			$post_row['POST_LIKERS'] = $post_likers;
-
-			//let's get the number
-			$post_likers_number = count($likers);
-			$post_row['POST_LIKERS_COUNT'] = $post_likers_number;
-
-			//now the image
-			$post_like_class = ($isliked ? 'liked' : 'like');
-			$post_row['POST_LIKE_CLASS'] = $post_like_class;
-			$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
-
-			$event['post_row'] = $post_row;
-		}
-		else
-		{
-			$post_row = $event['post_row'];
-			$post_row['POST_LIKERS_COUNT'] = '0';
-			$post_row['POST_LIKE_CLASS'] = 'like';
-			$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
-			$event['post_row'] = $post_row;
-		}
-
-		$this->template->assign_var('SHOW_USER_LIKES', $this->config['postlove_show_likes']);
-		$this->template->assign_var('SHOW_USER_LIKED', $this->config['postlove_show_liked']);
-		$this->template->assign_var('IS_POSTROW', '1');
-		if (!$this->config['postlove_author_like'] && $event['poster_id'] == $this->user->data['user_id'])
-		{
-			$post_row = $event['post_row'];
-			$post_row['DISABLE'] = 1;
-			$event['post_row'] = $post_row;
-		}
-		if ($this->user->data['user_type'] == 1 || $this->user->data['user_type'] == 2)
-		{
-			$this->template->assign_var('DISABLE', '1');
-		}
-
-		//so should we display more info?
-		//Test if we are shoung likes given!
-		if ($this->config['postlove_show_likes'])
-		{
-			$sql = 'SELECT COUNT(post_id) as count FROM ' .$this->loves_table . ' WHERE user_id = ' . $event['row']['user_id'];
-			$result = $this->db->sql_query($sql);
-			$count = (int) $this->db->sql_fetchfield('count');
-			$this->db->sql_freeresult($result);
-			$post_row = $event['post_row'];
-			$post_row['USER_LIKES'] = $count;
-			$event['post_row'] = $post_row;
-		}
-		if ($this->config['postlove_show_liked'])
-		{
+			//var_dump($event['row']['post_id']);
+			$image = $likes = '';
+			$current_user_has_liked  = false;
+			$likers = array();
 			$sql_array = array(
-				'SELECT'	=> 'COUNT(pl.post_id) as count',
+				'SELECT'	=>	'pl.user_id as user_id, u.username as username',
 				'FROM'	=> array(
-					$this->loves_table	=> 'pl',
-					POSTS_TABLE	=> 'p'
+					USERS_TABLE	=> 'u',
+					$this->loves_table	=> 'pl'
 				),
-				'WHERE'	=> 'pl.post_id = p.post_id AND p.poster_id = ' . $event['row']['user_id'],
+				'WHERE'	=> 'u.user_id = pl.user_id AND post_id = ' . $event['row']['post_id'],
+				'ORDER_BY'	=> 'pl.timestamp ASC',
 			);
+
 			$sql = $this->db->sql_build_query('SELECT', $sql_array);
 			$result = $this->db->sql_query($sql);
-			$count = (int) $this->db->sql_fetchfield('count');
+
+			while ($row = $this->db->sql_fetchrow($result))
+			{
+				$likers[$row['user_id']] = $row['username'];
+				if ($row['user_id'] == $this->user->data['user_id'])
+				{
+					$current_user_has_liked = true;
+				}
+			}
 			$this->db->sql_freeresult($result);
-			$post_row = $event['post_row'];
-			$post_row['USER_LIKED'] = $count;
-			$event['post_row'] = $post_row;
+			if (!empty($likers))
+			{
+				$post_row = $event['post_row'];
+				//let's take the list of peoples that liked this post
+				$post_likers = implode(', ', $likers);
+				$post_row['POST_LIKERS'] = $this->user->lang['LIKED_BY'] . $post_likers;
+
+				//let's get the number
+				$post_likers_number = count($likers);
+				$post_row['POST_LIKERS_COUNT'] = $post_likers_number;
+
+				//now the image
+				$post_like_class = ($current_user_has_liked ? 'liked' : 'like');
+				$post_row['POST_LIKE_CLASS'] = $post_like_class;
+				$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
+				$post_row['ACTION_ON_CLICK'] = $current_user_has_liked ? $this->user->lang['CLICK_TO_UNLIKE'] : $this->user->lang['CLICK_TO_LIKE'];
+
+				$event['post_row'] = $post_row;
+			}
+			else
+			{
+				$post_row = $event['post_row'];
+				$post_row['POST_LIKERS_COUNT'] = '0';
+				$post_row['POST_LIKE_CLASS'] = 'like';
+				$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
+				$post_row['ACTION_ON_CLICK'] = $this->user->lang['CLICK_TO_LIKE'];
+				$event['post_row'] = $post_row;
+			}
+
+			$this->template->assign_var('SHOW_USER_LIKES', $this->config['postlove_show_likes']);
+			$this->template->assign_var('SHOW_USER_LIKED', $this->config['postlove_show_liked']);
+			$this->template->assign_var('IS_POSTROW', '1');
+			if (!$this->config['postlove_author_like'] && $event['poster_id'] == $this->user->data['user_id'])
+			{
+				$post_row = $event['post_row'];
+				$post_row['DISABLE'] = 1;
+				$post_row['ACTION_ON_CLICK'] = $this->user->lang['CANT_LIKE_OWN_POST'];
+				$event['post_row'] = $post_row;
+			}
+			if ($this->user->data['user_type'] == 1 || $this->user->data['user_type'] == 2)
+			{
+				$post_row['DISABLE'] = 1;
+				$post_row['ACTION_ON_CLICK'] = $this->user->lang['LOGIN_TO_LIKE_POST'];
+				$event['post_row'] = $post_row;
+			}
+		}
+
+		//don't show likes for anonymous user //xxx
+		if ($event['row']['user_id'] != 1)
+		{
+			//so should we display more info?
+			//Test if we are showing likes given!
+			if ($this->config['postlove_show_likes'])
+			{
+				$sql = 'SELECT COUNT(post_id) as count FROM ' .$this->loves_table . ' WHERE user_id = ' . $event['row']['user_id'];
+				$result = $this->db->sql_query($sql);
+				$count = (int) $this->db->sql_fetchfield('count');
+				$this->db->sql_freeresult($result);
+				$post_row = $event['post_row'];
+				$post_row['USER_LIKES'] = $count;
+				$event['post_row'] = $post_row;
+			}
+			if ($this->config['postlove_show_liked'])
+			{
+				$sql_array = array(
+					'SELECT'	=> 'COUNT(pl.post_id) as count',
+					'FROM'	=> array(
+						$this->loves_table	=> 'pl',
+						POSTS_TABLE	=> 'p'
+					),
+					'WHERE'	=> 'pl.post_id = p.post_id AND p.poster_id = ' . $event['row']['user_id'],
+				);
+				$sql = $this->db->sql_build_query('SELECT', $sql_array);
+				$result = $this->db->sql_query($sql);
+				$count = (int) $this->db->sql_fetchfield('count');
+				$this->db->sql_freeresult($result);
+				$post_row = $event['post_row'];
+				$post_row['USER_LIKED'] = $count;
+				$event['post_row'] = $post_row;
+			}
 		}
 	}
 
 	public function user_profile_likes($event)
 	{
-		$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])));
+		// first check that this user wants to see Post Like
+		$this->user->get_profile_fields($this->user->data['user_id']);
+		if (!(isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']))
+		{
+			$this->template->assign_var('POSTLOVE_STATS', $this->helper->route('postlove_list', array('user_id' => $event['member']['user_id'])) . '?short=1');
+		}
 	}
 
 	/**
@@ -179,7 +198,6 @@ class main_listener implements EventSubscriberInterface
 		$sql = 'DELETE FROM ' . $this->loves_table . ' WHERE ' . $this->db->sql_in_set('post_id', $event['post_ids']);
 		$this->db->sql_query($sql);
 	}
-
 	/**
 	* Delete post loves on users perm delete
 	* No need to fill up the database, right?

@@ -6,6 +6,11 @@
 	margin-bottom: -3px;
 	background-size: 16px 16px;
 }
+
+.button .like, .button .liked {
+	float: none;
+}
+
 .like_info, .liked_info { 
 	float: left;
 	width: 16px;
@@ -28,6 +33,12 @@
 	content: "\f004";
 	color: #ff0000;
 }
+
+.button .like:before, .button .liked:before {
+	font-size: 1em;
+	padding-right: 3px;
+}
+
 .liked {
 	position:relative;
 }
@@ -69,6 +80,19 @@
 	content: "\f08a";
 	color: #ff0000;
 	font-weight: bold;
+}
+
+.postlove-count {
+    color: #222222 !important;
+}
+/* keep postlove button out of responsive dropdown menu */
+.post-buttons .postlove-li {
+    display: inline-block;
+    float: right;
+}
+
+.dropdown-contents .postlove-li {
+    display: none;
 }
 
 /* MODALS */

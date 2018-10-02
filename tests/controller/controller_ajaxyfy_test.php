@@ -57,6 +57,17 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
 			'\phpbb\datetime'));
 
+		$this->cache = new \phpbb\cache\service(
+			new \phpbb\cache\driver\dummy(),
+			$this->config,
+			$this->db,
+			$phpbb_root_path,
+			$phpEx
+		);
+
+		$this->cache->purge();
+
+
 		// Setup notifyhelper (I should drop that in future versions)
 		$this->notifyhelper = $this->getMockBuilder('\anavaro\postlove\controller\notifyhelper')->disableOriginalConstructor()
 			->getMock();
@@ -75,6 +86,7 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 			$this->config,
 			$this->db,
 			$this->user,
+			$this->cache,
 			$this->notifyhelper,
 			'phpbb_posts_likes'
 		);
@@ -96,46 +108,46 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 				'{"error":1}'
 			),
 			'inactive'	=> array(
-				1, // Anonimous
+				3, // Not Anonimous
 				2, // inactive
 				true, // Allow author to like
 				1, // post ID
 				'{"error":1}'
 			),
 			'user_cant_like'	=> array(
-				1, // Anonimous
+				3, // Not Anonimous
 				0, // Active
 				false, // Allow author to like
 				4, // post ID
 				'{"error":1}'
 			),
 			'no_such_post'	=> array(
-				1, // Anonimous
+				3, // Not Anonimous
 				0, // Active
 				true, // Allow author to like
 				5, // post ID
 				'{"error":1}'
 			),
 			'user_can_like'	=> array(
-				1, // Anonimous
+				3, // Not Anonimous
 				0, // Active
 				true, // Allow author to like
 				4, // post ID
-				'{"toggle_action":"add","toggle_post":4}'
+				'{"toggle_action":"add","toggle_post":4,"toggle_title":null}'
 			),
 			'like'	=> array(
-				2, // Anonimous
+				2, // Not Anonimous
 				0, // Active
 				true, // Allow author to like
 				3, // post ID
-				'{"toggle_action":"add","toggle_post":3}'
+				'{"toggle_action":"add","toggle_post":3,"toggle_title":null}'
 			),
 			'unlike'	=> array(
-				2, // Anonimous
+				2, // Not Anonimous
 				0, // Active
 				true, // Allow author to like
 				1, // post ID
-				'{"toggle_action":"remove","toggle_post":1}'
+				'{"toggle_action":"remove","toggle_post":1,"toggle_title":null}'
 			),
 		);
 	}

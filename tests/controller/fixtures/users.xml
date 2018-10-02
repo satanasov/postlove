@@ -36,7 +36,7 @@
 			<value>1</value>
 			<value>1</value>
 			<value>1</value>
-			<value>1</value>
+			<value>3</value>
 			<value>Test post title</value>
 			<value>Test post</value>
 		</row>
@@ -44,7 +44,7 @@
 			<value>2</value>
 			<value>2</value>
 			<value>2</value>
-			<value>1</value>
+			<value>3</value>
 			<value>Test post title</value>
 			<value>Test post</value>
 		</row>
@@ -52,7 +52,7 @@
 			<value>3</value>
 			<value>3</value>
 			<value>3</value>
-			<value>1</value>
+			<value>3</value>
 			<value>Test post title</value>
 			<value>Test post</value>
 		</row>
@@ -60,7 +60,7 @@
 			<value>4</value>
 			<value>4</value>
 			<value>4</value>
-			<value>1</value>
+			<value>3</value>
 			<value>Test post title</value>
 			<value>Test post</value>
 		</row>
@@ -72,19 +72,19 @@
 		<column>timestamp</column>
 		<row>
 			<value>1</value>
-			<value>1</value>
-			<value>post</value>
-			<value>1</value>
-		</row>
-		<row>
-			<value>1</value>
-			<value>2</value>
-			<value>post</value>
-			<value>2</value>
-		</row>
-		<row>
-			<value>1</value>
 			<value>3</value>
+			<value>post</value>
+			<value>1</value>
+		</row>
+		<row>
+			<value>1</value>
+			<value>2</value>
+			<value>post</value>
+			<value>2</value>
+		</row>
+		<row>
+			<value>1</value>
+			<value>4</value>
 			<value>post</value>
 			<value>3</value>
 		</row>
@@ -113,7 +113,7 @@
 		<column>user_permissions</column>
 		<column>user_sig</column>
 		<row>
-			<value>1</value>
+			<value>3</value>
 			<value>Test user</value>
 			<value></value>
 			<value></value>

@@ -1,0 +1,17 @@
+<!-- IF not S_IS_BOT -->
+	<li class="postlove-li">
+	<!-- IF !postrow.DISABLE -->
+		<a href="{postrow.POST_LIKE_URL}" data-ajax="toggle_love" title="{postrow.ACTION_ON_CLICK}" class="button button-icon-only postlove-button">
+			<i href="{postrow.POST_LIKE_URL}" data-ajax="toggle_love" class="icon postlove-count" title="{postrow.POST_LIKERS}" id="like_{postrow.POST_ID}" aria-hidden="true">{postrow.POST_LIKERS_COUNT}</i>
+			<i href="{postrow.POST_LIKE_URL}" data-ajax="toggle_love" class="{postrow.POST_LIKE_CLASS}" title="{postrow.ACTION_ON_CLICK}" id="likeimg_{postrow.POST_ID}" aria-hidden="true"></i>
+			<span class="sr-only">{postrow.ACTION_ON_CLICK}</span>
+		</a>
+	<!-- ELSE -->
+		<span title="{postrow.ACTION_ON_CLICK}" class="button button-icon-only postlove-button">
+			<i class="icon postlove-count" title="{postrow.POST_LIKERS}" aria-hidden="true">{postrow.POST_LIKERS_COUNT}</i>
+			<i class="{postrow.POST_LIKE_CLASS}" title="{postrow.ACTION_ON_CLICK}" aria-hidden="true"></i>
+			<span class="sr-only">{postrow.ACTION_ON_CLICK}</span>
+		</span>
+	<!-- ENDIF -->
+	</li>
+<!-- ENDIF -->

@@ -1,0 +1,43 @@
+
+.tr_likedposts td{
+    max-width: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tr_likedposts td:hover{
+    overflow: visible; 
+    white-space: normal; 
+}
+
+#td_likedpost{
+    max-width: 200px;
+}
+
+@media only screen and (max-width: 700px) {
+
+    .tr_likedposts td,
+    .tr_likedposts th{
+        padding: 2px !important;
+        font-size: 10px !important;
+    }
+
+    #td_forum, 
+    #th_forum{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    #td_posted, 
+    #th_posted{
+        display: none;
+    }
+
+    #td_likedpost{
+        max-width: 120px;
+    }
+}
+
+
