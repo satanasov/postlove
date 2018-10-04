@@ -33,17 +33,6 @@ $lang = array_merge($lang, array(
 	'ACP_POSTLOVE'	=> 'Polubienia postów',
 	'POSTLOVE_EXPLAIN'	=> 'Z tego miejsca możesz zmienić ustawienia rozszerzenia Post Love',
 	'CONFIRM_MESSAGE'	=> 'Zmiany zostały zapisane pomyślnie!<br><br><a href="%1$s">Powrót</а>',
-	'POSTLOVE_CURRENT_THEME'	=> 'Obecny styl',
-	'THEME_NAME'	=> 'Nazwa stylu',
-	'THEME_AUTHOR'	=> 'Autor stylu',
-	'THEME_DESCRIPTION'	=> 'Opis stylu',
-	'THEME_SUPPORT_STYLES'	=> 'Wspierane style',
-	'THEME_PREVIEW'	=> 'Podgląd',
-	'POSTLOVE_CHOOSE_THEME' => 'Wybierz styl',
-
-	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'Obecnie nie jest zainstalowany żaden styl!<br>Dodaj go w folderze <i>$phpbb_root_path/ext/anavaro/postlove/themes</i>',
-	'THEME_CHANGED'	=> 'Styl zmieniony',
-	'POSTLOVE_NO_WRITE_ACTION'	=> 'Brak uprawnień do zapisu!<br>Zmień uprawnienia zapisu w folderze<i> $phpbb_root_path/ext/anavaro/postlove/styles </i>',
 
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Autor może polubić swoje posty',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Określa, czy autor postu może polubić swoje własne posty czy też nie',
@@ -51,4 +40,15 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_CLEAN_LOVES'	=> 'Wyczyść wszystkie polubienia postów',
 	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'Jeżeli zainstalowałeś rozszerzenie Post Love przed automatycznym postowaniem i czyszczeniem polubień użytkowników - użyj powyższej opcji, aby wyczyścić niepotrzebne polubienia postów.',
 	'CLEAN'	=> 'WYCZYŚĆ',
+
+	//Version 2.0
+	'POSTLOVE_HOWMANY_MOST_LIKED_DAY'     => 'How many liked-today posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_WEEK'	=> 'How many liked-this-week posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_MONTH'	=> 'How many liked-this-month posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_YEAR'    => 'How many liked-this-year posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_EVER'	=> 'How many liked-ever posts to show',
+	'POSTLOVE_FORUM'	=> 'How many to show on Forum pages',
+	'POSTLOVE_INDEX'	=> 'How many to show on Index page',
+	'POSTLOVE_SHOW_BUTTON'	=> 'Show the Post like count in a Post Button?',
+	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=> 'The Post like count status and action link may be shown as a Post Button at the top of the post or in the old format at the bottom of the post',
 ));

@@ -35,7 +35,9 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Author can like posts',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Can the author like his/her own posts or not',
 
-	'CLEN'	=> 'Clean',
+	'POSTLOVE_CLEAN_LOVES'	=> 'Clean post loves',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'If you have installed Post Love before automatic post and user love cleaning - please press Clean to clean the unneeded Post Loves',
+	'CLEAN'	=> 'Clean',
 
 	//Version 2.0
 	'POSTLOVE_HOWMANY_MOST_LIKED_DAY'     => 'How many liked-today posts to show',
@@ -47,6 +49,4 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_INDEX'	=> 'How many to show on Index page',
 	'POSTLOVE_SHOW_BUTTON'	=> 'Show the Post like count in a Post Button?',
 	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=> 'The Post like count status and action link may be shown as a Post Button at the top of the post or in the old format at the bottom of the post',
-	'POSTLOVE_CLEAN_LOVES'	=> 'Clean post loves',
-	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'If you have installed Post Love before automatic post and user love cleaning - please press Clean to clean the unneeded Post Loves',
 ));

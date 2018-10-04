@@ -32,11 +32,10 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_LIST_VIEW'	=> 'Show list with all like actions',
 
 	// Ver 2.0
-
 	'CLICK_TO_LIKE' 	=> 'click to like this post',
 	'CLICK_TO_UNLIKE'   => 'click to unlike this post',
 	'LOGIN_TO_LIKE_POST' => 'login to like this post',
-	'CANT_LIKE_OWN_POST' => 'sorry, you cant like your own post',
+	'CANT_LIKE_OWN_POST' => 'sorry, you cannot like your own post',
 	'POST_OF_THE_DAY'	=> 'Most liked posts',
 	'POST_LIKES'		=> 'Liked',
 	'POSTED_AT'			=> 'Posted',
