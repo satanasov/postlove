@@ -108,6 +108,7 @@ class acp_postlove_module
 			'POST_LIKES'	=> ($config['postlove_show_likes'] == 1 ? true : false),
 			'POST_LIKED'	=> ($config['postlove_show_liked'] == 1 ? true : false),
 			'AUTHOR_LIKE'	=> ($config['postlove_author_like'] == 1 ? true : false),
+			'SHOW_BUTTON'	=> ($config['postlove_show_button'] == 1 ? true : false),
 			'INDEX_HOWMANY_TODAY'   	=> $config['postlove_index_most_liked_today'],
 			'INDEX_HOWMANY_THIS_WEEK'	=> $config['postlove_index_most_liked_this_week'],
 			'INDEX_HOWMANY_THIS_MONTH'	=> $config['postlove_index_most_liked_this_month'],

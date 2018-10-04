@@ -123,7 +123,7 @@ class controller_lovelist_test extends \phpbb_database_test_case
 	{
 		return array(
 			'normal' => array(
-				3, // User Id
+				1, // User Id
 				true, // Is user registered
 				1, // Request Id
 				6, // Expected
@@ -157,7 +157,7 @@ class controller_lovelist_test extends \phpbb_database_test_case
 				)
 			),
 			'test2' => array(
-				3, // User Id
+				1, // User Id
 				true, // Is user registered
 				3, // Requestor Id
 				1, // Expected

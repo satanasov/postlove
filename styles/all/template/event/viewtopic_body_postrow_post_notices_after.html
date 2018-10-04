@@ -1,4 +1,4 @@
-<!-- IF not S_IS_BOT -->
+<!-- IF not SHOW_BUTTON && not S_IS_BOT -->
 <div style="float: right; margin-top: 5px; margin-bottom: 5px;" class="postlove">
 	<span title="{postrow.POST_LIKERS}" style="font-size: 1.3em;" id="like_{postrow.POST_ID}">{postrow.POST_LIKERS_COUNT}</span> x
 	<!-- IF DISABLE != 1 --><!-- IF !postrow.DISABLE --><a href="{postrow.POST_LIKE_URL}" data-ajax="toggle_love"><!-- ENDIF --><!-- ENDIF --><span title="{postrow.ACTION_ON_CLICK}" class="{postrow.POST_LIKE_CLASS}" id="likeimg_{postrow.POST_ID}"></span><!-- IF !postrow.DISABLE --><!-- IF DISABLE != 1 --></a><!-- ENDIF --><!-- ENDIF -->

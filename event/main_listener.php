@@ -96,35 +96,30 @@ class main_listener implements EventSubscriberInterface
 				}
 			}
 			$this->db->sql_freeresult($result);
+
+            $post_row = $event['post_row'];
 			if (!empty($likers))
 			{
-				$post_row = $event['post_row'];
 				//let's take the list of peoples that liked this post
 				$post_likers = implode(', ', $likers);
 				$post_row['POST_LIKERS'] = $this->user->lang['LIKED_BY'] . $post_likers;
-
-				//let's get the number
-				$post_likers_number = count($likers);
-				$post_row['POST_LIKERS_COUNT'] = $post_likers_number;
+				$post_row['POST_LIKERS_COUNT'] = count($likers);
 
 				//now the image
 				$post_like_class = ($current_user_has_liked ? 'liked' : 'like');
 				$post_row['POST_LIKE_CLASS'] = $post_like_class;
-				$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
 				$post_row['ACTION_ON_CLICK'] = $current_user_has_liked ? $this->user->lang['CLICK_TO_UNLIKE'] : $this->user->lang['CLICK_TO_LIKE'];
-
-				$event['post_row'] = $post_row;
 			}
 			else
 			{
-				$post_row = $event['post_row'];
 				$post_row['POST_LIKERS_COUNT'] = '0';
 				$post_row['POST_LIKE_CLASS'] = 'like';
-				$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
 				$post_row['ACTION_ON_CLICK'] = $this->user->lang['CLICK_TO_LIKE'];
-				$event['post_row'] = $post_row;
 			}
+            $post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
+            $event['post_row'] = $post_row;
 
+            $this->template->assign_var('SHOW_BUTTON', $this->config['postlove_show_button']);
 			$this->template->assign_var('SHOW_USER_LIKES', $this->config['postlove_show_likes']);
 			$this->template->assign_var('SHOW_USER_LIKED', $this->config['postlove_show_liked']);
 			$this->template->assign_var('IS_POSTROW', '1');

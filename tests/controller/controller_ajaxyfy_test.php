@@ -108,42 +108,42 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 				'{"error":1}'
 			),
 			'inactive'	=> array(
-				3, // Not Anonimous
+				1, // Anonimous
 				2, // inactive
 				true, // Allow author to like
 				1, // post ID
 				'{"error":1}'
 			),
 			'user_cant_like'	=> array(
-				3, // Not Anonimous
+				1, // Anonimous
 				0, // Active
 				false, // Allow author to like
 				4, // post ID
 				'{"error":1}'
 			),
 			'no_such_post'	=> array(
-				3, // Not Anonimous
+				1, // Anonimous
 				0, // Active
 				true, // Allow author to like
 				5, // post ID
 				'{"error":1}'
 			),
 			'user_can_like'	=> array(
-				3, // Not Anonimous
+				1, // Anonimous
 				0, // Active
 				true, // Allow author to like
 				4, // post ID
 				'{"toggle_action":"add","toggle_post":4,"toggle_title":null}'
 			),
 			'like'	=> array(
-				2, // Not Anonimous
+				2, // Anonimous
 				0, // Active
 				true, // Allow author to like
 				3, // post ID
 				'{"toggle_action":"add","toggle_post":3,"toggle_title":null}'
 			),
 			'unlike'	=> array(
-				2, // Not Anonimous
+				2, // Anonimous
 				0, // Active
 				true, // Allow author to like
 				1, // post ID
