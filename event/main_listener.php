@@ -23,7 +23,7 @@ class main_listener implements EventSubscriberInterface
 		return array(
 			'core.viewtopic_modify_post_row'	=>	'modify_post_row',
 			'core.user_setup'		=> 'load_language_on_setup',
-			'core.memberlist_view_profile'	       => 'user_profile_likes',
+			'core.memberlist_view_profile'  	   => 'user_profile_likes',
 			'core.delete_posts_after'			=> 'clean_posts_after',
 			'core.delete_user_after'			=> 'clean_users_after',
 		);
@@ -97,7 +97,7 @@ class main_listener implements EventSubscriberInterface
 			}
 			$this->db->sql_freeresult($result);
 
-            $post_row = $event['post_row'];
+			$post_row = $event['post_row'];
 			if (!empty($likers))
 			{
 				//let's take the list of peoples that liked this post
@@ -116,10 +116,10 @@ class main_listener implements EventSubscriberInterface
 				$post_row['POST_LIKE_CLASS'] = 'like';
 				$post_row['ACTION_ON_CLICK'] = $this->user->lang['CLICK_TO_LIKE'];
 			}
-            $post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
-            $event['post_row'] = $post_row;
+			$post_row['POST_LIKE_URL'] = $this->helper->route('postlove_control', array('action' => 'toggle', 'post' =>$event['row']['post_id']));
+			$event['post_row'] = $post_row;
 
-            $this->template->assign_var('SHOW_BUTTON', $this->config['postlove_show_button']);
+			$this->template->assign_var('SHOW_BUTTON', $this->config['postlove_show_button']);
 			$this->template->assign_var('SHOW_USER_LIKES', $this->config['postlove_show_likes']);
 			$this->template->assign_var('SHOW_USER_LIKED', $this->config['postlove_show_liked']);
 			$this->template->assign_var('IS_POSTROW', '1');

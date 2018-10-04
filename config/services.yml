@@ -13,8 +13,8 @@ services:
             - %tables.anavaro.postlove%
         tags:
             - { name: event.listener }
-    anavaro.postlovesummary.listener:
-        class: anavaro\postlove\event\postlovesummary_listener
+    anavaro.summary.listener:
+        class: anavaro\postlove\event\summary_listener
         arguments:
             - @auth
             - @config
