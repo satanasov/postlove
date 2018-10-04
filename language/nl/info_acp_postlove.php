@@ -33,17 +33,6 @@ $lang = array_merge($lang, array(
 	'ACP_POSTLOVE'	=> 'Post Love',
 	'POSTLOVE_EXPLAIN'	=> 'Hier kun je instellingen van Post Love veranderen.',
 	'CONFIRM_MESSAGE'	=> 'Veranderingen opgeslagen!<br><br><a href="%1$s">Terug</а>',
-	'POSTLOVE_CURRENT_THEME'	=> 'Huidig thema',
-	'THEME_NAME'	=> 'Naam thema',
-	'THEME_AUTHOR'	=> 'Auteur',
-	'THEME_DESCRIPTION'	=> 'Beschrijving van thema',
-	'THEME_SUPPORT_STYLES'	=> 'Ondersteunde thema\'s',
-	'THEME_PREVIEW'	=> 'Voorvertoning',
-	'POSTLOVE_CHOOSE_THEME' => 'Selecteer thema',
-
-	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'Er zijn geen thema\'s geinstalleerd!<br>Voeg ze toe in de <i>$phpbb_root_path/ext/anavaro/postlove/themes</i> map',
-	'THEME_CHANGED'	=> 'Thema veranderd',
-	'POSTLOVE_NO_WRITE_ACTION'	=> 'Geen schrijftoegang!<br>Geef toestemming tot schrijven voor de<i> $phpbb_root_path/ext/anavaro/postlove/styles</i> map',
 
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Auteur kan bericht leuk vinden:',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Kan de auteur zijn/haar eigen berichten leuk vinden (of niet).',
@@ -51,4 +40,15 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_CLEAN_LOVES'	=> 'Opruimen post loves',
 	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'Als je een oude versie van Post Love gebruikt hebt waar automatisch opschonen nog niet beschikbaar was, druk dan op \'Opruimen\' om de database op te schonen.',
 	'CLEAN'	=> 'Opruimen',
+
+	//Version 2.0
+	'POSTLOVE_HOWMANY_MOST_LIKED_DAY'     => 'How many liked-today posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_WEEK'	=> 'How many liked-this-week posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_MONTH'	=> 'How many liked-this-month posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_YEAR'    => 'How many liked-this-year posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_EVER'	=> 'How many liked-ever posts to show',
+	'POSTLOVE_FORUM'	=> 'How many to show on Forum pages',
+	'POSTLOVE_INDEX'	=> 'How many to show on Index page',
+	'POSTLOVE_SHOW_BUTTON'	=> 'Show the Post like count in a Post Button?',
+	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=> 'The Post like count status and action link may be shown as a Post Button at the top of the post or in the old format at the bottom of the post',
 ));

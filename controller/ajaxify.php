@@ -24,12 +24,13 @@ class ajaxify
 	 * @param $likes_table
 	 * @internal param string $table_prefix phpBB Table Prefix
 	 */
-	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\user $user, \anavaro\postlove\controller\notifyhelper $notifyhelper,
+	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\user $user, \phpbb\cache\service $cache, \anavaro\postlove\controller\notifyhelper $notifyhelper,
 								$likes_table)
 	{
 		$this->config = $config;
 		$this->db = $db;
 		$this->user = $user;
+		$this->cache = $cache;
 		$this->notifyhelper = $notifyhelper;
 		$this->likes_table = $likes_table;
 	}
@@ -80,6 +81,7 @@ class ajaxify
 							$sql = 'INSERT INTO ' . $this->likes_table . ' (post_id, user_id, type, timestamp) VALUES (' . (int) $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
+							$this->cache->destroy('sql', $this->likes_table);
 							$sql = 'SELECT topic_id, poster_id, post_subject FROM ' . POSTS_TABLE . ' WHERE post_id = ' . (int) $post;
 							$result = $this->db->sql_query($sql);
 							$row1 = $this->db->sql_fetchrow($result);
@@ -88,6 +90,7 @@ class ajaxify
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action'	=> 'add',
 								'toggle_post'	=> $post,
+								'toggle_title'	=> $this->user->lang['CLICK_TO_UNLIKE'],
 							));
 						}
 						else
@@ -96,10 +99,12 @@ class ajaxify
 							$sql = 'DELETE FROM ' . $this->likes_table . ' WHERE post_id = ' . (int) $post . ' AND user_id = ' . $this->user->data['user_id'];
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
+							$this->cache->destroy('sql', $this->likes_table);
 							$this->notifyhelper->notify('remove', $row['topic_id'], (int) $post, $row['post_subject'], $row['poster'], $this->user->data['user_id']);
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action' => 'remove',
 								'toggle_post'	=> $post,
+								'toggle_title'	=> $this->user->lang['CLICK_TO_LIKE'],
 							));
 						}
 					}

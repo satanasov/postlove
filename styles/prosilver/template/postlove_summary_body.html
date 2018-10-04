@@ -1,0 +1,35 @@
+<!-- INCLUDECSS @anavaro_postlove/mostlikedposts.css -->
+
+<!-- IF not (S_IS_BOT or $POSTLOVE_SHOWN) -->
+<!-- DEFINE $POSTLOVE_SHOWN = 1 -->
+<div class="forabg" id='liked_posts'>
+		<table class="table1 not-responsive">
+			<thead>
+			<tr class='tr_likedposts'>
+				<th align="left">{L_POST_OF_THE_DAY}</th>
+				<th align="left">{L_POSTED_BY}</th>
+				<th align="left" id='th_posted'>{L_POSTED_AT}</th>
+				<th align="left">{L_POST_LIKES}</th>
+				<th align="left" id='th_forum'>{L_FORUM}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN most_liked_posts -->
+			<tr class="tr_likedposts <!-- IF most_liked_posts.ROWCOUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+				<td id='td_likedpost'> 
+					<a class="<!-- IF most_liked_posts.S_UNREAD -->unread<!-- ELSE -->read<!-- ENDIF -->" href="{most_liked_posts.U_TOPIC}">
+						<!-- IF most_liked_posts.S_UNREAD --><i class="icon fa-file fa-fw icon-red icon-md" aria-hidden="true"></i>
+						<!-- ELSE --><i class="icon fa-file fa-fw icon-grey icon-md" aria-hidden="true"></i><!-- ENDIF -->
+					</a>
+					<a href="{most_liked_posts.U_TOPIC}">{most_liked_posts.TOPIC_TITLE}</a>
+				</td>
+				<td id='td_author'> {most_liked_posts.USERNAME_FULL}</td>
+				<td id='td_posted'>{most_liked_posts.POST_TIME}</td>
+				<td> {most_liked_posts.POST_LIKES_IN_PERIOD}</td>
+				<td id='td_forum'>{most_liked_posts.FORUM_NAME}</td>
+			</tr>
+			<!-- END most_liked_posts -->
+			</tbody>
+	</table>
+</div>
+	<!-- ENDIF -->
