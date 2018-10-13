@@ -188,7 +188,7 @@ class summary_listener implements EventSubscriberInterface
 				FROM(
 					SELECT post_id AS post, COUNT(*) AS sum_likes
 					FROM ' . $this->table_prefix . 'posts_likes
-						WHERE (' . $this->table_prefix . 'posts_likes.timestamp + 0) > ' . $period_start_time .
+						WHERE CAST(' . $this->table_prefix . 'posts_likes.timestamp AS UNSIGNED) > ' . $period_start_time .
 						' AND post_id NOT IN (' . implode(",", $post_list) . ')
 						GROUP BY post_id
 					) AS liked_posts
