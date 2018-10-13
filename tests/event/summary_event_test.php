@@ -142,22 +142,22 @@ class summary_event extends \phpbb_database_test_case
 				5, // count
 				array(
 					array(
-						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=4#p4',
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '2000',
+						'POST_TIME' 		=> '3000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
 						'LIKES_IN_PERIOD'   => 1,
 						),
 					array(
-						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=4#p4',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '4000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
@@ -190,7 +190,7 @@ class summary_event extends \phpbb_database_test_case
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '5000',
 						'TOPIC_TITLE'   	=> 'test 3',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
@@ -214,22 +214,22 @@ class summary_event extends \phpbb_database_test_case
 				4, // count
 				array(
 					array(
-						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=4#p4',
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '2000',
+						'POST_TIME' 		=> '3000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
 						'LIKES_IN_PERIOD'   => 1,
 						),
 					array(
-						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=4#p4',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '4000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
@@ -251,7 +251,7 @@ class summary_event extends \phpbb_database_test_case
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '5000',
 						'TOPIC_TITLE'   	=> 'test 3',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
@@ -270,9 +270,9 @@ class summary_event extends \phpbb_database_test_case
 					1 => array('f_read' => 1), // can view forum 1
 					), // user permissions
 				array(
-					'S_MOSTLIKEDSUMMARYCOUNT'	=> 2,
+					'S_MOSTLIKEDSUMMARYCOUNT'	=> 3,
 					),
-				2, // count
+				3, // count
 				array(
 					array(
 						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=1#p1',
@@ -286,6 +286,17 @@ class summary_event extends \phpbb_database_test_case
 						'LIKES_IN_PERIOD'   => 2,
 						),
 					array(
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=3&amp;p=5#p5',
+						'U_FORUM'   		=> '/viewforum..php?f=1',
+						'S_UNREAD'  		=> false,
+						'USERNAME_FULL' 	=> '<a href="phpBB/memberlist.php?mode=viewprofile&amp;u=3" style="color: #blue;" class="username-coloured">Test user 3</a>',
+						'POST_TIME' 		=> '5000',
+						'TOPIC_TITLE'   	=> 'test 3',
+						'FORUM_NAME'		=> 'Forum 1',
+						'POST_LIKES_IN_PERIOD'  => 'LIKES_THIS_YEAR',
+						'LIKES_IN_PERIOD'   => 1,
+						),
+					array(
 						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
@@ -293,7 +304,7 @@ class summary_event extends \phpbb_database_test_case
 						'POST_TIME' 		=> '3000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
-						'POST_LIKES_IN_PERIOD'  => 'LIKES_THIS_YEAR',
+						'POST_LIKES_IN_PERIOD'  => 'LIKES_THIS_MONTH',
 						'LIKES_IN_PERIOD'   => 1,
 						),
 					),
@@ -340,7 +351,7 @@ class summary_event extends \phpbb_database_test_case
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '5000',
 						'TOPIC_TITLE'   	=> 'test 3',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_THIS_YEAR',
@@ -553,22 +564,22 @@ class summary_event extends \phpbb_database_test_case
 				5, // count
 				array(
 					array(
-						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=4#p4',
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '2000',
+						'POST_TIME' 		=> '3000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
 						'LIKES_IN_PERIOD'   => 1,
 						),
 					array(
-						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=4#p4',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '4000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
@@ -601,7 +612,7 @@ class summary_event extends \phpbb_database_test_case
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '5000',
 						'TOPIC_TITLE'   	=> 'test 3',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
@@ -626,22 +637,22 @@ class summary_event extends \phpbb_database_test_case
 				4, // count
 				array(
 					array(
-						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=4#p4',
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '2000',
+						'POST_TIME' 		=> '3000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
 						'LIKES_IN_PERIOD'   => 1,
 						),
 					array(
-						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=4#p4',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '4000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
@@ -663,7 +674,7 @@ class summary_event extends \phpbb_database_test_case
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '5000',
 						'TOPIC_TITLE'   	=> 'test 3',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_EVER',
@@ -683,9 +694,9 @@ class summary_event extends \phpbb_database_test_case
 					1 => array('f_read' => 1), // can view forum 1
 					), // user permissions
 				array(
-					'S_MOSTLIKEDSUMMARYCOUNT'	=> 2,
+					'S_MOSTLIKEDSUMMARYCOUNT'	=> 3,
 					),
-				2, // count
+				3, // count
 				array(
 					array(
 						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=1#p1',
@@ -699,6 +710,17 @@ class summary_event extends \phpbb_database_test_case
 						'LIKES_IN_PERIOD'   => 2,
 						),
 					array(
+						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=3&amp;p=5#p5',
+						'U_FORUM'   		=> '/viewforum..php?f=1',
+						'S_UNREAD'  		=> false,
+						'USERNAME_FULL' 	=> '<a href="phpBB/memberlist.php?mode=viewprofile&amp;u=3" style="color: #blue;" class="username-coloured">Test user 3</a>',
+						'POST_TIME' 		=> '5000',
+						'TOPIC_TITLE'   	=> 'test 3',
+						'FORUM_NAME'		=> 'Forum 1',
+						'POST_LIKES_IN_PERIOD'  => 'LIKES_THIS_YEAR',
+						'LIKES_IN_PERIOD'   => 1,
+						),
+					array(
 						'U_TOPIC'   		=> '/viewtopic..php?f=1&amp;t=1&amp;p=3#p3',
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
@@ -706,7 +728,7 @@ class summary_event extends \phpbb_database_test_case
 						'POST_TIME' 		=> '3000',
 						'TOPIC_TITLE'   	=> 'test 1',
 						'FORUM_NAME'		=> 'Forum 1',
-						'POST_LIKES_IN_PERIOD'  => 'LIKES_THIS_YEAR',
+						'POST_LIKES_IN_PERIOD'  => 'LIKES_THIS_MONTH',
 						'LIKES_IN_PERIOD'   => 1,
 						),
 					),
@@ -754,7 +776,7 @@ class summary_event extends \phpbb_database_test_case
 						'U_FORUM'   		=> '/viewforum..php?f=1',
 						'S_UNREAD'  		=> false,
 						'USERNAME_FULL' 	=> '<span style="color: #blue;" class="username-coloured">Test user 3</span>',
-						'POST_TIME' 		=> '3000',
+						'POST_TIME' 		=> '5000',
 						'TOPIC_TITLE'   	=> 'test 3',
 						'FORUM_NAME'		=> 'Forum 1',
 						'POST_LIKES_IN_PERIOD'  => 'LIKES_THIS_YEAR',
