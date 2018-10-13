@@ -46,7 +46,8 @@ class summary_listener implements EventSubscriberInterface
 								\phpbb\language\language	$language,
 								$phpbb_root_path,
 								$php_ext,
-								$table_prefix)
+								$table_prefix,
+								$test_time = 0) /* optional parameter only used for unit tests */
 	{
 		$this->auth = $auth;
 		$this->config = $config;
@@ -60,6 +61,7 @@ class summary_listener implements EventSubscriberInterface
 		$this->root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
 		$this->table_prefix = $table_prefix;
+		$this->test_time = $test_time;
 	}
 
 	static public function getSubscribedEvents()
@@ -80,76 +82,72 @@ class summary_listener implements EventSubscriberInterface
 		{
 			return;
 		}
-		else
+
+		// get array of fora permissions
+		$forum_read_ary = array();
+		$forum_read_ary = $this->auth->acl_getf('f_read');
+
+		$forum_ary = array();
+		// build an array of forum_ids that this user may read
+		foreach ($forum_read_ary as $forum_id => $allowed)
 		{
-			// get array of fora that this user may read
-			$forum_ary = array();
-			$forum_read_ary = $this->auth->acl_getf('f_read');
-
-			// prune any forums that are hidden from this user
-			foreach ($forum_read_ary as $forum_id => $allowed)
+			if ($allowed['f_read'])
 			{
-				if ($allowed['f_read'])
-				{
-					$forum_ary[] = (int) $forum_id;
-				}
+				$forum_ary[] = (int) $forum_id;
 			}
-
-			// prune any duplicates
-			$forum_ary = array_unique($forum_ary);
-
-
-			if (!sizeof($forum_ary))
-			{
-				// no need to look any further
-				return;
-			}
-
-			$this->build_summary_array($forum_ary, 'index');
 		}
+
+		// prune any duplicates
+		$forum_ary = array_unique($forum_ary);
+
+		if (!sizeof($forum_ary))
+		{
+			// no need to look any further
+			return;
+		}
+
+		$this->build_summary_array($forum_ary, 'index');
 	}
 
 	public function  forum_page_summary($event)
 	{
 		// first check that this user wants to see Post Like
 		$this->user->get_profile_fields($this->user->data['user_id']);
-		if  ($this->user->data['is_bot'] || // bots dont want to see this
+		if ($this->user->data['is_bot'] || // we dont want bots to see summaries
 			 (isset($this->user->profile_fields['pf_postlove_hide']) && $this->user->profile_fields['pf_postlove_hide']) // user doesnt want
 			)
 		{
 			return;
 		}
-		else
+
+		$forum_ary = array();
+		$forum_id = $event['forum_id'];
+		$forum_ary[] = $forum_id;
+
+		// if there are sub-forums, we need to include them
+		if ($event['forum_data']['left_id'] != $event['forum_data']['right_id'] - 1)
 		{
-			$forum_ary = array();
-			$forum_id = $event['forum_id'];
-			$forum_ary[] = $forum_id;
+			$forum_read_ary = $this->auth->acl_getf('f_read');
 
-			// if there are sub-forums, we need to include them
-			if ($event['forum_data']['left_id'] != $event['forum_data']['right_id'] - 1)
+			$sql = 'SELECT f.forum_id
+				FROM ' . FORUMS_TABLE . " f
+				WHERE f.parent_id = $forum_id"; // this is not recursive, maybe change in a later version?
+
+			$result = $this->db->sql_query($sql);
+			while ($forum_data = $this->db->sql_fetchrow($result))
 			{
-				$forum_read_ary = $this->auth->acl_getf('f_read');
-
-				$sql = 'SELECT f.forum_id
-					FROM ' . FORUMS_TABLE . " f
-					WHERE f.parent_id = $forum_id";
-
-				$result = $this->db->sql_query($sql);
-				while ($forum_data = $this->db->sql_fetchrow($result))
+				// ony add forums that are visible to this user
+				if ($forum_read_ary[$forum_id]['f_read'] == 1)
 				{
-					// don't add forums that are hidden from this user
-					if ($forum_read_ary[$forum_id]['f_read'] == 1)
-					{
-						$forum_ary[] = $forum_data['forum_id'];
-					}
+					$forum_ary[] = $forum_data['forum_id'];
 				}
-				$this->db->sql_freeresult($result);
-
-				// prune any duplicates
-				$forum_ary = array_unique($forum_ary);
 			}
-			$this->build_summary_array($forum_ary, 'forum');
+			$this->db->sql_freeresult($result);
+
+			// prune any duplicates
+			$forum_ary = array_unique($forum_ary);
 		}
+		$this->build_summary_array($forum_ary, 'forum');
 	}
 
 
@@ -160,12 +158,12 @@ class summary_listener implements EventSubscriberInterface
 		$post_list[] = '0'; //SQL needs dummy array member
 
 		// build the array of most liked posts
-		$day_begin_time = floor(time() / SECONDS_PER_DAY) * SECONDS_PER_DAY;
-		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_ever'],		2,  								'LIKES_EVER',   	$post_list);
-		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_year'],   $day_begin_time - SECONDS_PER_DAY * 366, 'LIKES_THIS_YEAR', 	$post_list);
-		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_month'],  $day_begin_time - SECONDS_PER_DAY * 31, 	'LIKES_THIS_MONTH', $post_list);
-		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_week'],   $day_begin_time - SECONDS_PER_DAY * 7,  'LIKES_THIS_WEEK',  $post_list);
-		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_today'],   	$day_begin_time - SECONDS_PER_DAY,  	'LIKES_TODAY',  	$post_list);
+		$day_begin_time = (int)floor(($this->test_time ? $this->test_time : time()) / SECONDS_PER_DAY) * SECONDS_PER_DAY;
+		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_ever'],		2,										'LIKES_EVER',		$post_list);
+		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_year'],	$day_begin_time - SECONDS_PER_DAY * 366, 'LIKES_THIS_YEAR',	$post_list);
+		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_month'],	$day_begin_time - SECONDS_PER_DAY * 31,	'LIKES_THIS_MONTH', $post_list);
+		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_week'],	$day_begin_time - SECONDS_PER_DAY * 7,	'LIKES_THIS_WEEK',	$post_list);
+		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_today'],		$day_begin_time - SECONDS_PER_DAY,		'LIKES_TODAY',		$post_list);
 
 		$this->template->assign_vars(array(
 			'S_MOSTLIKEDSUMMARYCOUNT'	=>  count($post_list) - 1,
@@ -184,7 +182,7 @@ class summary_listener implements EventSubscriberInterface
 		$sql = 'SELECT '. USERS_TABLE . '.user_id, '. USERS_TABLE . '.username, '. USERS_TABLE . '.user_colour,
 			' . TOPICS_TABLE . '.topic_title, ' . TOPICS_TABLE . '.forum_id, ' . TOPICS_TABLE . '.topic_id,
 			most_liked_posts.post_id, most_liked_posts.post_time, ' . TOPICS_TABLE . '.topic_type,
-			' . FORUMS_TABLE	. '.forum_name, sum_likes
+			' . FORUMS_TABLE . '.forum_name, sum_likes
 			FROM (
 				SELECT ' . POSTS_TABLE . '.forum_id, ' . POSTS_TABLE . '.post_id, ' . POSTS_TABLE . '.post_time, ' . POSTS_TABLE . '.topic_id, ' . POSTS_TABLE . '.poster_id, sum_likes
 				FROM(
@@ -206,6 +204,7 @@ class summary_listener implements EventSubscriberInterface
 
 		// cache the query to reduce load on server
 		// the same query is run for all users with the same set of forum permissions
+		// note that the chache is cleared each time a user adds or removes a like in the database
 		$result = $this->db->sql_query_limit($sql, $howmany, 0, (SECONDS_PER_HOUR * 12) - 1);
 
 		$forums = $topic_ids = array();
@@ -250,13 +249,13 @@ class summary_listener implements EventSubscriberInterface
 			/**
 			* Modify the topic data before it is assigned to the template
 			*
-			* @event anavaro.postlove.modify_tpl_ary
+			* @event anavaro.postlove.modify_summary_tpl_ary
 			* @var  array   row 		Array with topic data
 			* @var  array   tpl_ary 	Template block array with topic data
 			* @since 1.0.0
 			*/
 			$vars = array('row', 'tpl_ary');
-			extract($this->dispatcher->trigger_event('anavaro.postlove.modify_tpl_ary', compact($vars)));
+			extract($this->dispatcher->trigger_event('anavaro.postlove.modify_summary_tpl_ary', compact($vars)));
 
 			$this->template->assign_block_vars('most_liked_posts', $tpl_ary);
 		}
@@ -264,3 +263,4 @@ class summary_listener implements EventSubscriberInterface
 		return $post_list;
 	}
 }
+
