@@ -57,18 +57,4 @@ class release_1_2_0 extends \phpbb\db\migration\migration
 			array('config.remove', array('postlove_summary_query_cache_seconds')),
 		);
 	}
-
-	// create an index on post_like timestamp
-	public function update_schema()
-	{
-		return array(
-			'add_index' => array(
-				$this->table_prefix . 'posts_likes' => array(
-					'timestamp' => array(
-						'timestamp'
-					),
-				),
-			),
-		);
-	}
 }

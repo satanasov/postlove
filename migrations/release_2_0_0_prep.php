@@ -12,12 +12,12 @@ namespace anavaro\postlove\migrations;
 /**
 * Primary migration
 */
-class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
+class release_2_0_0_prep extends \phpbb\db\migration\profilefield_base_migration
 {
 	static public function depends_on()
 	{
 		return array(
-			'\anavaro\postlove\migrations\release_2_0_0_prep',
+			'\anavaro\postlove\migrations\release_1_2_0_create_cpf',
 		);
 	}
 
@@ -27,19 +27,12 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 		return array(
 			'add_columns' => array(
 				$this->table_prefix . 'posts_likes'	=> array(
-					'timestamp' => array('TIMESTAMP', 0 ),
+					'temp_timestamp' => array('TIMESTAMP', 0 ),
 				),
 			),
-			'drop_columns' => array(
-				$this->table_prefix . 'posts_likes'	=> array(
-					'temp_timestamp',
-				),
-			),
-			'add_index' => array(
-				$this->table_prefix . 'posts_likes' => array(
-					'timestamp' => array(
-						'timestamp'
-					),
+            'drop_columns' => array(
+                $this->table_prefix . 'posts_likes'	=> array(
+					'timestamp',
 				),
 			),
 		);
@@ -48,14 +41,14 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 	public function revert_schema()
 	{
 		return array(
-            'add_columns' => array(
-                $this->table_prefix . 'posts_likes'	=> array(
-					'temp_timestamp' => array('TIMESTAMP', 0),
-                ),
-            ),
+			'add_columns' => array(
+				$this->table_prefix . 'posts_likes'	=> array(
+					'timestamp' => array('VCHAR:32', 0),
+				),
+			),
             'drop_columns' => array(
                 $this->table_prefix . 'posts_likes'	=> array(
-					'timestamp',
+					'temp_timestamp',
 				),
 			),
 		);
@@ -65,7 +58,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 	{
         return array(
             array('custom', array(
-                array($this, 'convert_temp_timestamp')
+                array($this, 'convert_love_timestamp')
                 )),
             );	
     }
@@ -74,13 +67,12 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 	{
         return array(
             array('custom', array(
-                array($this, 'revert_timestamp')
+                array($this, 'revert_love_timestamp')
                 )),
             );	
     }
 
-
-	public function convert_temp_timestamp($start)
+	public function convert_love_timestamp($start)
 	{
 		$start = (int) $start;
 		$limit = 100;
@@ -94,7 +86,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 			$rows_done++;
 
 			$sql = 'UPDATE ' . $this->table_prefix . 'posts_likes AS pl
-				SET timestamp = ' . $row[temp_timestamp] . '
+				SET temp_timestamp = (int)' . $row[timestamp] . '
                 WHERE pl.post_id = ' . $row[post_id] . ' AND pl.user_id = ' . $row['user_id'];
 		}
 		$this->db->sql_freeresult($result);
@@ -109,7 +101,8 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 		return $start + $limit;
 	}
 
-	public function revert_timestamp($start)
+
+	public function revert_love_timestamp($start)
 	{
 		$start = (int) $start;
 		$limit = 100;
@@ -123,7 +116,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 			$rows_done++;
 
 			$sql = 'UPDATE ' . $this->table_prefix . 'posts_likes AS pl
-				SET temp_timestamp = ' . $row[timestamp] . '
+				SET timestamp = ' . $row[temp_timestamp] . '
                 WHERE pl.post_id = ' . $row[post_id] . ' AND pl.user_id = ' . $row['user_id'];
 		}
 		$this->db->sql_freeresult($result);

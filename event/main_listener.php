@@ -21,9 +21,9 @@ class main_listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.viewtopic_modify_post_row'	=>	'modify_post_row',
-			'core.user_setup'		=> 'load_language_on_setup',
-			'core.memberlist_view_profile'  	   => 'user_profile_likes',
+			'core.viewtopic_modify_post_row'	=> 'modify_post_row',
+			'core.user_setup'					=> 'load_language_on_setup',
+			'core.memberlist_view_profile'  	=> 'user_profile_likes',
 			'core.delete_posts_after'			=> 'clean_posts_after',
 			'core.delete_user_after'			=> 'clean_users_after',
 		);
