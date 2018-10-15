@@ -3,7 +3,7 @@
 *
 * Post Love extension for the phpBB Forum Software package.
 *
-* @copyright (c) 2014 Lucifer <http://www.anavaro.com>
+* @copyright (c) 2016 v12mike
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
