@@ -28,7 +28,8 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 			'change_columns' => array(
 				// remove the default value before casting the column type to keep postgresql happy
 				$this->table_prefix . 'posts_likes'	=> array(
-                    'timestamp' => array('VCHAR:32', ''),
+                    'timestamp' => array('VCHAR:32', null),
+                    ),
 				$this->table_prefix . 'posts_likes'	=> array(
 					'timestamp' => array('TIMESTAMP', 0 ),
 				),
