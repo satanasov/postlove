@@ -37,22 +37,12 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 					),
 				),
 			),
-			'drop_columns' => array(
-				$this->table_prefix . 'posts_likes'	=> array(
-					'timestamp',
-				),
-			),
 		);
 	}
 
 	public function revert_schema()
 	{
 		return array(
-			'add_columns' => array(
-				$this->table_prefix . 'posts_likes'	=> array(
-					'timestamp' => array('VCHAR:32', 0),
-				),
-			),
 			'drop_columns' => array(
 				$this->table_prefix . 'posts_likes'	=> array(
 					'liketime',
