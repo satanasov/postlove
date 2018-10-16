@@ -58,7 +58,7 @@ class release_2_0_0_prep extends \phpbb\db\migration\profilefield_base_migration
 	{
 		return array(
 			array('custom', array(
-				array($this, 'convert_love_timestamp')
+				array($this, 'convert_liketime')
 				)),
 			);
 	}
@@ -67,12 +67,12 @@ class release_2_0_0_prep extends \phpbb\db\migration\profilefield_base_migration
 	{
 		return array(
 			array('custom', array(
-				array($this, 'revert_love_timestamp')
+				array($this, 'revert_liketime')
 				)),
 			);
 	}
 
-	public function convert_love_timestamp($start)
+	public function convert_liketime($start)
 	{
 		$start = (int) $start;
 		$limit = 100;
@@ -102,7 +102,7 @@ class release_2_0_0_prep extends \phpbb\db\migration\profilefield_base_migration
 	}
 
 
-	public function revert_love_timestamp($start)
+	public function revert_liketime($start)
 	{
 		$start = (int) $start;
 		$limit = 100;

@@ -122,8 +122,8 @@ class lovelist
 				),
 			),
 			'WHERE'	=> 'p.topic_id = t.topic_id AND (p.poster_id = ' . (int) $user_id . ' OR  pl.user_id = ' . (int) $user_id . ') AND pl.user_id > 0 AND ' . $this->db->sql_in_set('p.forum_id', $forum_ids),
-			'ORDER_BY'	=> 'pl.love_timestamp DESC',
-			'GROUP_BY'	=> 'pl.love_timestamp, pl.user_id, p.post_id, t.topic_title'
+			'ORDER_BY'	=> 'pl.liketime DESC',
+			'GROUP_BY'	=> 'pl.liketime, pl.user_id, p.post_id, t.topic_title'
 		);
 		$sql = $this->db->sql_build_query('SELECT', $sql_array);
 		$result = $this->db->sql_query($sql);
@@ -135,7 +135,7 @@ class lovelist
 		$this->db->sql_freeresult($result);
 		if ($counter > 0)
 		{
-			$sql_array['SELECT'] = 'pl.love_timestamp as timestamp, pl.user_id as liker_id, p.post_id as post_id, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject, t.topic_title as topic_title';
+			$sql_array['SELECT'] = 'pl.liketime as liketime, pl.user_id as liker_id, p.post_id as post_id, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject, t.topic_title as topic_title';
 			$sql = $this->db->sql_build_query('SELECT', $sql_array);
 			$result = $this->db->sql_query_limit($sql, $limit, $start);
 			$users = $output = $raw_output = array();
@@ -160,7 +160,7 @@ class lovelist
 				$post_link = '<a href="' . $this->root_path .($short == 1 ? '' : ($page > 1 ? '../../../' : '../')) .'viewtopic.php?p=' . $row['post_id'] . '#'. $row['post_id'] .'" target="_blank" >' . $row['post_subject'] . '</a>';
 				$topic_link = '<a href="' . $this->root_path .($short == 1 ? '' : ($page > 1 ? '../../../' : '../')) .'viewtopic.php?t=' . $row['topic_id'] . '" target="_blank" class="topictitle">' . $row['topic_title'] . '</a>';
 				$this->template->assign_block_vars('lovelist', array(
-					'LINE' => $this->lang->lang('LIKE_LINE', $this->user->format_date($row['timestamp']), $this->user_loader->get_username($row['liker_id'], 'full'), $this->user_loader->get_username($row['poster'], 'full'), $post_link, $topic_link),
+					'LINE' => $this->lang->lang('LIKE_LINE', $this->user->format_date($row['liketime']), $this->user_loader->get_username($row['liker_id'], 'full'), $this->user_loader->get_username($row['poster'], 'full'), $post_link, $topic_link),
 				));
 			}
 

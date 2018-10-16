@@ -27,13 +27,13 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 		return array(
 			'add_columns' => array(
 				$this->table_prefix . 'posts_likes'	=> array(
-					'love_timestamp' => array('TIMESTAMP', 0 ),
+					'liketime' => array('TIMESTAMP', 0 ),
 				),
 			),
 			'add_index' => array(
 				$this->table_prefix . 'posts_likes' => array(
-					'love_timestamp' => array(
-						'love_timestamp',
+					'liketime' => array(
+						'liketime',
 					),
 				),
 			),
@@ -55,7 +55,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 			),
 			'drop_columns' => array(
 				$this->table_prefix . 'posts_likes'	=> array(
-					'love_timestamp',
+					'liketime',
 				),
 			),
 		);
@@ -65,7 +65,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 	{
 		return array(
 			array('custom', array(
-				array($this, 'convert_love_timestamp')
+				array($this, 'convert_liketime')
 				)),
 			);
 	}
@@ -74,12 +74,12 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 	{
 		return array(
 			array('custom', array(
-				array($this, 'revert_love_timestamp')
+				array($this, 'revert_liketime')
 				)),
 			);
 	}
 
-	public function convert_love_timestamp($start)
+	public function convert_liketime($start)
 	{
 		$start = (int) $start;
 		$limit = 100;
@@ -93,7 +93,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 			$rows_done++;
 
 			$sql = 'UPDATE ' . $this->table_prefix . 'posts_likes AS pl
-				SET love_timestamp = (int)' . $row['timestamp'] . '
+				SET liketime = (int)' . $row['timestamp'] . '
 				WHERE pl.post_id = ' . $row['post_id'] . ' AND pl.user_id = ' . $row['user_id'];
 		}
 		$this->db->sql_freeresult($result);
@@ -109,7 +109,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 	}
 
 
-	public function revert_love_timestamp($start)
+	public function revert_liketime($start)
 	{
 		$start = (int) $start;
 		$limit = 100;
@@ -123,7 +123,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 			$rows_done++;
 
 			$sql = 'UPDATE ' . $this->table_prefix . 'posts_likes AS pl
-				SET timestamp = ' . $row['love_timestamp'] . '
+				SET timestamp = ' . $row['liketime'] . '
 				WHERE pl.post_id = ' . $row['post_id'] . ' AND pl.user_id = ' . $row['user_id'];
 		}
 		$this->db->sql_freeresult($result);
