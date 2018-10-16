@@ -81,7 +81,7 @@ class main_listener implements EventSubscriberInterface
 					$this->loves_table	=> 'pl'
 				),
 				'WHERE'	=> 'u.user_id = pl.user_id AND post_id = ' . $event['row']['post_id'],
-				'ORDER_BY'	=> 'pl.timestamp ASC',
+				'ORDER_BY'	=> 'pl.love_timestamp ASC',
 			);
 
 			$sql = $this->db->sql_build_query('SELECT', $sql_array);

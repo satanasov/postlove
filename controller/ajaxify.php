@@ -50,7 +50,7 @@ class ajaxify
 				{
 					//get state for the like
 					$sql_array = array(
-						'SELECT'	=> 'pl.timestamp as timestamp, pl.user_id as liker_id, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject',
+						'SELECT'	=> 'pl.love_timestamp as timestamp, pl.user_id as liker_id, p.topic_id as topic_id, p.poster_id as poster, p.post_subject as post_subject',
 						'FROM'	=> array(
 							POSTS_TABLE	=> 'p',
 						),
@@ -78,7 +78,7 @@ class ajaxify
 						if (!$row['timestamp'])
 						{
 							//so we don't have record for this user loving this post ... give some love!
-							$sql = 'INSERT INTO ' . $this->likes_table . ' (post_id, user_id, type, timestamp) VALUES (' . (int) $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
+							$sql = 'INSERT INTO ' . $this->likes_table . ' (post_id, user_id, type, love_timestamp) VALUES (' . (int) $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
 							$this->cache->destroy('sql', $this->likes_table);

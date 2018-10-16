@@ -36,7 +36,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Can the author like his/her own posts or not',
 
 	'POSTLOVE_CLEAN_LOVES'	=> 'Почисти излишните харесвания',
-	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'Ако случайно сте използвали Post Love преди да сложат почистването след триене на постове и потребители - натиснете Изчисти,	за	да	почистите	излишните	записи	в	базата',
+	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'Ако случайно сте използвали Post Love преди да сложат почистването след триене на постове и потребители - натиснете Изчисти, за да почистите излишните записи в базата',
 	'CLEAN'	=> 'Почисти',
 
 	//Version 2.0

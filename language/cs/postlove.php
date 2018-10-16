@@ -58,3 +58,4 @@ $lang = array_merge($lang, array(
 	),
 	'POSTLOVE_HIDE' 			=> 'Hide Like icons and summaries',
 ));
+

@@ -45,7 +45,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_HOWMANY_MOST_LIKED_EVER'	=> 'How many liked-ever posts to show',
 	'POSTLOVE_FORUM'	=> 'How many to show on Forum pages',
 	'POSTLOVE_INDEX'	=> 'How many to show on Index page',
-	'POSTLOVE_SHOW_BUTTON'	=> Show the Post like count in a Post Button?',
+	'POSTLOVE_SHOW_BUTTON'	=> 'Show the Post like count in a Post Button?',
 	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=>'The Post like count status and action link may be shown as a Post Button at the top of the post or in the old format at the bottom of the post',
 ));
 

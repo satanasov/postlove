@@ -104,7 +104,7 @@ class summary_event extends \phpbb_database_test_case
 			'/',
 			'.php',
 			'phpbb_',
-			1500000000 // test timestamp
+			1500000000 // test love_timestamp
 		);
 	}
 

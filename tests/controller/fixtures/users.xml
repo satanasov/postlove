@@ -69,7 +69,7 @@
 		<column>post_id</column>
 		<column>user_id</column>
 		<column>type</column>
-		<column>timestamp</column>
+		<column>love_timestamp</column>
 		<row>
 			<value>1</value>
 			<value>1</value>
