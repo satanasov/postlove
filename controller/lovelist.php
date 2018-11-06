@@ -157,7 +157,7 @@ class lovelist
 			$this->user_loader->load_users($users);
 			foreach ($raw_output as $row)
 			{
-				$post_link = '<a href="' . $this->root_path .($short == 1 ? '' : ($page > 1 ? '../../../' : '../')) .'viewtopic.php?p=' . $row['post_id'] . '#'. $row['post_id'] .'" target="_blank" >' . $row['post_subject'] . '</a>';
+				$post_link = '<a href="' . $this->root_path .($short == 1 ? '' : ($page > 1 ? '../../../' : '../')) .'viewtopic.php?p=' . $row['post_id'] . '#p'. $row['post_id'] .'" target="_blank" >' . $row['post_subject'] . '</a>';
 				$topic_link = '<a href="' . $this->root_path .($short == 1 ? '' : ($page > 1 ? '../../../' : '../')) .'viewtopic.php?t=' . $row['topic_id'] . '" target="_blank" class="topictitle">' . $row['topic_title'] . '</a>';
 				$this->template->assign_block_vars('lovelist', array(
 					'LINE' => $this->lang->lang('LIKE_LINE', $this->user->format_date($row['timestamp']), $this->user_loader->get_username($row['liker_id'], 'full'), $this->user_loader->get_username($row['poster'], 'full'), $post_link, $topic_link),
