@@ -29,20 +29,24 @@ $lang = array_merge($lang, array(
 	'ACP_POSTLOVE'	=> 'Post love',
 	'POSTLOVE_EXPLAIN'	=> 'Buradan Post Love\'ın bazı ayarlarını değiştirebilirsiniz',
 	'CONFIRM_MESSAGE'	=> 'Değişiklikler uygulandı!<br><br><a href="%1$s">Geri</а>',
-	'POSTLOVE_CURRENT_THEME'	=> 'Güncel tema',
-	'THEME_NAME'	=> 'Tema adı',
-	'THEME_AUTHOR'	=> 'Tema sahibi',
-	'THEME_DESCRIPTION'	=> 'Tema açıklaması',
-	'THEME_SUPPORT_STYLES'	=> 'Desteklenen stiller',
-	'THEME_PREVIEW'	=> 'Önizleme',
-	'POSTLOVE_CHOOSE_THEME' => 'Tema seç',
-	'POSTLOVE_NO_THEMES_INSTALLED'	=> 'Yüklenmiş bir tema yok!<br>Lütfen <i>$phpbb_root_path/ext/anavaro/postlove/themes</i> klasörüne ekleyin',
-	'THEME_CHANGED'	=> 'Tema değiştirildi!',
-	'POSTLOVE_NO_WRITE_ACTION'	=> 'Yazma yetkisi yok!<br>Lütfen <i> $phpbb_root_path/ext/anavaro/postlove/styles </i>klasörüne yazma yetkisi verin',
+
 	'POSTLOVE_AUTHOR_LIKE'	=> 'Kendi paylaşımlarını beğenme',
 	'POSTLOVE_AUTHOR_LIKE_EXPLAIN'	=> 'Yazar kendi paylaşımlarını beğenebilir mi',
 
 	'POSTLOVE_CLEAN_LOVES'	=> 'Clean post loves',
 	'POSTLOVE_CLEAN_LOVES_EXPLAIN'	=> 'If you have installed Post Love before automatic post and user love cleaning - please press Clean to clean the unneeded Post Loves',
-	'CLEN'	=> 'Clean',
+	'CLEAN'	=> 'Clean',
+
+	//Version 2.0
+	'POSTLOVE_SUMMARY_PERIOD'			=> 'Summary Period',
+	'POSTLOVE_HOWMANY_MOST_LIKED_DAY'	=> 'How many liked-today posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_WEEK'	=> 'How many liked-this-week posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_MONTH'	=> 'How many liked-this-month posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_YEAR'	=> 'How many liked-this-year posts to show',
+	'POSTLOVE_HOWMANY_MOST_LIKED_EVER'	=> 'How many liked-ever posts to show',
+	'POSTLOVE_FORUM'		=> 'How many to show on Forum pages',
+	'POSTLOVE_INDEX'		=> 'How many to show on Index page',
+	'POSTLOVE_SHOW_BUTTON'	=> 'Show the Post like count in a Post Button?',
+	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=> 'The Post like count status and action link may be shown as a Post Button at the top of the post or in the old format at the bottom of the post',
 ));
+

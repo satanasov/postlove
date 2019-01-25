@@ -26,7 +26,7 @@ class postlove_base extends \phpbb_functional_test_case
 	}
 
 	/**
-	* Allow birthday (just to be sure) 
+	* Allow birthday (just to be sure)
 	*/
 	public function force_allow_postlove()
 	{
@@ -42,7 +42,7 @@ class postlove_base extends \phpbb_functional_test_case
 	}
 
 	/**
-	* Require birthday (it's not required on install) 
+	* Require birthday (it's not required on install)
 	*/
 	public function show_likes()
 	{
@@ -66,6 +66,22 @@ class postlove_base extends \phpbb_functional_test_case
 		$sql = "UPDATE phpbb_config
 			SET config_value = 1
 			WHERE config_name = 'postlove_show_liked'";
+
+		$this->db->sql_query($sql);
+
+		$this->purge_cache();
+	}
+
+	/**
+	* Set postlove button mode
+	*/
+	public function set_button_mode($enable_button)
+	{
+		$this->get_db();
+
+		$sql = "UPDATE phpbb_config
+			SET config_value = $enable_button
+			WHERE config_name = 'postlove_show_button'";
 
 		$this->db->sql_query($sql);
 

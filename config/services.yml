@@ -13,12 +13,30 @@ services:
             - %tables.anavaro.postlove%
         tags:
             - { name: event.listener }
+    anavaro.summary.listener:
+        class: anavaro\postlove\event\summary_listener
+        arguments:
+            - @auth
+            - @config
+            - @cache
+            - @content.visibility
+            - @dbal.conn
+            - @dispatcher
+            - @template
+            - @user
+            - @language
+            - %core.root_path%
+            - %core.php_ext%
+            - %core.table_prefix%
+        tags:
+            - { name: event.listener }
     anavaro.postlove.ajaxify:
         class: anavaro\postlove\controller\ajaxify
         arguments:
             - @config
             - @dbal.conn
             - @user
+            - @cache
             - @anavaro.postlove.notifyhelper
             - %tables.anavaro.postlove%
     anavaro.postlove.lovelist:

@@ -106,64 +106,68 @@ class main_event extends \phpbb_database_test_case
 	{
 		return array(
 			'base'	=> array(
-				1, //user_id
+				3, // user_id
 				1, // post_id
-				5, // poster_id
-				0, //postlove_show_likes
-				0, //postlove_show_liked
-				0, //postlove_author_like
+				6, // poster_id
+				0, // postlove_show_likes
+				0, // postlove_show_liked
+				0, // postlove_author_like
 				array(
 					'POST_LIKERS'	=> 'Test user, Test user 2',
 					'POST_LIKERS_COUNT'	=> 2,
 					'POST_LIKE_CLASS'	=> 'liked',
-					'POST_LIKE_URL'		=> NULL
+					'POST_LIKE_URL'		=> NULL,
+					'ACTION_ON_CLICK'	=> NULL,
 				),
 			),
 			'user'	=> array(
-				3, //user_id
+				4, // user_id
 				1, // post_id
-				5, // poster_id
-				0, //postlove_show_likes
-				0, //postlove_show_liked
-				0, //postlove_author_like
+				6, // poster_id
+				0, // postlove_show_likes
+				0, // postlove_show_liked
+				0, // postlove_author_like
 				array(
 					'POST_LIKERS'	=> 'Test user, Test user 2',
 					'POST_LIKERS_COUNT'	=> 2,
 					'POST_LIKE_CLASS'	=> 'like',
-					'POST_LIKE_URL'		=> NULL
+					'POST_LIKE_URL'		=> NULL,
+					'ACTION_ON_CLICK'	=> NULL,
 				),
 			),
 			'post'	=> array(
-				1, //user_id
+				2, // user_id
 				4, // post_id
-				5, // poster_id
-				0, //postlove_show_likes
-				0, //postlove_show_liked
-				0, //postlove_author_like
+				6, // poster_id
+				0, // postlove_show_likes
+				0, // postlove_show_liked
+				0, // postlove_author_like
 				array(
 					'POST_LIKERS_COUNT'	=> 0,
 					'POST_LIKE_CLASS'	=> 'like',
-					'POST_LIKE_URL'		=> NULL
+					'POST_LIKE_URL'		=> NULL,
+					'ACTION_ON_CLICK'	=> NULL,
 				),
 			),
 			'post_author_not_like'	=> array(
-				1, //user_id
+				3, // user_id
 				4, // post_id
-				1, // poster_id
-				0, //postlove_show_likes
-				0, //postlove_show_liked
-				0, //postlove_author_like
+				3, // poster_id
+				0, // postlove_show_likes
+				0, // postlove_show_liked
+				0, // postlove_author_like
 				array(
 					'POST_LIKERS_COUNT'	=> 0,
 					'POST_LIKE_CLASS'	=> 'like',
 					'POST_LIKE_URL'		=> NULL,
-					'DISABLE'	=> 1
+					'DISABLE'	=> 1,
+					'ACTION_ON_CLICK'	=> NULL,
 				),
 			),
 			'post_author_like'	=> array(
-				1, //user_id
+				2, //user_id
 				4, // post_id
-				1, // poster_id
+				2, // poster_id
 				0, //postlove_show_likes
 				0, //postlove_show_liked
 				1, //postlove_author_like
@@ -171,50 +175,54 @@ class main_event extends \phpbb_database_test_case
 					'POST_LIKERS_COUNT'	=> 0,
 					'POST_LIKE_CLASS'	=> 'like',
 					'POST_LIKE_URL'		=> NULL,
+					'ACTION_ON_CLICK'	=> NULL,
 				),
 			),
 			'show_likes'	=> array(
-				1, //user_id
+				3, // user_id
 				1, // post_id
-				1, // poster_id
-				1, //postlove_show_likes
-				0, //postlove_show_liked
-				1, //postlove_author_like
+				3, // poster_id
+				1, // postlove_show_likes
+				0, // postlove_show_liked
+				1, // postlove_author_like
 				array(
 					'POST_LIKERS'	=> 'Test user, Test user 2',
 					'POST_LIKERS_COUNT'	=> 2,
 					'POST_LIKE_CLASS'	=> 'liked',
 					'POST_LIKE_URL'		=> NULL,
+					'ACTION_ON_CLICK'	=> NULL,
 					'USER_LIKES'	=> 3,
 				),
 			),
 			'show_liked'	=> array(
-				1, //user_id
+				3, // user_id
 				1, // post_id
-				1, // poster_id
-				0, //postlove_show_likes
-				1, //postlove_show_liked
-				1, //postlove_author_like
+				3, // poster_id
+				0, // postlove_show_likes
+				1, // postlove_show_liked
+				1, // postlove_author_like
 				array(
 					'POST_LIKERS'	=> 'Test user, Test user 2',
 					'POST_LIKERS_COUNT'	=> 2,
 					'POST_LIKE_CLASS'	=> 'liked',
 					'POST_LIKE_URL'		=> NULL,
+					'ACTION_ON_CLICK'	=> NULL,
 					'USER_LIKED'	=> 6,
 				),
 			),
 			'show_likes_liked'	=> array(
-				1, //user_id
+				3, // user_id
 				1, // post_id
-				1, // poster_id
-				1, //postlove_show_likes
-				1, //postlove_show_liked
-				1, //postlove_author_like
+				3, // poster_id
+				1, // postlove_show_likes
+				1, // postlove_show_liked
+				1, // postlove_author_like
 				array(
 					'POST_LIKERS'	=> 'Test user, Test user 2',
 					'POST_LIKERS_COUNT'	=> 2,
 					'POST_LIKE_CLASS'	=> 'liked',
 					'POST_LIKE_URL'		=> NULL,
+					'ACTION_ON_CLICK'	=> NULL,
 					'USER_LIKES'	=> 3,
 					'USER_LIKED'	=> 6,
 				),

@@ -20,7 +20,7 @@ class acp_postlove_info
 		return array(
 			'filename'	=> 'anavaro\postlove\acp\acp_postlove_module',
 			'title'		=> 'ACP_POSTLOVE', // define in the lang/xx/acp/common.php language file
-			'version'	=> '1.0.0',
+			'version'	=> '2.0.0-a2',
 			'modes'		=> array(
 				'main'		=> array(
 					'title'		=> 'ACP_POSTLOVE',

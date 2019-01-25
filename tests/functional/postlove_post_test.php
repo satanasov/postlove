@@ -25,32 +25,57 @@ class postlove_post_test extends postlove_base
 		$crawler = self::request('GET', "viewtopic.php?t={$post['topic_id']}&sid={$this->sid}");
 
 		$post2 = $this->create_post(2, $post['topic_id'], 'Re: Test Topic 1', 'This is a test [b]post[/b] posted by the testing framework.');
+
+        $this->set_button_mode(0);
 		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
 
 		//Do we see the static?
 		$class = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('span')->attr('class');
 
 		//toggle like
-		$url = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('a')->attr('href');
-		$crw1 = self::request('GET', substr($url, 1), array(), array(), array('CONTENT_TYPE'	=> 'application/json'));
+		$crw1 = self::request('GET', 'app.php/postlove/toggle/' . $post2['post_id'], array(), array(), array('CONTENT_TYPE'	=> 'application/json'));
 
 		//reload page and test ...
 		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
-		$class = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->filter('span')->attr('class');
+		$this->assertContains('1 x', $crawler->filter('#p' . $post2['post_id'])->filter('.postlove')->text());
+
+		//toggle like
+		$crw1 = self::request('GET', 'app.php/postlove/toggle/' . $post2['post_id'], array(), array(), array('CONTENT_TYPE'	=> 'application/json'));
+
+        $this->set_button_mode(1);
+		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
+
+		//Do we see the static?
+		$class = $crawler->filter('#p' . $post2['post_id'])->filter('.postlove-li')->filter('span')->attr('class');
+
+		//toggle like
+		$crw1 = self::request('GET', 'app.php/postlove/toggle/' . $post2['post_id'], array(), array(), array('CONTENT_TYPE'	=> 'application/json'));
+
+		//reload page and test ...
+		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
+		$this->assertContains('1', $crawler->filter('#p' . $post2['post_id'])->filter('.postlove-count')->text());
 
 		$this->logout();
 	}
 
 	public function test_guest_see_loves()
 	{
+        $this->set_button_mode(0);
 		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
 		$this->assertContains('1 x', $crawler->filter('#p3')->filter('.postlove')->text());
+
+        $this->set_button_mode(1);
+
+		//reload page and test ...
+		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
+		$this->assertContains('1', $crawler->filter('#p3')->filter('.postlove-count')->text());
 	}
 	
 	public function test_guests_cannot_like()
 	{
 		$crw1 = self::request('GET', 'app.php/postlove/toggle/3', array(), array(), array('CONTENT_TYPE'	=> 'application/json'));
 		
+        $this->set_button_mode(0);
 		$crawler = self::request('GET', "viewtopic.php?t=2&sid={$this->sid}");
 		$this->assertContains('1 x', $crawler->filter('#p3')->filter('.postlove')->text());
 		
