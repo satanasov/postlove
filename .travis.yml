@@ -63,7 +63,7 @@ script:
   - mkdir phpBB/ext/$EXTNAME/build
   - mkdir phpBB/ext/$EXTNAME/build/logs
   - sh -c "if [ '$DB' != 'none' -a '$SLOWTEST' = '1' ]; then phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php --coverage-clover phpBB/ext/$EXTNAME/build/logs/clover.xml; fi"
-  - sh -c "if [ '$DB' != 'none' ]; then phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php ----exclude-group functional --coverage-clover phpBB/ext/$EXTNAME/build/logs/clover.xml; fi"
+  - sh -c "if [ '$DB' != 'none' ]; then phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php --exclude-group functional --coverage-clover phpBB/ext/$EXTNAME/build/logs/clover.xml; fi"
   - sh -c "if [ '$EPV' != '0' -a '$NOTESTS' = '1' ]; then phpBB/vendor/bin/EPV.php run --dir='phpBB/ext/$EXTNAME/'; fi"
 
 after_script:
