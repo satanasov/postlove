@@ -15,7 +15,7 @@ matrix:
     - php: 5.4
       env: DB=sqlite3
     - php: 5.5
-      env: DB=mysqli
+      env: DB=mysqli;SLOWTEST=1
     - php: 5.5
       env: DB=none;NOTESTS=1
     - php: 5.6
@@ -62,7 +62,8 @@ script:
   - sh -c "if [ '$IMAGE_ICC' != '0' ]; then travis/check-image-icc-profiles.sh $DB $TRAVIS_PHP_VERSION; fi"
   - mkdir phpBB/ext/$EXTNAME/build
   - mkdir phpBB/ext/$EXTNAME/build/logs
-  - sh -c "if [ '$DB' != 'none' ]; then phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php --coverage-clover phpBB/ext/$EXTNAME/build/logs/clover.xml; fi"
+  - sh -c "if [ '$DB' != 'none' -a '$SLOWTEST' = '1' ]; then phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php --coverage-clover phpBB/ext/$EXTNAME/build/logs/clover.xml; fi"
+  - sh -c "if [ '$DB' != 'none' ]; then phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php ----exclude-group functional --coverage-clover phpBB/ext/$EXTNAME/build/logs/clover.xml; fi"
   - sh -c "if [ '$EPV' != '0' -a '$NOTESTS' = '1' ]; then phpBB/vendor/bin/EPV.php run --dir='phpBB/ext/$EXTNAME/'; fi"
 
 after_script:
