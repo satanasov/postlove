@@ -23,7 +23,7 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_USER_LIKES'	=> 'User gefallen',
 	'POSTLOVE_USER_LIKED'	=> 'User gefällt',
 
-	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s <b>gefällt</b> dein Beitrag "%2$s"',
+	'NOTIFICATION_POSTLOVE_ADD'	=> '%1$s <b>gefällt</b> dein Beitrag:',
 	'NOTIFICATION_TYPE_POST_LOVE'	=> 'Beitrag gefällt.',
 
 	// Ver 1.1
