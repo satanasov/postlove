@@ -43,11 +43,11 @@ $lang = array_merge($lang, array(
 
 	//Version 2.0
 	'POSTLOVE_SUMMARY_PERIOD'			=> 'Okres podsumowania',
-	'POSTLOVE_HOWMANY_MOST_LIKED_DAY'	=> 'Ile pokazać postów polubionych dzisiaj',
-	'POSTLOVE_HOWMANY_MOST_LIKED_WEEK'	=> 'Ile pokazać postów polubionych w tym tygodniu',
-	'POSTLOVE_HOWMANY_MOST_LIKED_MONTH'	=> 'Ile pokazać postów polubionych w tym miesiącu',
-	'POSTLOVE_HOWMANY_MOST_LIKED_YEAR'	=> 'Ile pokazać postów polubionych w tym roku',
-	'POSTLOVE_HOWMANY_MOST_LIKED_EVER'	=> 'Ile pokazać postów polubionych ogółem',
+	'POSTLOVE_HOWMANY_MOST_LIKED_DAY'	=> 'Ile wyświetlać postów polubionych dzisiaj',
+	'POSTLOVE_HOWMANY_MOST_LIKED_WEEK'	=> 'Ile wyświetlać postów polubionych w tym tygodniu',
+	'POSTLOVE_HOWMANY_MOST_LIKED_MONTH'	=> 'Ile wyświetlać postów polubionych w tym miesiącu',
+	'POSTLOVE_HOWMANY_MOST_LIKED_YEAR'	=> 'Ile wyświetlać postów polubionych w tym roku',
+	'POSTLOVE_HOWMANY_MOST_LIKED_EVER'	=> 'Ile wyświetlać postów polubionych ogółem',
 	'POSTLOVE_FORUM'		=> 'Ile wyświetlać na forum',
 	'POSTLOVE_INDEX'		=> 'Ile wyświetlać na stronie głównej',
 	'POSTLOVE_SHOW_BUTTON'	=> 'Wyświetlać liczbę polubień na przycisku posta?',

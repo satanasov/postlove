@@ -61,6 +61,6 @@ $lang = array_merge($lang, array(
 		1	=> 'Tylko raz ogółem',
 		2	=> '%d razy ogółem',
 	),
-	'POSTLOVE_HIDE' 			=> 'Schowaj polubienia i podsumowanie',
+	'POSTLOVE_HIDE' 			=> 'Ukryj polubienia i podsumowanie',
 ));
 
