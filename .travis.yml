@@ -4,27 +4,27 @@ language: php
 
 matrix:
   include:
-    - php: 5.4
-      env: DB=mysqli
-    - php: 5.4
-      env: DB=mysql
-    - php: 5.4
-      env: DB=mariadb
-    - php: 5.4
-      env: DB=postgres
-    - php: 5.4
-      env: DB=sqlite3
-    - php: 5.5
-      env: DB=mysqli;SLOWTEST=1
-    - php: 5.5
-      env: DB=none;NOTESTS=1
-    - php: 5.6
-      env: DB=mysqli
-    - php: 7
-      env: DB=mysqli
-    - php: 7.1
+    - php: 7.2
       env: DB=mysqli
     - php: 7.2
+      env: DB=mysql
+    - php: 7.2
+      env: DB=mariadb
+    - php: 7.2
+      env: DB=postgres
+    - php: 7.2
+      env: DB=sqlite3
+    - php: 7.2
+      env: DB=mysqli;SLOWTEST=1
+    - php: 7.2
+      env: DB=none;NOTESTS=1
+    - php: 7.2
+      env: DB=mysqli
+    - php: 7.2
+      env: DB=mysqli
+    - php: 7.3
+      env: DB=mysqli
+    - php: 7.4
       env: DB=mysqli
   allow_failures:
     - php: hhvm
