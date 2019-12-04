@@ -20,7 +20,7 @@ class postlove_base extends \phpbb_functional_test_case
 		return array('anavaro/postlove');
 	}
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 	}

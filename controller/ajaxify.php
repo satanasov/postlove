@@ -78,14 +78,15 @@ class ajaxify
 						if (!$row['liketime'])
 						{
 							//so we don't have record for this user loving this post ... give some love!
-							$sql = 'INSERT INTO ' . $this->likes_table . ' (post_id, user_id, type, liketime) VALUES (' . (int) $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ')';
-							$result = $this->db->sql_query($sql);
-							$this->db->sql_freeresult($result);
-							$this->cache->destroy('sql', $this->likes_table);
 							$sql = 'SELECT topic_id, poster_id, post_subject FROM ' . POSTS_TABLE . ' WHERE post_id = ' . (int) $post;
 							$result = $this->db->sql_query($sql);
 							$row1 = $this->db->sql_fetchrow($result);
 							$this->db->sql_freeresult($result);
+
+							$sql = 'INSERT INTO ' . $this->likes_table . ' (post_id, user_id, type, liketime, liked_user_id) VALUES (' . (int) $post . ', ' . $this->user->data['user_id'] . ', \'post\', ' . time() . ', ' . $row1['poster_id'] . ')';
+							$result = $this->db->sql_query($sql);
+							$this->db->sql_freeresult($result);
+							$this->cache->destroy('sql', $this->likes_table);
 							$this->notifyhelper->notify('add', $row1['topic_id'], (int) $post, $row1['post_subject'], $row1['poster_id'] , $this->user->data['user_id']);
 							return new \Symfony\Component\HttpFoundation\JsonResponse(array(
 								'toggle_action'	=> 'add',

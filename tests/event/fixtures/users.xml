@@ -70,41 +70,48 @@
 		<column>user_id</column>
 		<column>type</column>
 		<column>liketime</column>
+		<column>liked_user_id</column>
 		<row>
 			<value>1</value>
 			<value>3</value>
 			<value>post</value>
 			<value>1</value>
+			<value>3</value>
 		</row>
 		<row>
 			<value>1</value>
 			<value>2</value>
 			<value>post</value>
 			<value>2</value>
+			<value>3</value>
 		</row>
 		<row>
 			<value>1</value>
 			<value>4</value>
 			<value>post</value>
 			<value>3</value>
+			<value>3</value>
 		</row>
 		<row>
 			<value>2</value>
 			<value>3</value>
 			<value>post</value>
 			<value>4</value>
+			<value>3</value>
 		</row>
 		<row>
 			<value>2</value>
 			<value>2</value>
 			<value>post</value>
 			<value>5</value>
+			<value>3</value>
 		</row>
 		<row>
 			<value>3</value>
 			<value>3</value>
 			<value>post</value>
 			<value>6</value>
+			<value>3</value>
 		</row>
 	</table>
 	<table name="phpbb_users">

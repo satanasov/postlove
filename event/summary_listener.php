@@ -200,8 +200,7 @@ class summary_listener implements EventSubscriberInterface
 		LEFT JOIN ' . TOPICS_TABLE .  ' ON most_liked_posts.topic_id = '  . TOPICS_TABLE . '.topic_id
 		LEFT JOIN ' . USERS_TABLE .   ' ON most_liked_posts.poster_id = ' . USERS_TABLE .  '.user_id
 		LEFT JOIN ' . FORUMS_TABLE .  ' ON ' . TOPICS_TABLE . '.forum_id = '  . FORUMS_TABLE . '.forum_id
-		WHERE topic_status <> ' . ITEM_MOVED .
-		' ORDER BY sum_likes DESC, post_time DESC';
+		WHERE topic_status <> ' . ITEM_MOVED ;
 
 		// cache the query to reduce load on server
 		// the same query is run for all users with the same set of forum permissions

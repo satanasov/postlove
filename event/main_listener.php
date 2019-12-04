@@ -146,7 +146,7 @@ class main_listener implements EventSubscriberInterface
 			if ($this->config['postlove_show_likes'])
 			{
 				$sql = 'SELECT COUNT(post_id) as count FROM ' .$this->loves_table . ' WHERE user_id = ' . $event['row']['user_id'];
-				$result = $this->db->sql_query($sql, 3600);
+				$result = $this->db->sql_query($sql);
 				$count = (int) $this->db->sql_fetchfield('count');
 				$this->db->sql_freeresult($result);
 				$post_row = $event['post_row'];
@@ -155,16 +155,8 @@ class main_listener implements EventSubscriberInterface
 			}
 			if ($this->config['postlove_show_liked'])
 			{
-				$sql_array = array(
-					'SELECT'	=> 'COUNT(pl.post_id) as count',
-					'FROM'	=> array(
-						$this->loves_table	=> 'pl',
-						POSTS_TABLE	=> 'p'
-					),
-					'WHERE'	=> 'pl.post_id = p.post_id AND p.poster_id = ' . $event['row']['user_id'],
-				);
-				$sql = $this->db->sql_build_query('SELECT', $sql_array);
-				$result = $this->db->sql_query($sql, 3600);
+				$sql = 'SELECT COUNT(post_id) as count FROM ' . $this->loves_table . ' WHERE liked_user_id = ' . $event['row']['user_id'];
+				$result = $this->db->sql_query($sql);
 				$count = (int) $this->db->sql_fetchfield('count');
 				$this->db->sql_freeresult($result);
 				$post_row = $event['post_row'];

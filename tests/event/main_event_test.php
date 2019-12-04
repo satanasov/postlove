@@ -41,11 +41,11 @@ class main_event extends \phpbb_database_test_case
 	/**
 	* Setup test environment
 	*/
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 		// Setup Auth
-		$this->auth = $this->getMock('\phpbb\auth\auth');
+		$this->auth = $this->createMock('\phpbb\auth\auth');
 
 		//Setup Config
 		$this->config = new \phpbb\config\config(array());
@@ -58,7 +58,7 @@ class main_event extends \phpbb_database_test_case
 			->getMock();
 
 		// Setup User
-		$this->user = $this->getMock('\phpbb\user', array(), array(
+		$this->user = $this->createMock('\phpbb\user', array(), array(
 			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
 			'\phpbb\datetime',
 			));
