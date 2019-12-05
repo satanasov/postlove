@@ -17,7 +17,7 @@
 			<exclude>./tests/functional</exclude>
 		</testsuite>
 		<testsuite name="Extension Functional Tests">
-			<directory suffix="_test.php" phpVersion="5.3.19" phpVersionOperator=">=">./tests/functional/</directory>
+			<directory suffix="_test.php">./tests/functional/</directory>
 		</testsuite>
 	</testsuites>
 
@@ -32,3 +32,4 @@
 		</whitelist>
 	</filter>
 </phpunit>
+
