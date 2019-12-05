@@ -16,7 +16,8 @@ NOTESTS=$2
 
 if [ "$EPV" == "1" ] && [ "$NOTESTS" == "1" ]
 then
-	cd phpBB
+	pwd
+        cd ../../phpBB3/phpBB
 	composer remove sami/sami --update-with-dependencies --dev --no-interaction
 	composer require phpbb/epv:dev-master --dev --no-interaction --ignore-platform-reqs
 	cd ../
