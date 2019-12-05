@@ -158,7 +158,7 @@ class summary_listener implements EventSubscriberInterface
 		$post_list[] = '0'; //SQL needs dummy array member
 
 		// build the array of most liked posts
-		$day_begin_time = (int)floor(($this->test_time ? $this->test_time : time()) / SECONDS_PER_DAY) * SECONDS_PER_DAY;
+		$day_begin_time = (int) floor(($this->test_time ? $this->test_time : time()) / SECONDS_PER_DAY) * SECONDS_PER_DAY;
 		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_ever'],		2,										'LIKES_EVER',		$post_list);
 		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_year'],	$day_begin_time - SECONDS_PER_DAY * 366, 'LIKES_THIS_YEAR',	$post_list);
 		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_month'],	$day_begin_time - SECONDS_PER_DAY * 31,	'LIKES_THIS_MONTH', $post_list);
@@ -263,4 +263,5 @@ class summary_listener implements EventSubscriberInterface
 		return $post_list;
 	}
 }
+
 
