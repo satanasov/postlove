@@ -27,7 +27,6 @@ matrix:
     - php: nightly
       env: DB=mariadb
   allow_failures:
-    - php: 7.3
     - php: 7.4snapshot
     - php: nightly
   fast_finish: true
@@ -39,7 +38,7 @@ env:
     - SNIFF="1"                         # Code sniffer switch
     - IMAGE_ICC="1"                     # ICC profile sniffer switch
     - EPV="1"                           # Extension pre-validator switch
-    - PHPBB_BRANCH="3.2.x"              # phpBB branch
+    - PHPBB_BRANCH="3.3.x"              # phpBB branch
     - EXTDEPS="0"                       # Extension dependencies switch
 
 branches:
