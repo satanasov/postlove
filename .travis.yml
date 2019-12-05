@@ -35,6 +35,7 @@ matrix:
 env:
   global:
     - EXTNAME="anavaro/postlove"        # Extension name
+    - REPONAME="satanasov/postlove"     # Extension name
     - SNIFF="1"                         # Code sniffer switch
     - IMAGE_ICC="1"                     # ICC profile sniffer switch
     - EPV="1"                           # Extension pre-validator switch
@@ -51,7 +52,7 @@ cache:
     - $HOME/.composer/cache/files
 
 install:
-  - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
+  - travis/prepare-phpbb.sh $REPONAME $PHPBB_BRANCH
   - cd ../../phpBB3
   - travis/prepare-extension.sh $EXTNAME $PHPBB_BRANCH
   - $TRAVIS_BUILD_DIR/travis/setup-extension-dependencies.sh $EXTNAME $EXTDEPS
