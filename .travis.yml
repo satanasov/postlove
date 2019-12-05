@@ -46,7 +46,12 @@ services:
 
 install:
   - travis/prepare-phpbb.sh $PHPBB_BRANCH
-  - cd ../../phpBB3
+  - pwd
+  - cd ../
+  - pwd
+  - cd ../
+  - pwd
+  - cd phpBB3
   - travis/prepare-extension.sh $EXTNAME $PHPBB_BRANCH
   - travis/setup-phpbb.sh $DB $TRAVIS_PHP_VERSION $NOTESTS
   - ../phpbb-extensions/anavaro/travis/prepare-epv.sh $EPV $NOTESTS
