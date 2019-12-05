@@ -1,6 +1,6 @@
-sudo: required
-
 language: php
+dist: trusty
+sudo: required
 
 matrix:
   include:
@@ -27,25 +27,23 @@ matrix:
     - php: nightly
       env: DB=mariadb
   allow_failures:
+    - php: 7.3
     - php: 7.4snapshot
     - php: nightly
   fast_finish: true
 
 env:
   global:
-    - EXTNAME="anavaro/postlove"  # CHANGE name of the extension HERE
-    - SNIFF="1"            # Should we run code sniffer on your code?
-    - IMAGE_ICC="1"        # Should we run icc profile sniffer on your images?
-    - EPV="1"              # Should we run EPV (Extension Pre Validator) on your code?
-    - PHPBB_BRANCH="3.2.x"
-    - COVERAGE="1"
+    - EXTNAME="anavaro/postlove"   # Extension name
+    - SNIFF="1"                         # Code sniffer switch
+    - IMAGE_ICC="1"                     # ICC profile sniffer switch
+    - EPV="1"                           # Extension pre-validator switch
+    - PHPBB_BRANCH="3.2.x"              # phpBB branch
     - EXTDEPS="0"                       # Extension dependencies switch
 
 branches:
   only:
     - master
-    - 1.2.x
-    - /^[0-9].*$/
     - /^\d+\.\d+\.(?:\d+|x)/
 
 cache:
@@ -62,7 +60,6 @@ install:
 
 before_script:
   - travis/setup-database.sh $DB $TRAVIS_PHP_VERSION $NOTESTS
-  - mkdir phpBB/ext/$EXTNAME/logs
 
 script:
   - sh -c "if [ '$SNIFF' != '0' ]; then travis/ext-sniff.sh $DB $TRAVIS_PHP_VERSION $EXTNAME $NOTESTS; fi"
