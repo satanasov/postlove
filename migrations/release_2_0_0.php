@@ -83,7 +83,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 			$rows_done++;
 
 			$sql = 'UPDATE ' . $this->table_prefix . 'posts_likes
-				SET liketime = ' . (int)$row['timestamp'] . '
+				SET liketime = ' . (int) $row['timestamp'] . '
 				WHERE post_id = ' . $row['post_id'] . ' AND user_id = ' . $row['user_id'];
 			$this->db->sql_query($sql);
 		}
@@ -129,4 +129,3 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 		return $start + $limit;
 	}
 }
-
