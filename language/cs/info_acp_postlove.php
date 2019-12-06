@@ -38,6 +38,7 @@ $lang = array_merge($lang, array(
 	'CLEAN'	=> 'Vyčistit',
 
 	//Version 2.0
+	'POSTLOVE_SUMMARY_PERIOD'			=> 'Summary Period',
 	'POSTLOVE_HOWMANY_MOST_LIKED_DAY'	=> 'How many liked-today posts to show',
 	'POSTLOVE_HOWMANY_MOST_LIKED_WEEK'	=> 'How many liked-this-week posts to show',
 	'POSTLOVE_HOWMANY_MOST_LIKED_MONTH'	=> 'How many liked-this-month posts to show',

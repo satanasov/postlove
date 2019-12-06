@@ -21,8 +21,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'POSTLOVE_CONTROL'	=> 'Polubienia postów',
-	'POSTLOVE_USE_CSS'	=> 'Użyj dostarczonych stylów CSS',
-	'POSTLOVE_USE_CSS_EXPLAIN'	=> 'Aby łatwiej spersonalizować rozszerzenie POST LOVE, możesz zatrzymać wczytywanie go z domyślnego stylu CSS. Jeśli chcesz użyć własnych grafik, przejdź do pliku <code>overall_header_head_append.html</code>.',
 	'POSTLOVE_SHOW_LIKES'	=> 'Pokaż sumę postów, jakie zostały polubione przez tego użytkownika',
 	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> 'Pokazuje w <code>viewtopic</code> sumę postów, jakie zostały polubione przez tego użytkownika.',
 	'POSTLOVE_SHOW_LIKED'	=> 'Pokaż sumę postów tego użytkownika, jakie zostały polubione przez innych',

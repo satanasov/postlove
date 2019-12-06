@@ -18,8 +18,6 @@ if (empty($lang) || !is_array($lang))
 }
 $lang = array_merge($lang, array(
 	'POSTLOVE_CONTROL'	=> 'Paylaşım beğen',
-	'POSTLOVE_USE_CSS'	=> 'Sağlanan CSSyi kullan',
-	'POSTLOVE_USE_CSS_EXPLAIN'	=> 'POST LOVE eklentisini daha kolay özelleştirebilmek için mevcut CSSyi yüklemesini durdurabilirsiniz. Eğer kendi görsellerinizi kullanmak istiyorsanız, lütfen <code>overall_header_head_append.html</code> a bakınız.',
 	'POSTLOVE_SHOW_LIKES'	=> 'Kullanıcının beğendiği mesaj saysını göster',
 	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> '<code>viewtopic</code> içinde kullanıcının beğendiği mesaj sayısını göster.',
 	'POSTLOVE_SHOW_LIKED'	=> 'Kullanıcının beğenilen mesaj sayısını göster',
@@ -49,4 +47,3 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_SHOW_BUTTON'	=> 'Show the Post like count in a Post Button?',
 	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=> 'The Post like count status and action link may be shown as a Post Button at the top of the post or in the old format at the bottom of the post',
 ));
-

@@ -21,8 +21,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'POSTLOVE_CONTROL'	=> 'Beitrag gefällt mir',
-	'POSTLOVE_USE_CSS'	=> 'CSS verwenden',
-	'POSTLOVE_USE_CSS_EXPLAIN'	=> 'Um POST LOVE einfacher anzupassen, kann man es daran hindern, die mitgelieferte CSS-Datei zu verwenden. Eigenen Bilder können in der <code>overall_header_head_append.html</code> eingebunden werden.',
 	'POSTLOVE_SHOW_LIKES'	=> 'Zeige die Anzahl an Beiträge, die dem Benutzer gefallen.',
 	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> 'Zeige die Anzahl an Beiträge in  <code>viewtopic</code> die Anzahl an Beiträge, die dem Benutzer gefallen.',
 	'POSTLOVE_SHOW_LIKED'	=> 'Zeige die Anzahl an Beiträgen des User\'s die Anderen gefallen haben.',
