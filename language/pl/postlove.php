@@ -63,4 +63,3 @@ $lang = array_merge($lang, array(
 	),
 	'POSTLOVE_HIDE' 			=> 'Ukryj polubienia i podsumowanie',
 ));
-

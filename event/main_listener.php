@@ -80,7 +80,7 @@ class main_listener implements EventSubscriberInterface
 					USERS_TABLE	=> 'u',
 					$this->loves_table	=> 'pl'
 				),
-				'WHERE'	=> 'u.user_id = pl.user_id AND post_id = ' . $event['row']['post_id'],
+				'WHERE'	=> 'u.user_id = pl.user_id AND post_id = ' . (int) $event['row']['post_id'],
 				'ORDER_BY'	=> 'pl.liketime ASC',
 			);
 
@@ -145,7 +145,7 @@ class main_listener implements EventSubscriberInterface
 			//Test if we are showing likes given!
 			if ($this->config['postlove_show_likes'])
 			{
-				$sql = 'SELECT COUNT(post_id) as count FROM ' .$this->loves_table . ' WHERE user_id = ' . $event['row']['user_id'];
+				$sql = 'SELECT COUNT(post_id) as count FROM ' .$this->loves_table . ' WHERE user_id = ' . (int) $event['row']['user_id'];
 				$result = $this->db->sql_query($sql);
 				$count = (int) $this->db->sql_fetchfield('count');
 				$this->db->sql_freeresult($result);
@@ -155,7 +155,7 @@ class main_listener implements EventSubscriberInterface
 			}
 			if ($this->config['postlove_show_liked'])
 			{
-				$sql = 'SELECT COUNT(post_id) as count FROM ' . $this->loves_table . ' WHERE liked_user_id = ' . $event['row']['user_id'];
+				$sql = 'SELECT COUNT(post_id) as count FROM ' . $this->loves_table . ' WHERE liked_user_id = ' . (int) $event['row']['user_id'];
 				$result = $this->db->sql_query($sql);
 				$count = (int) $this->db->sql_fetchfield('count');
 				$this->db->sql_freeresult($result);

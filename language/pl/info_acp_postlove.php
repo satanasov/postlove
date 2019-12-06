@@ -51,4 +51,3 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_SHOW_BUTTON'	=> 'Wyświetlać liczbę polubień na przycisku posta?',
 	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=> 'Status liczby polubień i link akcji mogą się wyświetlać w formie przycisku nad postem, bądź pod postem zgodnie ze starym formatem.',
 ));
-

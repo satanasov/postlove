@@ -49,4 +49,3 @@ class release_2_0_0_drop_timestamp extends \phpbb\db\migration\profilefield_base
 		return array();
 	}
 }
-

@@ -74,4 +74,3 @@ class release_2_0_0_add_liked_user_id extends \phpbb\db\migration\profilefield_b
 		$this->db->sql_query($sql);
 	}
 }
-

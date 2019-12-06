@@ -97,7 +97,7 @@ class ajaxify
 						else
 						{
 							//so we have a record ... and the user don't love it anymore!
-							$sql = 'DELETE FROM ' . $this->likes_table . ' WHERE post_id = ' . (int) $post . ' AND user_id = ' . $this->user->data['user_id'];
+							$sql = 'DELETE FROM ' . $this->likes_table . ' WHERE post_id = ' . (int) $post . ' AND user_id = ' . (int) $this->user->data['user_id'];
 							$result = $this->db->sql_query($sql);
 							$this->db->sql_freeresult($result);
 							$this->cache->destroy('sql', $this->likes_table);

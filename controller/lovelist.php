@@ -51,7 +51,7 @@ class lovelist
 	 * @param $root_path
 	 */
 	public function __construct(\phpbb\user $user, \phpbb\language\language $language, \phpbb\controller\helper $helper, \phpbb\db\driver\driver_interface $db, \phpbb\auth\auth $auth, \phpbb\user_loader $user_loader,
-	\phpbb\template\template $template,\phpbb\pagination $pagination, \phpbb\request\request $request,
+	\phpbb\template\template $template, \phpbb\pagination $pagination, \phpbb\request\request $request,
 	$likes_table, $root_path)
 	{
 		$this->user = $user;
