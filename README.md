@@ -43,9 +43,11 @@ Installation:
 
 Credits:
 
-    @phpbb-es aka Raul [ThE KuKa]
+	@v12mike
+	@phpbb-es aka Raul [ThE KuKa]
 	@R3gi
 	@mhakfoort
+	@v12mike
     
 Submitting translations/functions
     
