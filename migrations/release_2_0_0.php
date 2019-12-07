@@ -99,7 +99,6 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 		return $start + $limit;
 	}
 
-
 	public function revert_liketime($start)
 	{
 		$start = (int) $start;

@@ -65,12 +65,35 @@ class release_2_0_0_add_liked_user_id extends \phpbb\db\migration\profilefield_b
 		return array();
 	}
 
-	public function populate_liked_user_id()
+	public function populate_liked_user_id($start)
 	{
-		$sql = 'UPDATE ' . $this->table_prefix . 'posts_likes pl 
-			INNER JOIN ' . $this->table_prefix . 'posts	 p
-				ON pl.post_id = p.post_id
-			SET pl.liked_user_id = p.poster_id';
-		$this->db->sql_query($sql);
+		$start = (int) $start;
+		$limit = 100;
+		$rows_done = 0;
+
+		$sql = 'SELECT p.poster_id as liked_user_id, pl.post_id as post, pl.user_id as liker
+			FROM ' . $this->table_prefix . 'posts_likes pl
+			INNER JOIN ' . $this->table_prefix . 'posts p
+            ON p.post_id = pl.post_id
+			ORDER BY post ASC, liker ASC';
+		$result = $this->db->sql_query_limit($sql, $limit, $start);
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$sql = 'UPDATE ' . $this->table_prefix . 'posts_likes
+				SET liked_user_id = ' . (int) $row['liked_user_id'] . '
+				WHERE post_id = ' . (int) $row['post'] . ' AND user_id = ' . (int) $row['liker'] ;
+			$this->db->sql_query($sql);
+			$rows_done++;
+		}
+		$this->db->sql_freeresult($result);
+
+		if ($rows_done < $limit)
+		{
+			// There are no more, we are done
+			return;
+		}
+
+		// There are still more to query, return the next start value
+		return $start += $limit;
 	}
 }
