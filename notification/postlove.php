@@ -84,7 +84,7 @@ class postlove extends \phpbb\notification\type\base
 	}
 
 	/**
-	* Find the users who will receive notifications 
+	* Find the users who will receive notifications
 	*
 	* @param array $data The data for the like
 	*

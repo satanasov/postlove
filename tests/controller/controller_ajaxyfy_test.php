@@ -43,7 +43,7 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 	/**
 	* Setup test environment
 	*/
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 		// Setup DB
@@ -53,7 +53,7 @@ class controller_ajaxify_test extends \phpbb_database_test_case
 		$this->config = new \phpbb\config\config(array());
 
 		// Setup User
-		$this->user = $this->getMock('\phpbb\user', array(), array(
+		$this->user = $this->createMock('\phpbb\user', array(), array(
 			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
 			'\phpbb\datetime'));
 

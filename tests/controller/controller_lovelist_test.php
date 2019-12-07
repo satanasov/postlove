@@ -40,7 +40,7 @@ class controller_lovelist_test extends \phpbb_database_test_case
 	/**
 	* Setup test environment
 	*/
-	public function setUp()
+	public function setUp(): void
 	{
 		global $phpbb_dispatcher;
 
@@ -49,7 +49,7 @@ class controller_lovelist_test extends \phpbb_database_test_case
 
 		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
 
-		$this->user = $this->getMock('\phpbb\user', array(), array(
+		$this->user = $this->createMock('\phpbb\user', array(), array(
 			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
 			'\phpbb\datetime'
 		));
@@ -68,7 +68,7 @@ class controller_lovelist_test extends \phpbb_database_test_case
 				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
 			});
 
-		$this->auth = $this->getMock('\phpbb\auth\auth');
+		$this->auth = $this->createMock('\phpbb\auth\auth');
 
 		$this->user_loader = new \phpbb\user_loader($this->db, $phpbb_root_path, $phpEx, 'phpbb_users');
 		// Mock the template
@@ -78,7 +78,7 @@ class controller_lovelist_test extends \phpbb_database_test_case
 		$this->pagination = $this->getMockBuilder('\phpbb\pagination')->disableOriginalConstructor()
 			->getMock();
 
-		$this->request = $this->getMock('\phpbb\request\request');
+		$this->request = $this->createMock('\phpbb\request\request');
 	}
 	public function test_install()
 	{

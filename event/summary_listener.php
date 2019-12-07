@@ -158,7 +158,7 @@ class summary_listener implements EventSubscriberInterface
 		$post_list[] = '0'; //SQL needs dummy array member
 
 		// build the array of most liked posts
-		$day_begin_time = (int)floor(($this->test_time ? $this->test_time : time()) / SECONDS_PER_DAY) * SECONDS_PER_DAY;
+		$day_begin_time = (int) floor(($this->test_time ? $this->test_time : time()) / SECONDS_PER_DAY) * SECONDS_PER_DAY;
 		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_ever'],		2,										'LIKES_EVER',		$post_list);
 		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_year'],	$day_begin_time - SECONDS_PER_DAY * 366, 'LIKES_THIS_YEAR',	$post_list);
 		$post_list = $this->topposts_of_period($forum_ary, $this->config['postlove_' . $page_type . '_most_liked_this_month'],	$day_begin_time - SECONDS_PER_DAY * 31,	'LIKES_THIS_MONTH', $post_list);
@@ -188,20 +188,20 @@ class summary_listener implements EventSubscriberInterface
 				FROM(
 					SELECT post_id AS post, COUNT(*) AS sum_likes
 					FROM ' . $this->table_prefix . 'posts_likes
-						WHERE ' . $this->table_prefix . 'posts_likes.liketime > ' . $period_start_time .
-						' AND post_id NOT IN (' . implode(",", $post_list) . ')
+						WHERE ' . $this->table_prefix . 'posts_likes.liketime > ' . $period_start_time . '
+						AND post_id NOT IN (' . implode(",", $post_list) . ')
 						GROUP BY post_id
 					) AS liked_posts
 			LEFT JOIN ' . POSTS_TABLE .   ' ON post = post_id
-			WHERE  ' . $this->content_visibility->get_forums_visibility_sql('post', $forum_ary, POSTS_TABLE .'.') .
-			' ORDER BY sum_likes DESC, post_time DESC
-			LIMIT ' . $howmany .
-			' )AS most_liked_posts
+			WHERE  ' . $this->content_visibility->get_forums_visibility_sql('post', $forum_ary, POSTS_TABLE .'.') . '
+			ORDER BY sum_likes DESC, post_time DESC
+			LIMIT ' . $howmany . '
+			)AS most_liked_posts
 		LEFT JOIN ' . TOPICS_TABLE .  ' ON most_liked_posts.topic_id = '  . TOPICS_TABLE . '.topic_id
 		LEFT JOIN ' . USERS_TABLE .   ' ON most_liked_posts.poster_id = ' . USERS_TABLE .  '.user_id
 		LEFT JOIN ' . FORUMS_TABLE .  ' ON ' . TOPICS_TABLE . '.forum_id = '  . FORUMS_TABLE . '.forum_id
-		WHERE topic_status <> ' . ITEM_MOVED .
-		' ORDER BY sum_likes DESC, post_time DESC';
+		WHERE topic_status <> ' . ITEM_MOVED . '
+		ORDER BY sum_likes DESC, post_time DESC';
 
 		// cache the query to reduce load on server
 		// the same query is run for all users with the same set of forum permissions
@@ -264,4 +264,3 @@ class summary_listener implements EventSubscriberInterface
 		return $post_list;
 	}
 }
-

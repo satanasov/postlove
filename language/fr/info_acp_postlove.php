@@ -40,8 +40,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'POSTLOVE_CONTROL'	=> '« J’aime » un message',
-	'POSTLOVE_USE_CSS'	=> 'Utiliser la feuille de style CSS fournie',
-	'POSTLOVE_USE_CSS_EXPLAIN'	=> 'Permet de personnaliser aisément l’extension « Post Love » pour remplacer la feuille de style CSS par défaut. Pour utiliser ses propres images, se référer au fichier : <code>overall_header_head_append.html</code>.',
 	'POSTLOVE_SHOW_LIKES'	=> 'Afficher le nombre de « J’aime » exprimés par l’utilisateur',
 	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> 'Permet d’afficher le nombre de messages aimés par l’utilisateur sur les pages des sujets, <code>viewtopic</code>, au moyen du terme : « J’aime ».',
 	'POSTLOVE_SHOW_LIKED'	=> 'Afficher le nombre de « J’aime » reçus par les utilisateurs',
@@ -72,4 +70,3 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_SHOW_BUTTON'	=> 'Show the Post like count in a Post Button?',
 	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=> 'The Post like count status and action link may be shown as a Post Button at the top of the post or in the old format at the bottom of the post',
 ));
-

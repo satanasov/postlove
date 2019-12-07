@@ -83,8 +83,8 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 			$rows_done++;
 
 			$sql = 'UPDATE ' . $this->table_prefix . 'posts_likes
-				SET liketime = ' . (int)$row['timestamp'] . '
-				WHERE post_id = ' . $row['post_id'] . ' AND user_id = ' . $row['user_id'];
+				SET liketime = ' . (int) $row['timestamp'] . '
+				WHERE post_id = ' . (int) $row['post_id'] . ' AND user_id = ' . (int) $row['user_id'];
 			$this->db->sql_query($sql);
 		}
 		$this->db->sql_freeresult($result);
@@ -98,7 +98,6 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 		// There are still more to query, return the next start value
 		return $start + $limit;
 	}
-
 
 	public function revert_liketime($start)
 	{
@@ -115,7 +114,7 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 
 			$sql = 'UPDATE ' . $this->table_prefix . 'posts_likes AS pl
 				SET timestamp = ' . $row['liketime'] . '
-				WHERE pl.post_id = ' . $row['post_id'] . ' AND pl.user_id = ' . $row['user_id'];
+				WHERE pl.post_id = ' . (int) $row['post_id'] . ' AND pl.user_id = ' . (int) $row['user_id'];
 		}
 		$this->db->sql_freeresult($result);
 
@@ -129,4 +128,3 @@ class release_2_0_0 extends \phpbb\db\migration\profilefield_base_migration
 		return $start + $limit;
 	}
 }
-

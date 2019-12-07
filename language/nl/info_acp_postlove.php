@@ -21,8 +21,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'POSTLOVE_CONTROL'	=> 'Post Love',
-	'POSTLOVE_USE_CSS'	=> 'Gebruik bijgeleverde CSS:',
-	'POSTLOVE_USE_CSS_EXPLAIN'	=> 'Om POST LOVE makkelijker te kunnen aanpassen kan je het laden van de standaard CSS uitzetten. Als je je eigen afbeeldingen wil gebruiken, kijk dan in <code>overall_header_head_append.html</code>',
 	'POSTLOVE_SHOW_LIKES'	=> 'Laat het aantal berichten zien dat deze gebruiker leuk vindt:',
 	'POSTLOVE_SHOW_LIKES_EXPLAIN'	=> 'Laat het aantal berichten dat een gebruiker leuk vind zien in <code>viewtopic</code> pagina.',
 	'POSTLOVE_SHOW_LIKED'	=> 'Laat het aantal door anderen leuk gevonden berichten van de gebruiker zien:',
@@ -53,4 +51,3 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_SHOW_BUTTON'	=> 'Show the Post like count in a Post Button?',
 	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=> 'The Post like count status and action link may be shown as a Post Button at the top of the post or in the old format at the bottom of the post',
 ));
-
