@@ -27,7 +27,7 @@ class release_1_2_0_create_cpf extends \phpbb\db\migration\profilefield_base_mig
 		);
 	}
 	protected $profilefield_name = 'postlove_hide';
-	protected $profilefield_database_type = array('UINT:2', 1);
+	protected $profilefield_database_type = array('UINT:2');
 	protected $profilefield_data = array(
 		'field_name'            => 'postlove_hide',
 		'field_type'			=> 'profilefields.type.bool',
