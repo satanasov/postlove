@@ -104,6 +104,43 @@ class acp_postlove_module
 			}
 		}
 
+		if ($request->variable('import', false))
+		{
+			if (confirm_box(true))
+			{
+				// Now lets import thanks from the thanks table
+				$sql = 'INSERT INTO '. $table_prefix . 'posts_likes (post_id, user_id, liked_user_id, liketime)
+					SELECT t.post_id, t.user_id, t.poster_id as liked_user_id, t.thanks_time as liketime
+					FROM '. $table_prefix . 'thanks AS t
+					LEFT JOIN '. $table_prefix . 'posts_likes as l
+					ON t.user_id = l.user_id
+					AND t.post_id = l.post_id
+					WHERE l.post_id IS NULL';
+				$db->sql_query($sql);
+			}
+			else
+			{
+				confirm_box(false, $language->lang('CONFIRM_OPERATION'), build_hidden_fields(array('import' => true)));
+			}
+		}
+
+		// Is there and Thanks for Posts data to import?
+		$thanks_to_convert = 0;
+		$db_tools = new \phpbb\db\tools($db);
+		if ($db_tools->sql_table_exists($table_prefix . 'thanks'))
+		{
+			$sql = 'SELECT COUNT(t.thanks_time) as item_count
+			FROM '. $table_prefix . 'thanks AS t
+				LEFT JOIN '. $table_prefix . 'posts_likes as l
+				ON t.user_id = l.user_id
+				AND t.post_id = l.post_id
+				WHERE l.post_id IS NULL';
+
+			$result = $db->sql_query($sql);
+			$thanks_to_convert = (int) $db->sql_fetchfield('item_count');
+			$db->sql_freeresult($result);
+		}
+
 		$template->assign_vars(array(
 			'POST_LIKES'	=> ($config['postlove_show_likes'] == 1 ? true : false),
 			'POST_LIKED'	=> ($config['postlove_show_liked'] == 1 ? true : false),
@@ -119,6 +156,7 @@ class acp_postlove_module
 			'FORUM_HOWMANY_THIS_MONTH'	=> $config['postlove_forum_most_liked_this_month'],
 			'FORUM_HOWMANY_THIS_YEAR'	=> $config['postlove_forum_most_liked_this_year'],
 			'FORUM_HOWMANY_EVER'		=> $config['postlove_forum_most_liked_ever'],
+			'THANKS_TO_CONVERT'	=> $thanks_to_convert,
 		));
 	}
 }

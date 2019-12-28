@@ -91,6 +91,24 @@
 					</dd>
 				</dl>
 			</fieldset>
+			<fieldset>
+				<dl>
+					<!-- IF THANKS_TO_CONVERT -->
+					<dt>
+						<label>{THANKS_TO_CONVERT} {L_POSTLOVE_IMPORT_THANKS}</label><br />
+						<span>{L_POSTLOVE_IMPORT_THANKS_EXPLAIN}</span>
+					</dt>
+					<dd>
+						<input class="button1" type="submit" id="import" name="import" value="{L_IMPORT}" />
+					</dd>
+					<!-- ELSE -->
+					<dt>
+						<label>{L_POSTLOVE_IMPORT_THANKS}</label><br />
+						<span>{L_POSTLOVE_IMPORT_NO_THANKS_EXPLAIN}</span>
+					</dt>
+					<!-- ENDIF -->
+				</dl>
+			</fieldset>
 	</form>
 <!-- INCLUDE overall_footer.html -->
 
