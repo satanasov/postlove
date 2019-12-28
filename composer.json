@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Adds ability to favourite/like/thank a post.",
 	"homepage": "http://lab.anavaro.com/forum/viewforum.php?f=5",
-	"version": "2.0.0-b2",
-	"time": "2019-12-06",
+	"version": "2.0.0-b3",
+	"time": "2019-12-28",
 	"license": "GPL-2.0-only",
 	"authors": [
 		{
