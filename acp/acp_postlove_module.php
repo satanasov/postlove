@@ -124,7 +124,7 @@ class acp_postlove_module
 			}
 		}
 
-		// Is there and Thanks for Posts data to import?
+		// Is there any Thanks for Posts data to import? - the query ignores data already imported
 		$thanks_to_convert = 0;
 		$db_tools = new \phpbb\db\tools($db);
 		if ($db_tools->sql_table_exists($table_prefix . 'thanks'))
