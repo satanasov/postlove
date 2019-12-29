@@ -126,7 +126,8 @@ class acp_postlove_module
 
 		// Is there and Thanks for Posts data to import?
 		$thanks_to_convert = 0;
-		$db_tools = new \phpbb\db\tools($db);
+		/* @var $db_tools \phpbb\db\tools\tools_interface */
+		$db_tools = $phpbb_container->get('dbal.tools');
 		if ($db_tools->sql_table_exists($table_prefix . 'thanks'))
 		{
 			$sql = 'SELECT COUNT(t.thanks_time) as item_count
