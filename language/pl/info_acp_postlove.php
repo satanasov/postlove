@@ -50,4 +50,9 @@ $lang = array_merge($lang, array(
 	'POSTLOVE_INDEX'		=> 'Ile wyświetlać na stronie głównej',
 	'POSTLOVE_SHOW_BUTTON'	=> 'Wyświetlać liczbę polubień na przycisku posta?',
 	'POSTLOVE_SHOW_BUTTON_EXPLAIN'	=> 'Status liczby polubień i link akcji mogą się wyświetlać w formie przycisku nad postem, bądź pod postem zgodnie ze starym formatem.',
+
+	'POSTLOVE_IMPORT_THANKS'			=> 'Thanks records able to be imported',
+	'POSTLOVE_IMPORT_THANKS_EXPLAIN'	=> 'Thanks records can be imported from the Thanks for Posts extension, this operation does not change the data of the other extension',
+	'POSTLOVE_IMPORT_NO_THANKS_EXPLAIN'	=> 'Thanks records can be imported from the Thanks for Posts extension but no suitable records found',
+	'IMPORT'							=> 'Import',
 ));
